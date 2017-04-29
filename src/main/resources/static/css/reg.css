@@ -1,0 +1,193 @@
+
+body, html{
+    height: 100%;
+    background-repeat: no-repeat;
+    background-color: #D3D3D3;
+    font-family: 'Oxygen', sans-serif;
+    padding-top: 20px;
+    padding-bottom: 40px;
+}
+
+
+
+h1.title {
+    font-size: 50px;
+    font-family: 'Passion One', cursive !important;
+    font-weight: 400;
+    margin-bottom: 20px;
+}
+
+h2, h3{
+    font-family: 'Passion One', cursive;
+    margin-bottom: 20px;
+}
+
+hr{
+    width: 10%;
+    color: #fff;
+}
+
+.form-group{
+    margin-bottom: 15px
+}
+
+label{
+    margin-bottom: 15px;
+
+}
+
+input,
+input::-webkit-input-placeholder {
+    font-size: 11px;
+    padding-top: 3px;
+
+}
+
+.main-login{
+    background-color: #fff;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+    -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+
+}
+
+.main-center{
+    margin-top: 30px;
+    margin: 0 auto;
+    max-width: 330px;
+    padding: 40px 40px;
+
+}
+
+.login-button{
+    margin-top: 5px;
+    background-color: #63a7ff;
+}
+
+.login-register{
+    font-size: 11px;
+    text-align: center;
+    background-color: #63a7ff;
+}
+
+.navbar {
+    margin-bottom: 20px;
+    background-color: #fff;
+    border-radius: 12px;
+}
+
+.prop{
+    background-color: #fff;
+    margin-right: 20px;
+    padding: 40px 40px;
+}
+.rounded {
+    border-radius: 10px;
+    background: #fff;
+
+}
+.way {
+    margin-bottom: 15px;
+}
+
+#search {
+    background-color: #5bc0de;
+}
+
+.img-circle{
+    margin-left: 20%;
+    margin-right: 20%;
+    margin-bottom: 10px;
+}
+#upimg {
+    margin-left: 20%; /* Отступ слева */
+    margin-right: 20%;
+}
+
+#upload {
+   display: none;
+}
+
+#mainttable {
+    visibility: hidden;
+}
+
+.btn-group{
+    margin-bottom: 20px;
+}
+
+.center {
+    margin: 0 auto;
+    text-align: center;
+    width: 600px;
+}
+
+#fon, #imagegroup{
+    text-align: center;
+}
+#train, #bag{
+    position: absolute;
+    top: 120px;
+    right: -50px;
+    height: 1000px;
+    width: 1000px;
+}
+#ticket{
+    position: absolute;
+    top: 250px;
+    right:450px;
+    height: 400px;
+    width: 400px;
+}
+
+#trip{
+    position: absolute;
+    top: 250px;
+    right: 600px;
+    height: 200px;
+    width: 200px;
+}
+
+
+#accountimage{
+    height: 200px;
+    width: 200px;
+}
+#uploadlabel, #saveimg, #addtrain, #deletetrain, #deletestation, #addstation, #deleteuser{
+    margin-bottom: 10px;
+    margin-right: 10px;
+    width: 120px;
+}
+
+.scrolltable{
+    height: 300px;
+    overflow: auto;
+}
+
+#leftdiv{
+    text-align: left;
+}
+.ui-datepicker, .ui-timepicker, .ui-timepicker-container {
+    z-index: 200 !important;
+}
+.btn-danger{
+    display: none;
+}
+.col-sm-12 {
+  float: none;
+}
+.btn-group-justified{
+    margin-bottom: 0;
+    float: none;
+    border: none;
+}
+
+.carriageroad{
+    margin-bottom: 50px;
+}
+.accountdialog{
+    background-color: rgba(128, 245, 252, 0.17) !important;
+}

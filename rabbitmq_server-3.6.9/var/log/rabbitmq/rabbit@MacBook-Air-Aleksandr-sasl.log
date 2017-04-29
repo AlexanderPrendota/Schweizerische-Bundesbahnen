@@ -1,0 +1,148 @@
+
+=CRASH REPORT==== 21-Apr-2017::10:53:00 ===
+  crasher:
+    initial call: supervisor:ranch_acceptors_sup/1
+    pid: <0.327.0>
+    registered_name: []
+    exception exit: {listen_error,{acceptor,{0,0,0,0,0,0,0,0},5672},
+                                  eaddrinuse}
+      in function  gen_server:init_it/6 (gen_server.erl, line 330)
+    ancestors: [<0.325.0>,<0.324.0>,rabbit_sup,<0.88.0>]
+    messages: []
+    links: [<0.325.0>]
+    dictionary: []
+    trap_exit: true
+    status: running
+    heap_size: 376
+    stack_size: 27
+    reductions: 911
+  neighbours:
+
+=SUPERVISOR REPORT==== 21-Apr-2017::10:53:00 ===
+     Supervisor: {<0.325.0>,ranch_listener_sup}
+     Context:    start_error
+     Reason:     {listen_error,{acceptor,{0,0,0,0,0,0,0,0},5672},eaddrinuse}
+     Offender:   [{pid,undefined},
+                  {name,ranch_acceptors_sup},
+                  {mfargs,
+                      {ranch_acceptors_sup,start_link,
+                          [{acceptor,{0,0,0,0,0,0,0,0},5672},
+                           10,ranch_tcp,
+                           [{port,5672},
+                            {ip,{0,0,0,0,0,0,0,0}},
+                            {max_connections,infinity},
+                            {ack_timeout,5000},
+                            {connection_type,supervisor},
+                            inet6,
+                            {backlog,128},
+                            {nodelay,true},
+                            {linger,{true,0}},
+                            {exit_on_close,false}]]}},
+                  {restart_type,permanent},
+                  {shutdown,infinity},
+                  {child_type,supervisor}]
+
+
+=SUPERVISOR REPORT==== 21-Apr-2017::10:53:00 ===
+     Supervisor: {<0.324.0>,tcp_listener_sup}
+     Context:    start_error
+     Reason:     {shutdown,
+                     {failed_to_start_child,ranch_acceptors_sup,
+                         {listen_error,
+                             {acceptor,{0,0,0,0,0,0,0,0},5672},
+                             eaddrinuse}}}
+     Offender:   [{pid,undefined},
+                  {name,
+                      {ranch_listener_sup,{acceptor,{0,0,0,0,0,0,0,0},5672}}},
+                  {mfargs,
+                      {ranch_listener_sup,start_link,
+                          [{acceptor,{0,0,0,0,0,0,0,0},5672},
+                           10,ranch_tcp,
+                           [{port,5672},
+                            {ip,{0,0,0,0,0,0,0,0}},
+                            {max_connections,infinity},
+                            {ack_timeout,5000},
+                            {connection_type,supervisor},
+                            inet6,
+                            {backlog,128},
+                            {nodelay,true},
+                            {linger,{true,0}},
+                            {exit_on_close,false}],
+                           rabbit_connection_sup,[]]}},
+                  {restart_type,permanent},
+                  {shutdown,infinity},
+                  {child_type,supervisor}]
+
+
+=CRASH REPORT==== 21-Apr-2017::10:53:00 ===
+  crasher:
+    initial call: application_master:init/4
+    pid: <0.87.0>
+    registered_name: []
+    exception exit: {bad_return,
+                     {{rabbit,start,[normal,[]]},
+                      {'EXIT',
+                       {{case_clause,
+                         {error,
+                          {{shutdown,
+                            {failed_to_start_child,
+                             {ranch_listener_sup,
+                              {acceptor,{0,0,0,0,0,0,0,0},5672}},
+                             {shutdown,
+                              {failed_to_start_child,ranch_acceptors_sup,
+                               {listen_error,
+                                {acceptor,{0,0,0,0,0,0,0,0},5672},
+                                eaddrinuse}}}}},
+                           {child,undefined,
+                            'rabbit_tcp_listener_sup_:::5672',
+                            {tcp_listener_sup,start_link,
+                             [{0,0,0,0,0,0,0,0},
+                              5672,ranch_tcp,
+                              [inet6,
+                               {backlog,128},
+                               {nodelay,true},
+                               {linger,{true,0}},
+                               {exit_on_close,false}],
+                              rabbit_connection_sup,[],
+                              {rabbit_networking,tcp_listener_started,
+                               [amqp,
+                                [{backlog,128},
+                                 {nodelay,true},
+                                 {linger,{true,0}},
+                                 {exit_on_close,false}]]},
+                              {rabbit_networking,tcp_listener_stopped,
+                               [amqp,
+                                [{backlog,128},
+                                 {nodelay,true},
+                                 {linger,{true,0}},
+                                 {exit_on_close,false}]]},
+                              10,"TCP Listener"]},
+                            transient,infinity,supervisor,
+                            [tcp_listener_sup]}}}},
+                        [{rabbit_networking,start_listener0,5,
+                          [{file,"src/rabbit_networking.erl"},{line,294}]},
+                         {rabbit_networking,'-start_listener/5-lc$^0/1-0-',5,
+                          [{file,"src/rabbit_networking.erl"},{line,282}]},
+                         {rabbit_networking,start_listener,5,
+                          [{file,"src/rabbit_networking.erl"},{line,282}]},
+                         {rabbit_networking,'-boot_tcp/1-lc$^0/1-0-',2,
+                          [{file,"src/rabbit_networking.erl"},{line,132}]},
+                         {rabbit_networking,boot_tcp,1,
+                          [{file,"src/rabbit_networking.erl"},{line,132}]},
+                         {rabbit_networking,boot,0,
+                          [{file,"src/rabbit_networking.erl"},{line,127}]},
+                         {rabbit_boot_steps,'-run_step/2-lc$^1/1-1-',1,
+                          [{file,"src/rabbit_boot_steps.erl"},{line,49}]},
+                         {rabbit_boot_steps,run_step,2,
+                          [{file,"src/rabbit_boot_steps.erl"},{line,49}]}]}}}}
+      in function  application_master:init/4 (application_master.erl, line 133)
+    ancestors: [<0.86.0>]
+    messages: [{'EXIT',<0.88.0>,normal}]
+    links: [<0.86.0>,<0.7.0>]
+    dictionary: []
+    trap_exit: true
+    status: running
+    heap_size: 2586
+    stack_size: 27
+    reductions: 303
+  neighbours:

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta name="description" content="Project"/>
+    <meta name="author" content="Alexander Prendota"/>
+    <title>Account</title>
+    <link rel="stylesheet" href="css/bootstrap.css"/>
+    <link rel="stylesheet" href="css/reg.css"/>
+    <link rel="stylesheet" href="css/sweetalert.css"/>
+    <link rel="stylesheet" href="css/jquery-ui.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css"/>
+    <link href='https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet'/>
+    <link href='https://fonts.googleapis.com/css?family=Passion+One' rel='stylesheet'/>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="js/datepickerRun.js"></script>
+    <script>goDatePicker()</script>
+</head>
+<body onload="viewPageParams();">
+    <!--  TODO: Show on JS -->
+    <div class="container">
+        <div class="navbar navbar-default"  role="navigation">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="home">Just Railways</a>
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a href="home">Home</a></li>
+                        <li><a href="#">Timetable</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="active"><a href="account">Account</a></li>
+                        <li id = "logout"><a href="/logout">Logout</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container">
+        <div class="row main">
+            <div class="panel-heading">
+                <div class="panel-title text-center">
+                    <h1 id="mainuser" class="title">Welcome, </h1>
+                    <hr/>
+                </div>
+            </div>
+        </div>
+        <form method="post" action="/api/account/update">
+            <div class="col-sm-4 prop rounded" id="userinformation">
+                <div class="input-group way">
+                    <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                    <input type="text" class="form-control" id="firstname"/>
+                </div>
+                <div class="input-group way">
+                    <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                    <input type="text" class="form-control" id="lastname"/>
+                </div>
+                <div class="input-group way">
+                    <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+                    <input type="text" class="form-control" id="email"/>
+                </div>
+                <div class="input-group way">
+                    <span class="input-group-addon"><i class="fa fa-birthday-cake" aria-hidden="true"></i></span>
+                    <input type="text" class="form-control" id="datepicker" />
+                </div>
+                <input onclick="saveUserInformation();" class="btn btn-info" type="submit" id="saveinfo" value="Save Information"/>
+            </div>
+        </form>
+        <form method="post" action="/images" enctype="multipart/form-data">
+            <div id="imagegroup" class="col-lg-4 way prop rounded">
+                <img id="accountimage" class="img-circle" data-src="holder.js/140x140" alt="image"/>
+                <label class="btn btn-success" id="uploadlabel" for="upload">Choose a file</label>
+                <input id="upload" type="file" name="file" onchange="getName(this.value);"/>
+                <div id="fileformlabel"></div>
+                <input class="btn btn-info" type="submit" id="saveimg" value="Save Image"/>
+            </div>
+        </form>
+        <div id="mainttable" class="prop rounded">
+            <!-- Table should be here-->
+        </div>
+        <div id="dialog" class="accountdialog"></div>
+    </div>
+
+    <div id="lose">
+        <!-- lose report should be here -->
+    </div>
+    <script src="js/accountPageParams.js"></script>
+    <script src="js/sweetalert.min.js"></script>
+    <script src="js/rideDetail.js"></script>
+
+    </body>
+</html>

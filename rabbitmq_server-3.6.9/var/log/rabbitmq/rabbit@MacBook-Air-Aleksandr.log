@@ -1,0 +1,978 @@
+
+=INFO REPORT==== 21-Apr-2017::10:52:58 ===
+Starting RabbitMQ 3.6.9 on Erlang 17.5
+Copyright (C) 2007-2016 Pivotal Software, Inc.
+Licensed under the MPL.  See http://www.rabbitmq.com/
+
+=INFO REPORT==== 21-Apr-2017::10:52:58 ===
+node           : rabbit@MacBook-Air-Aleksandr
+home dir       : /Users/aleksandrprendota
+config file(s) : /Users/aleksandrprendota/Downloads/rabbitmq_server-3.6.9/etc/rabbitmq/rabbitmq.config (not found)
+cookie hash    : k+glbnczKW307Q2+7TeMgg==
+log            : /Users/aleksandrprendota/Downloads/rabbitmq_server-3.6.9/var/log/rabbitmq/rabbit@MacBook-Air-Aleksandr.log
+sasl log       : /Users/aleksandrprendota/Downloads/rabbitmq_server-3.6.9/var/log/rabbitmq/rabbit@MacBook-Air-Aleksandr-sasl.log
+database dir   : /Users/aleksandrprendota/Downloads/rabbitmq_server-3.6.9/var/lib/rabbitmq/mnesia/rabbit@MacBook-Air-Aleksandr
+
+=INFO REPORT==== 21-Apr-2017::10:53:00 ===
+Memory limit set to 1100MB of 2751MB total.
+
+=INFO REPORT==== 21-Apr-2017::10:53:00 ===
+Disk free limit set to 50MB
+
+=INFO REPORT==== 21-Apr-2017::10:53:00 ===
+Limiting to approx 156 file handles (138 sockets)
+
+=INFO REPORT==== 21-Apr-2017::10:53:00 ===
+FHC read buffering:  OFF
+FHC write buffering: ON
+
+=INFO REPORT==== 21-Apr-2017::10:53:00 ===
+Database directory at /Users/aleksandrprendota/Downloads/rabbitmq_server-3.6.9/var/lib/rabbitmq/mnesia/rabbit@MacBook-Air-Aleksandr is empty. Initialising from scratch...
+
+=INFO REPORT==== 21-Apr-2017::10:53:00 ===
+Waiting for Mnesia tables for 30000 ms, 9 retries left
+
+=INFO REPORT==== 21-Apr-2017::10:53:00 ===
+Waiting for Mnesia tables for 30000 ms, 9 retries left
+
+=INFO REPORT==== 21-Apr-2017::10:53:00 ===
+Waiting for Mnesia tables for 30000 ms, 9 retries left
+
+=INFO REPORT==== 21-Apr-2017::10:53:00 ===
+Priority queues enabled, real BQ is rabbit_variable_queue
+
+=INFO REPORT==== 21-Apr-2017::10:53:00 ===
+Starting rabbit_node_monitor
+
+=INFO REPORT==== 21-Apr-2017::10:53:00 ===
+Adding vhost '/'
+
+=INFO REPORT==== 21-Apr-2017::10:53:00 ===
+Creating user 'guest'
+
+=INFO REPORT==== 21-Apr-2017::10:53:00 ===
+Setting user tags for user 'guest' to [administrator]
+
+=INFO REPORT==== 21-Apr-2017::10:53:00 ===
+Setting permissions for 'guest' in '/' to '.*', '.*', '.*'
+
+=INFO REPORT==== 21-Apr-2017::10:53:00 ===
+msg_store_transient: using rabbit_msg_store_ets_index to provide index
+
+=INFO REPORT==== 21-Apr-2017::10:53:00 ===
+msg_store_persistent: using rabbit_msg_store_ets_index to provide index
+
+=WARNING REPORT==== 21-Apr-2017::10:53:00 ===
+msg_store_persistent: rebuilding indices from scratch
+
+=ERROR REPORT==== 21-Apr-2017::10:53:00 ===
+Failed to start Ranch listener {acceptor,{0,0,0,0,0,0,0,0},5672} in ranch_tcp:listen([{port,5672},{ip,{0,0,0,0,0,0,0,0}},inet6,{backlog,128},{nodelay,true},{linger,{true,0}},{exit_on_close,false}]) for reason eaddrinuse (address already in use)
+
+=INFO REPORT==== 21-Apr-2017::10:53:00 ===
+Stopping message store for directory '/Users/aleksandrprendota/Downloads/rabbitmq_server-3.6.9/var/lib/rabbitmq/mnesia/rabbit@MacBook-Air-Aleksandr/msg_store_persistent'
+=INFO REPORT==== 21-Apr-2017::10:53:00 ===
+Error description:
+   {could_not_start,rabbit,
+       {{case_clause,
+            {error,
+                {{shutdown,
+                     {failed_to_start_child,
+                         {ranch_listener_sup,
+                             {acceptor,{0,0,0,0,0,0,0,0},5672}},
+                         {shutdown,
+                             {failed_to_start_child,ranch_acceptors_sup,
+                                 {listen_error,
+                                     {acceptor,{0,0,0,0,0,0,0,0},5672},
+                                     eaddrinuse}}}}},
+                 {child,undefined,'rabbit_tcp_listener_sup_:::5672',
+                     {tcp_listener_sup,start_link,
+                         [{0,0,0,0,0,0,0,0},
+                          5672,ranch_tcp,
+                          [inet6,
+                           {backlog,128},
+                           {nodelay,true},
+                           {linger,{true,0}},
+                           {exit_on_close,false}],
+                          rabbit_connection_sup,[],
+                          {rabbit_networking,tcp_listener_started,
+                              [amqp,
+                               [{backlog,128},
+                                {nodelay,true},
+                                {linger,{true,0}},
+                                {exit_on_close,false}]]},
+                          {rabbit_networking,tcp_listener_stopped,
+                              [amqp,
+                               [{backlog,128},
+                                {nodelay,true},
+                                {linger,{true,0}},
+                                {exit_on_close,false}]]},
+                          10,"TCP Listener"]},
+                     transient,infinity,supervisor,
+                     [tcp_listener_sup]}}}},
+        [{rabbit_networking,start_listener0,5,
+             [{file,"src/rabbit_networking.erl"},{line,294}]},
+         {rabbit_networking,'-start_listener/5-lc$^0/1-0-',5,
+             [{file,"src/rabbit_networking.erl"},{line,282}]},
+         {rabbit_networking,start_listener,5,
+             [{file,"src/rabbit_networking.erl"},{line,282}]},
+         {rabbit_networking,'-boot_tcp/1-lc$^0/1-0-',2,
+             [{file,"src/rabbit_networking.erl"},{line,132}]},
+         {rabbit_networking,boot_tcp,1,
+             [{file,"src/rabbit_networking.erl"},{line,132}]},
+         {rabbit_networking,boot,0,
+             [{file,"src/rabbit_networking.erl"},{line,127}]},
+         {rabbit_boot_steps,'-run_step/2-lc$^1/1-1-',1,
+             [{file,"src/rabbit_boot_steps.erl"},{line,49}]},
+         {rabbit_boot_steps,run_step,2,
+             [{file,"src/rabbit_boot_steps.erl"},{line,49}]}]}}
+
+Log files (may contain more information):
+   /Users/aleksandrprendota/Downloads/rabbitmq_server-3.6.9/var/log/rabbitmq/rabbit@MacBook-Air-Aleksandr.log
+   /Users/aleksandrprendota/Downloads/rabbitmq_server-3.6.9/var/log/rabbitmq/rabbit@MacBook-Air-Aleksandr-sasl.log
+
+
+=INFO REPORT==== 21-Apr-2017::10:53:00 ===
+Message store for directory '/Users/aleksandrprendota/Downloads/rabbitmq_server-3.6.9/var/lib/rabbitmq/mnesia/rabbit@MacBook-Air-Aleksandr/msg_store_persistent' is stopped
+=INFO REPORT==== 21-Apr-2017::10:53:00 ===
+Stopping message store for directory '/Users/aleksandrprendota/Downloads/rabbitmq_server-3.6.9/var/lib/rabbitmq/mnesia/rabbit@MacBook-Air-Aleksandr/msg_store_transient'
+=INFO REPORT==== 21-Apr-2017::10:53:00 ===
+Message store for directory '/Users/aleksandrprendota/Downloads/rabbitmq_server-3.6.9/var/lib/rabbitmq/mnesia/rabbit@MacBook-Air-Aleksandr/msg_store_transient' is stopped
+=INFO REPORT==== 21-Apr-2017::10:59:34 ===
+Starting RabbitMQ 3.6.9 on Erlang 17.5
+Copyright (C) 2007-2016 Pivotal Software, Inc.
+Licensed under the MPL.  See http://www.rabbitmq.com/
+
+=INFO REPORT==== 21-Apr-2017::10:59:34 ===
+node           : rabbit@MacBook-Air-Aleksandr
+home dir       : /Users/aleksandrprendota
+config file(s) : /Users/aleksandrprendota/Downloads/rabbitmq_server-3.6.9/etc/rabbitmq/rabbitmq.config (not found)
+cookie hash    : k+glbnczKW307Q2+7TeMgg==
+log            : /Users/aleksandrprendota/Downloads/rabbitmq_server-3.6.9/var/log/rabbitmq/rabbit@MacBook-Air-Aleksandr.log
+sasl log       : /Users/aleksandrprendota/Downloads/rabbitmq_server-3.6.9/var/log/rabbitmq/rabbit@MacBook-Air-Aleksandr-sasl.log
+database dir   : /Users/aleksandrprendota/Downloads/rabbitmq_server-3.6.9/var/lib/rabbitmq/mnesia/rabbit@MacBook-Air-Aleksandr
+
+=INFO REPORT==== 21-Apr-2017::10:59:36 ===
+Memory limit set to 1414MB of 3535MB total.
+
+=INFO REPORT==== 21-Apr-2017::10:59:36 ===
+Disk free limit set to 50MB
+
+=INFO REPORT==== 21-Apr-2017::10:59:36 ===
+Limiting to approx 156 file handles (138 sockets)
+
+=INFO REPORT==== 21-Apr-2017::10:59:36 ===
+FHC read buffering:  OFF
+FHC write buffering: ON
+
+=INFO REPORT==== 21-Apr-2017::10:59:36 ===
+Waiting for Mnesia tables for 30000 ms, 9 retries left
+
+=INFO REPORT==== 21-Apr-2017::10:59:36 ===
+Waiting for Mnesia tables for 30000 ms, 9 retries left
+
+=INFO REPORT==== 21-Apr-2017::10:59:36 ===
+Priority queues enabled, real BQ is rabbit_variable_queue
+
+=INFO REPORT==== 21-Apr-2017::10:59:36 ===
+Starting rabbit_node_monitor
+
+=INFO REPORT==== 21-Apr-2017::10:59:36 ===
+msg_store_transient: using rabbit_msg_store_ets_index to provide index
+
+=INFO REPORT==== 21-Apr-2017::10:59:36 ===
+msg_store_persistent: using rabbit_msg_store_ets_index to provide index
+
+=INFO REPORT==== 21-Apr-2017::10:59:36 ===
+started TCP Listener on [::]:5672
+
+=INFO REPORT==== 21-Apr-2017::10:59:36 ===
+Server startup complete; 0 plugins started.
+
+=INFO REPORT==== 21-Apr-2017::11:12:16 ===
+accepting AMQP connection <0.363.0> ([::1]:49554 -> [::1]:5672)
+
+=INFO REPORT==== 21-Apr-2017::11:12:17 ===
+connection <0.363.0> ([::1]:49554 -> [::1]:5672): user 'guest' authenticated and granted access to vhost '/'
+
+=INFO REPORT==== 21-Apr-2017::11:12:48 ===
+accepting AMQP connection <0.383.0> (127.0.0.1:49578 -> 127.0.0.1:5672)
+
+=INFO REPORT==== 21-Apr-2017::11:12:48 ===
+Connection <0.383.0> (127.0.0.1:49578 -> 127.0.0.1:5672) has a client-provided name: connectionFactory#0
+
+=INFO REPORT==== 21-Apr-2017::11:12:48 ===
+connection <0.383.0> (127.0.0.1:49578 -> 127.0.0.1:5672 - connectionFactory#0): user 'guest' authenticated and granted access to vhost '/'
+
+=ERROR REPORT==== 21-Apr-2017::11:12:48 ===
+Channel error on connection <0.383.0> (127.0.0.1:49578 -> 127.0.0.1:5672, vhost: '/', user: 'guest'), channel 1:
+operation queue.declare caused a channel exception precondition_failed: inequivalent arg 'durable' for queue 'mylittlequeue' in vhost '/': received 'true' but current is 'false'
+
+=INFO REPORT==== 21-Apr-2017::11:14:03 ===
+closing AMQP connection <0.383.0> (127.0.0.1:49578 -> 127.0.0.1:5672 - connectionFactory#0)
+
+=INFO REPORT==== 21-Apr-2017::11:15:16 ===
+accepting AMQP connection <0.429.0> (127.0.0.1:49646 -> 127.0.0.1:5672)
+
+=INFO REPORT==== 21-Apr-2017::11:15:16 ===
+Connection <0.429.0> (127.0.0.1:49646 -> 127.0.0.1:5672) has a client-provided name: connectionFactory#0
+
+=INFO REPORT==== 21-Apr-2017::11:15:16 ===
+connection <0.429.0> (127.0.0.1:49646 -> 127.0.0.1:5672 - connectionFactory#0): user 'guest' authenticated and granted access to vhost '/'
+
+=ERROR REPORT==== 21-Apr-2017::11:15:17 ===
+Channel error on connection <0.429.0> (127.0.0.1:49646 -> 127.0.0.1:5672, vhost: '/', user: 'guest'), channel 1:
+operation queue.declare caused a channel exception precondition_failed: inequivalent arg 'durable' for queue 'mylittlequeue' in vhost '/': received 'true' but current is 'false'
+
+=INFO REPORT==== 21-Apr-2017::11:17:42 ===
+closing AMQP connection <0.429.0> (127.0.0.1:49646 -> 127.0.0.1:5672 - connectionFactory#0)
+
+=INFO REPORT==== 21-Apr-2017::11:18:08 ===
+accepting AMQP connection <0.468.0> (127.0.0.1:49747 -> 127.0.0.1:5672)
+
+=INFO REPORT==== 21-Apr-2017::11:18:08 ===
+Connection <0.468.0> (127.0.0.1:49747 -> 127.0.0.1:5672) has a client-provided name: connectionFactory#0
+
+=INFO REPORT==== 21-Apr-2017::11:18:08 ===
+connection <0.468.0> (127.0.0.1:49747 -> 127.0.0.1:5672 - connectionFactory#0): user 'guest' authenticated and granted access to vhost '/'
+
+=ERROR REPORT==== 21-Apr-2017::11:18:08 ===
+Channel error on connection <0.468.0> (127.0.0.1:49747 -> 127.0.0.1:5672, vhost: '/', user: 'guest'), channel 1:
+operation queue.declare caused a channel exception precondition_failed: inequivalent arg 'durable' for queue 'mylittlequeue' in vhost '/': received 'true' but current is 'false'
+
+=INFO REPORT==== 21-Apr-2017::11:18:08 ===
+closing AMQP connection <0.468.0> (127.0.0.1:49747 -> 127.0.0.1:5672 - connectionFactory#0)
+
+=INFO REPORT==== 21-Apr-2017::11:19:06 ===
+accepting AMQP connection <0.493.0> (127.0.0.1:49764 -> 127.0.0.1:5672)
+
+=INFO REPORT==== 21-Apr-2017::11:19:06 ===
+Connection <0.493.0> (127.0.0.1:49764 -> 127.0.0.1:5672) has a client-provided name: connectionFactory#0
+
+=INFO REPORT==== 21-Apr-2017::11:19:06 ===
+connection <0.493.0> (127.0.0.1:49764 -> 127.0.0.1:5672 - connectionFactory#0): user 'guest' authenticated and granted access to vhost '/'
+
+=ERROR REPORT==== 21-Apr-2017::11:19:06 ===
+Channel error on connection <0.493.0> (127.0.0.1:49764 -> 127.0.0.1:5672, vhost: '/', user: 'guest'), channel 1:
+operation queue.declare caused a channel exception precondition_failed: inequivalent arg 'durable' for queue 'mylittlequeue' in vhost '/': received 'true' but current is 'false'
+
+=INFO REPORT==== 21-Apr-2017::11:19:06 ===
+closing AMQP connection <0.493.0> (127.0.0.1:49764 -> 127.0.0.1:5672 - connectionFactory#0)
+
+=INFO REPORT==== 21-Apr-2017::11:37:46 ===
+accepting AMQP connection <0.640.0> (127.0.0.1:50116 -> 127.0.0.1:5672)
+
+=INFO REPORT==== 21-Apr-2017::11:37:46 ===
+connection <0.640.0> (127.0.0.1:50116 -> 127.0.0.1:5672): user 'guest' authenticated and granted access to vhost '/'
+
+=INFO REPORT==== 21-Apr-2017::11:37:46 ===
+closing AMQP connection <0.640.0> (127.0.0.1:50116 -> 127.0.0.1:5672)
+
+=INFO REPORT==== 21-Apr-2017::11:48:59 ===
+accepting AMQP connection <0.729.0> ([::1]:50496 -> [::1]:5672)
+
+=INFO REPORT==== 21-Apr-2017::11:49:00 ===
+connection <0.729.0> ([::1]:50496 -> [::1]:5672): user 'guest' authenticated and granted access to vhost '/'
+
+=INFO REPORT==== 21-Apr-2017::11:49:00 ===
+closing AMQP connection <0.729.0> ([::1]:50496 -> [::1]:5672)
+
+=INFO REPORT==== 21-Apr-2017::11:49:16 ===
+accepting AMQP connection <0.744.0> ([::1]:50513 -> [::1]:5672)
+
+=INFO REPORT==== 21-Apr-2017::11:49:16 ===
+connection <0.744.0> ([::1]:50513 -> [::1]:5672): user 'guest' authenticated and granted access to vhost '/'
+
+=INFO REPORT==== 21-Apr-2017::11:49:16 ===
+closing AMQP connection <0.744.0> ([::1]:50513 -> [::1]:5672)
+
+=INFO REPORT==== 21-Apr-2017::12:48:28 ===
+accepting AMQP connection <0.1161.0> (127.0.0.1:51714 -> 127.0.0.1:5672)
+
+=INFO REPORT==== 21-Apr-2017::12:48:28 ===
+connection <0.1161.0> (127.0.0.1:51714 -> 127.0.0.1:5672): user 'guest' authenticated and granted access to vhost '/'
+
+=INFO REPORT==== 21-Apr-2017::12:48:28 ===
+closing AMQP connection <0.1161.0> (127.0.0.1:51714 -> 127.0.0.1:5672)
+
+=INFO REPORT==== 21-Apr-2017::12:49:40 ===
+accepting AMQP connection <0.1182.0> ([::1]:51744 -> [::1]:5672)
+
+=INFO REPORT==== 21-Apr-2017::12:49:40 ===
+connection <0.1182.0> ([::1]:51744 -> [::1]:5672): user 'guest' authenticated and granted access to vhost '/'
+
+=INFO REPORT==== 21-Apr-2017::12:49:40 ===
+closing AMQP connection <0.1182.0> ([::1]:51744 -> [::1]:5672)
+
+=INFO REPORT==== 21-Apr-2017::12:49:53 ===
+accepting AMQP connection <0.1196.0> (127.0.0.1:51748 -> 127.0.0.1:5672)
+
+=INFO REPORT==== 21-Apr-2017::12:49:53 ===
+connection <0.1196.0> (127.0.0.1:51748 -> 127.0.0.1:5672): user 'guest' authenticated and granted access to vhost '/'
+
+=INFO REPORT==== 21-Apr-2017::12:49:53 ===
+closing AMQP connection <0.1196.0> (127.0.0.1:51748 -> 127.0.0.1:5672)
+
+=WARNING REPORT==== 21-Apr-2017::13:27:30 ===
+closing AMQP connection <0.363.0> ([::1]:49554 -> [::1]:5672):
+client unexpectedly closed TCP connection
+
+=INFO REPORT==== 21-Apr-2017::13:28:36 ===
+RabbitMQ is asked to stop...
+
+=INFO REPORT==== 21-Apr-2017::13:28:36 ===
+Stopping RabbitMQ applications and their dependencies in the following order: 
+    rabbit
+    mnesia
+    rabbit_common
+    os_mon
+
+=INFO REPORT==== 21-Apr-2017::13:28:36 ===
+Stopping application 'rabbit'
+=INFO REPORT==== 21-Apr-2017::13:28:36 ===
+stopped TCP Listener on [::]:5672
+
+=INFO REPORT==== 21-Apr-2017::13:28:36 ===
+Stopping message store for directory '/Users/aleksandrprendota/Downloads/rabbitmq_server-3.6.9/var/lib/rabbitmq/mnesia/rabbit@MacBook-Air-Aleksandr/msg_store_persistent'
+=INFO REPORT==== 21-Apr-2017::13:28:36 ===
+Message store for directory '/Users/aleksandrprendota/Downloads/rabbitmq_server-3.6.9/var/lib/rabbitmq/mnesia/rabbit@MacBook-Air-Aleksandr/msg_store_persistent' is stopped
+=INFO REPORT==== 21-Apr-2017::13:28:36 ===
+Stopping message store for directory '/Users/aleksandrprendota/Downloads/rabbitmq_server-3.6.9/var/lib/rabbitmq/mnesia/rabbit@MacBook-Air-Aleksandr/msg_store_transient'
+=INFO REPORT==== 21-Apr-2017::13:28:36 ===
+Message store for directory '/Users/aleksandrprendota/Downloads/rabbitmq_server-3.6.9/var/lib/rabbitmq/mnesia/rabbit@MacBook-Air-Aleksandr/msg_store_transient' is stopped
+=INFO REPORT==== 21-Apr-2017::13:28:36 ===
+Stopping application 'mnesia'
+=INFO REPORT==== 21-Apr-2017::13:28:36 ===
+Stopping application 'rabbit_common'
+=INFO REPORT==== 21-Apr-2017::13:28:36 ===
+Stopping application 'os_mon'
+=INFO REPORT==== 21-Apr-2017::13:28:36 ===
+Successfully stopped RabbitMQ and its dependencies
+
+=INFO REPORT==== 21-Apr-2017::13:28:36 ===
+Halting Erlang VM with the following applications:
+    ranch
+    ssl
+    public_key
+    crypto
+    compiler
+    xmerl
+    syntax_tools
+    asn1
+    sasl
+    stdlib
+    kernel
+
+=INFO REPORT==== 21-Apr-2017::22:37:35 ===
+Starting RabbitMQ 3.6.9 on Erlang 17.5
+Copyright (C) 2007-2016 Pivotal Software, Inc.
+Licensed under the MPL.  See http://www.rabbitmq.com/
+
+=INFO REPORT==== 21-Apr-2017::22:37:35 ===
+node           : rabbit@MacBook-Air-Aleksandr
+home dir       : /Users/aleksandrprendota
+config file(s) : /Users/aleksandrprendota/Downloads/rabbitmq_server-3.6.9/etc/rabbitmq/rabbitmq.config (not found)
+cookie hash    : k+glbnczKW307Q2+7TeMgg==
+log            : /Users/aleksandrprendota/Downloads/rabbitmq_server-3.6.9/var/log/rabbitmq/rabbit@MacBook-Air-Aleksandr.log
+sasl log       : /Users/aleksandrprendota/Downloads/rabbitmq_server-3.6.9/var/log/rabbitmq/rabbit@MacBook-Air-Aleksandr-sasl.log
+database dir   : /Users/aleksandrprendota/Downloads/rabbitmq_server-3.6.9/var/lib/rabbitmq/mnesia/rabbit@MacBook-Air-Aleksandr
+
+=INFO REPORT==== 21-Apr-2017::22:37:37 ===
+Memory limit set to 1170MB of 2927MB total.
+
+=INFO REPORT==== 21-Apr-2017::22:37:37 ===
+Disk free limit set to 50MB
+
+=INFO REPORT==== 21-Apr-2017::22:37:37 ===
+Limiting to approx 156 file handles (138 sockets)
+
+=INFO REPORT==== 21-Apr-2017::22:37:37 ===
+FHC read buffering:  OFF
+FHC write buffering: ON
+
+=INFO REPORT==== 21-Apr-2017::22:37:37 ===
+Waiting for Mnesia tables for 30000 ms, 9 retries left
+
+=INFO REPORT==== 21-Apr-2017::22:37:37 ===
+Waiting for Mnesia tables for 30000 ms, 9 retries left
+
+=INFO REPORT==== 21-Apr-2017::22:37:37 ===
+Priority queues enabled, real BQ is rabbit_variable_queue
+
+=INFO REPORT==== 21-Apr-2017::22:37:37 ===
+Starting rabbit_node_monitor
+
+=INFO REPORT==== 21-Apr-2017::22:37:37 ===
+msg_store_transient: using rabbit_msg_store_ets_index to provide index
+
+=INFO REPORT==== 21-Apr-2017::22:37:37 ===
+msg_store_persistent: using rabbit_msg_store_ets_index to provide index
+
+=INFO REPORT==== 21-Apr-2017::22:37:37 ===
+started TCP Listener on [::]:5672
+
+=INFO REPORT==== 21-Apr-2017::22:37:37 ===
+Server startup complete; 0 plugins started.
+
+=INFO REPORT==== 21-Apr-2017::22:38:08 ===
+accepting AMQP connection <0.263.0> (127.0.0.1:55614 -> 127.0.0.1:5672)
+
+=INFO REPORT==== 21-Apr-2017::22:38:08 ===
+connection <0.263.0> (127.0.0.1:55614 -> 127.0.0.1:5672): user 'guest' authenticated and granted access to vhost '/'
+
+=INFO REPORT==== 21-Apr-2017::22:38:55 ===
+accepting AMQP connection <0.283.0> (127.0.0.1:55728 -> 127.0.0.1:5672)
+
+=INFO REPORT==== 21-Apr-2017::22:38:55 ===
+connection <0.283.0> (127.0.0.1:55728 -> 127.0.0.1:5672): user 'guest' authenticated and granted access to vhost '/'
+
+=INFO REPORT==== 21-Apr-2017::22:39:09 ===
+accepting AMQP connection <0.296.0> (127.0.0.1:55782 -> 127.0.0.1:5672)
+
+=INFO REPORT==== 21-Apr-2017::22:39:09 ===
+connection <0.296.0> (127.0.0.1:55782 -> 127.0.0.1:5672): user 'guest' authenticated and granted access to vhost '/'
+
+=INFO REPORT==== 21-Apr-2017::22:42:17 ===
+accepting AMQP connection <0.328.0> ([::1]:56039 -> [::1]:5672)
+
+=INFO REPORT==== 21-Apr-2017::22:42:17 ===
+connection <0.328.0> ([::1]:56039 -> [::1]:5672): user 'guest' authenticated and granted access to vhost '/'
+
+=INFO REPORT==== 21-Apr-2017::22:42:17 ===
+closing AMQP connection <0.328.0> ([::1]:56039 -> [::1]:5672)
+
+=INFO REPORT==== 21-Apr-2017::23:17:49 ===
+accepting AMQP connection <0.585.0> (127.0.0.1:57595 -> 127.0.0.1:5672)
+
+=INFO REPORT==== 21-Apr-2017::23:17:49 ===
+connection <0.585.0> (127.0.0.1:57595 -> 127.0.0.1:5672): user 'guest' authenticated and granted access to vhost '/'
+
+=INFO REPORT==== 21-Apr-2017::23:17:49 ===
+closing AMQP connection <0.585.0> (127.0.0.1:57595 -> 127.0.0.1:5672)
+
+=WARNING REPORT==== 21-Apr-2017::23:18:38 ===
+closing AMQP connection <0.283.0> (127.0.0.1:55728 -> 127.0.0.1:5672):
+client unexpectedly closed TCP connection
+
+=WARNING REPORT==== 21-Apr-2017::23:18:38 ===
+closing AMQP connection <0.296.0> (127.0.0.1:55782 -> 127.0.0.1:5672):
+client unexpectedly closed TCP connection
+
+=WARNING REPORT==== 21-Apr-2017::23:18:38 ===
+closing AMQP connection <0.263.0> (127.0.0.1:55614 -> 127.0.0.1:5672):
+client unexpectedly closed TCP connection
+
+=INFO REPORT==== 21-Apr-2017::23:24:10 ===
+accepting AMQP connection <0.647.0> (127.0.0.1:58272 -> 127.0.0.1:5672)
+
+=INFO REPORT==== 21-Apr-2017::23:24:10 ===
+connection <0.647.0> (127.0.0.1:58272 -> 127.0.0.1:5672): user 'guest' authenticated and granted access to vhost '/'
+
+=INFO REPORT==== 21-Apr-2017::23:24:11 ===
+accepting AMQP connection <0.658.0> ([::1]:58280 -> [::1]:5672)
+
+=INFO REPORT==== 21-Apr-2017::23:24:11 ===
+connection <0.658.0> ([::1]:58280 -> [::1]:5672): user 'guest' authenticated and granted access to vhost '/'
+
+=INFO REPORT==== 21-Apr-2017::23:24:52 ===
+accepting AMQP connection <0.673.0> ([::1]:58381 -> [::1]:5672)
+
+=INFO REPORT==== 21-Apr-2017::23:24:53 ===
+connection <0.673.0> ([::1]:58381 -> [::1]:5672): user 'guest' authenticated and granted access to vhost '/'
+
+=INFO REPORT==== 21-Apr-2017::23:24:53 ===
+closing AMQP connection <0.673.0> ([::1]:58381 -> [::1]:5672)
+
+=INFO REPORT==== 21-Apr-2017::23:29:20 ===
+accepting AMQP connection <0.717.0> (127.0.0.1:58956 -> 127.0.0.1:5672)
+
+=INFO REPORT==== 21-Apr-2017::23:29:20 ===
+connection <0.717.0> (127.0.0.1:58956 -> 127.0.0.1:5672): user 'guest' authenticated and granted access to vhost '/'
+
+=INFO REPORT==== 21-Apr-2017::23:29:20 ===
+closing AMQP connection <0.717.0> (127.0.0.1:58956 -> 127.0.0.1:5672)
+
+=INFO REPORT==== 21-Apr-2017::23:29:28 ===
+accepting AMQP connection <0.731.0> (127.0.0.1:58991 -> 127.0.0.1:5672)
+
+=INFO REPORT==== 21-Apr-2017::23:29:28 ===
+connection <0.731.0> (127.0.0.1:58991 -> 127.0.0.1:5672): user 'guest' authenticated and granted access to vhost '/'
+
+=INFO REPORT==== 21-Apr-2017::23:29:28 ===
+closing AMQP connection <0.731.0> (127.0.0.1:58991 -> 127.0.0.1:5672)
+
+=INFO REPORT==== 21-Apr-2017::23:33:25 ===
+accepting AMQP connection <0.770.0> ([::1]:59598 -> [::1]:5672)
+
+=INFO REPORT==== 21-Apr-2017::23:33:25 ===
+connection <0.770.0> ([::1]:59598 -> [::1]:5672): user 'guest' authenticated and granted access to vhost '/'
+
+=INFO REPORT==== 21-Apr-2017::23:33:25 ===
+closing AMQP connection <0.770.0> ([::1]:59598 -> [::1]:5672)
+
+=INFO REPORT==== 21-Apr-2017::23:34:26 ===
+accepting AMQP connection <0.790.0> ([::1]:59901 -> [::1]:5672)
+
+=INFO REPORT==== 21-Apr-2017::23:34:26 ===
+connection <0.790.0> ([::1]:59901 -> [::1]:5672): user 'guest' authenticated and granted access to vhost '/'
+
+=INFO REPORT==== 21-Apr-2017::23:34:26 ===
+closing AMQP connection <0.790.0> ([::1]:59901 -> [::1]:5672)
+
+=INFO REPORT==== 21-Apr-2017::23:34:52 ===
+accepting AMQP connection <0.807.0> (127.0.0.1:60040 -> 127.0.0.1:5672)
+
+=INFO REPORT==== 21-Apr-2017::23:34:52 ===
+connection <0.807.0> (127.0.0.1:60040 -> 127.0.0.1:5672): user 'guest' authenticated and granted access to vhost '/'
+
+=INFO REPORT==== 21-Apr-2017::23:34:52 ===
+closing AMQP connection <0.807.0> (127.0.0.1:60040 -> 127.0.0.1:5672)
+
+=INFO REPORT==== 21-Apr-2017::23:35:41 ===
+accepting AMQP connection <0.826.0> (127.0.0.1:60241 -> 127.0.0.1:5672)
+
+=INFO REPORT==== 21-Apr-2017::23:35:41 ===
+connection <0.826.0> (127.0.0.1:60241 -> 127.0.0.1:5672): user 'guest' authenticated and granted access to vhost '/'
+
+=INFO REPORT==== 21-Apr-2017::23:35:41 ===
+closing AMQP connection <0.826.0> (127.0.0.1:60241 -> 127.0.0.1:5672)
+
+=INFO REPORT==== 21-Apr-2017::23:39:33 ===
+accepting AMQP connection <0.864.0> (127.0.0.1:60789 -> 127.0.0.1:5672)
+
+=INFO REPORT==== 21-Apr-2017::23:39:33 ===
+connection <0.864.0> (127.0.0.1:60789 -> 127.0.0.1:5672): user 'guest' authenticated and granted access to vhost '/'
+
+=INFO REPORT==== 21-Apr-2017::23:39:33 ===
+closing AMQP connection <0.864.0> (127.0.0.1:60789 -> 127.0.0.1:5672)
+
+=WARNING REPORT==== 21-Apr-2017::23:39:50 ===
+closing AMQP connection <0.658.0> ([::1]:58280 -> [::1]:5672):
+client unexpectedly closed TCP connection
+
+=WARNING REPORT==== 21-Apr-2017::23:39:50 ===
+closing AMQP connection <0.647.0> (127.0.0.1:58272 -> 127.0.0.1:5672):
+client unexpectedly closed TCP connection
+
+=INFO REPORT==== 21-Apr-2017::23:40:23 ===
+accepting AMQP connection <0.887.0> ([::1]:60882 -> [::1]:5672)
+
+=INFO REPORT==== 21-Apr-2017::23:40:23 ===
+connection <0.887.0> ([::1]:60882 -> [::1]:5672): user 'guest' authenticated and granted access to vhost '/'
+
+=INFO REPORT==== 21-Apr-2017::23:40:24 ===
+accepting AMQP connection <0.898.0> (127.0.0.1:60889 -> 127.0.0.1:5672)
+
+=INFO REPORT==== 21-Apr-2017::23:40:24 ===
+connection <0.898.0> (127.0.0.1:60889 -> 127.0.0.1:5672): user 'guest' authenticated and granted access to vhost '/'
+
+=INFO REPORT==== 21-Apr-2017::23:40:30 ===
+accepting AMQP connection <0.910.0> (127.0.0.1:60906 -> 127.0.0.1:5672)
+
+=INFO REPORT==== 21-Apr-2017::23:40:30 ===
+connection <0.910.0> (127.0.0.1:60906 -> 127.0.0.1:5672): user 'guest' authenticated and granted access to vhost '/'
+
+=INFO REPORT==== 21-Apr-2017::23:40:30 ===
+closing AMQP connection <0.910.0> (127.0.0.1:60906 -> 127.0.0.1:5672)
+
+=WARNING REPORT==== 21-Apr-2017::23:41:02 ===
+closing AMQP connection <0.898.0> (127.0.0.1:60889 -> 127.0.0.1:5672):
+client unexpectedly closed TCP connection
+
+=WARNING REPORT==== 21-Apr-2017::23:41:02 ===
+closing AMQP connection <0.887.0> ([::1]:60882 -> [::1]:5672):
+client unexpectedly closed TCP connection
+
+=INFO REPORT==== 21-Apr-2017::23:45:04 ===
+accepting AMQP connection <0.958.0> ([::1]:61243 -> [::1]:5672)
+
+=INFO REPORT==== 21-Apr-2017::23:45:04 ===
+connection <0.958.0> ([::1]:61243 -> [::1]:5672): user 'guest' authenticated and granted access to vhost '/'
+
+=INFO REPORT==== 21-Apr-2017::23:45:05 ===
+accepting AMQP connection <0.969.0> (127.0.0.1:61249 -> 127.0.0.1:5672)
+
+=INFO REPORT==== 21-Apr-2017::23:45:05 ===
+connection <0.969.0> (127.0.0.1:61249 -> 127.0.0.1:5672): user 'guest' authenticated and granted access to vhost '/'
+
+=INFO REPORT==== 21-Apr-2017::23:45:25 ===
+accepting AMQP connection <0.982.0> ([::1]:61305 -> [::1]:5672)
+
+=INFO REPORT==== 21-Apr-2017::23:45:25 ===
+connection <0.982.0> ([::1]:61305 -> [::1]:5672): user 'guest' authenticated and granted access to vhost '/'
+
+=INFO REPORT==== 21-Apr-2017::23:45:25 ===
+closing AMQP connection <0.982.0> ([::1]:61305 -> [::1]:5672)
+
+=WARNING REPORT==== 21-Apr-2017::23:45:35 ===
+closing AMQP connection <0.969.0> (127.0.0.1:61249 -> 127.0.0.1:5672):
+client unexpectedly closed TCP connection
+
+=WARNING REPORT==== 21-Apr-2017::23:45:35 ===
+closing AMQP connection <0.958.0> ([::1]:61243 -> [::1]:5672):
+client unexpectedly closed TCP connection
+
+=INFO REPORT==== 21-Apr-2017::23:59:43 ===
+accepting AMQP connection <0.1098.0> (127.0.0.1:61767 -> 127.0.0.1:5672)
+
+=INFO REPORT==== 21-Apr-2017::23:59:43 ===
+connection <0.1098.0> (127.0.0.1:61767 -> 127.0.0.1:5672): user 'guest' authenticated and granted access to vhost '/'
+
+=INFO REPORT==== 21-Apr-2017::23:59:44 ===
+accepting AMQP connection <0.1109.0> ([::1]:61773 -> [::1]:5672)
+
+=INFO REPORT==== 21-Apr-2017::23:59:44 ===
+connection <0.1109.0> ([::1]:61773 -> [::1]:5672): user 'guest' authenticated and granted access to vhost '/'
+
+=INFO REPORT==== 22-Apr-2017::00:00:02 ===
+accepting AMQP connection <0.1122.0> (127.0.0.1:61829 -> 127.0.0.1:5672)
+
+=INFO REPORT==== 22-Apr-2017::00:00:02 ===
+connection <0.1122.0> (127.0.0.1:61829 -> 127.0.0.1:5672): user 'guest' authenticated and granted access to vhost '/'
+
+=INFO REPORT==== 22-Apr-2017::00:00:02 ===
+closing AMQP connection <0.1122.0> (127.0.0.1:61829 -> 127.0.0.1:5672)
+
+=WARNING REPORT==== 22-Apr-2017::00:02:27 ===
+closing AMQP connection <0.1109.0> ([::1]:61773 -> [::1]:5672):
+client unexpectedly closed TCP connection
+
+=WARNING REPORT==== 22-Apr-2017::00:02:27 ===
+closing AMQP connection <0.1098.0> (127.0.0.1:61767 -> 127.0.0.1:5672):
+client unexpectedly closed TCP connection
+
+=INFO REPORT==== 22-Apr-2017::00:03:16 ===
+accepting AMQP connection <0.1160.0> (127.0.0.1:62264 -> 127.0.0.1:5672)
+
+=INFO REPORT==== 22-Apr-2017::00:03:16 ===
+connection <0.1160.0> (127.0.0.1:62264 -> 127.0.0.1:5672): user 'guest' authenticated and granted access to vhost '/'
+
+=INFO REPORT==== 22-Apr-2017::00:03:17 ===
+accepting AMQP connection <0.1171.0> (127.0.0.1:62270 -> 127.0.0.1:5672)
+
+=INFO REPORT==== 22-Apr-2017::00:03:17 ===
+connection <0.1171.0> (127.0.0.1:62270 -> 127.0.0.1:5672): user 'guest' authenticated and granted access to vhost '/'
+
+=INFO REPORT==== 22-Apr-2017::00:03:43 ===
+accepting AMQP connection <0.1186.0> ([::1]:62343 -> [::1]:5672)
+
+=INFO REPORT==== 22-Apr-2017::00:03:43 ===
+connection <0.1186.0> ([::1]:62343 -> [::1]:5672): user 'guest' authenticated and granted access to vhost '/'
+
+=INFO REPORT==== 22-Apr-2017::00:03:43 ===
+closing AMQP connection <0.1186.0> ([::1]:62343 -> [::1]:5672)
+
+=INFO REPORT==== 22-Apr-2017::11:20:24 ===
+Starting RabbitMQ 3.6.9 on Erlang 17.5
+Copyright (C) 2007-2016 Pivotal Software, Inc.
+Licensed under the MPL.  See http://www.rabbitmq.com/
+
+=INFO REPORT==== 22-Apr-2017::11:20:24 ===
+node           : rabbit@MacBook-Air-Aleksandr
+home dir       : /Users/aleksandrprendota
+config file(s) : /Users/aleksandrprendota/Downloads/rabbitmq_server-3.6.9/etc/rabbitmq/rabbitmq.config (not found)
+cookie hash    : k+glbnczKW307Q2+7TeMgg==
+log            : /Users/aleksandrprendota/Downloads/rabbitmq_server-3.6.9/var/log/rabbitmq/rabbit@MacBook-Air-Aleksandr.log
+sasl log       : /Users/aleksandrprendota/Downloads/rabbitmq_server-3.6.9/var/log/rabbitmq/rabbit@MacBook-Air-Aleksandr-sasl.log
+database dir   : /Users/aleksandrprendota/Downloads/rabbitmq_server-3.6.9/var/lib/rabbitmq/mnesia/rabbit@MacBook-Air-Aleksandr
+
+=INFO REPORT==== 22-Apr-2017::11:20:26 ===
+Memory limit set to 1311MB of 3278MB total.
+
+=INFO REPORT==== 22-Apr-2017::11:20:26 ===
+Disk free limit set to 50MB
+
+=INFO REPORT==== 22-Apr-2017::11:20:26 ===
+Limiting to approx 156 file handles (138 sockets)
+
+=INFO REPORT==== 22-Apr-2017::11:20:26 ===
+FHC read buffering:  OFF
+FHC write buffering: ON
+
+=INFO REPORT==== 22-Apr-2017::11:20:26 ===
+Waiting for Mnesia tables for 30000 ms, 9 retries left
+
+=INFO REPORT==== 22-Apr-2017::11:20:26 ===
+Waiting for Mnesia tables for 30000 ms, 9 retries left
+
+=INFO REPORT==== 22-Apr-2017::11:20:26 ===
+Priority queues enabled, real BQ is rabbit_variable_queue
+
+=INFO REPORT==== 22-Apr-2017::11:20:26 ===
+Starting rabbit_node_monitor
+
+=INFO REPORT==== 22-Apr-2017::11:20:26 ===
+msg_store_transient: using rabbit_msg_store_ets_index to provide index
+
+=INFO REPORT==== 22-Apr-2017::11:20:26 ===
+msg_store_persistent: using rabbit_msg_store_ets_index to provide index
+
+=WARNING REPORT==== 22-Apr-2017::11:20:26 ===
+msg_store_persistent: rebuilding indices from scratch
+
+=INFO REPORT==== 22-Apr-2017::11:20:26 ===
+started TCP Listener on [::]:5672
+
+=INFO REPORT==== 22-Apr-2017::11:20:26 ===
+Server startup complete; 0 plugins started.
+
+=INFO REPORT==== 22-Apr-2017::11:23:47 ===
+accepting AMQP connection <0.278.0> ([::1]:63621 -> [::1]:5672)
+
+=INFO REPORT==== 22-Apr-2017::11:23:47 ===
+connection <0.278.0> ([::1]:63621 -> [::1]:5672): user 'guest' authenticated and granted access to vhost '/'
+
+=INFO REPORT==== 22-Apr-2017::11:25:23 ===
+accepting AMQP connection <0.304.0> (127.0.0.1:63827 -> 127.0.0.1:5672)
+
+=INFO REPORT==== 22-Apr-2017::11:25:24 ===
+connection <0.304.0> (127.0.0.1:63827 -> 127.0.0.1:5672): user 'guest' authenticated and granted access to vhost '/'
+
+=INFO REPORT==== 22-Apr-2017::11:25:24 ===
+closing AMQP connection <0.304.0> (127.0.0.1:63827 -> 127.0.0.1:5672)
+
+=WARNING REPORT==== 22-Apr-2017::11:34:04 ===
+closing AMQP connection <0.278.0> ([::1]:63621 -> [::1]:5672):
+client unexpectedly closed TCP connection
+
+=INFO REPORT==== 22-Apr-2017::11:34:38 ===
+accepting AMQP connection <0.383.0> (127.0.0.1:64879 -> 127.0.0.1:5672)
+
+=INFO REPORT==== 22-Apr-2017::11:34:38 ===
+connection <0.383.0> (127.0.0.1:64879 -> 127.0.0.1:5672): user 'guest' authenticated and granted access to vhost '/'
+
+=INFO REPORT==== 22-Apr-2017::11:34:44 ===
+accepting AMQP connection <0.395.0> (127.0.0.1:64898 -> 127.0.0.1:5672)
+
+=INFO REPORT==== 22-Apr-2017::11:34:44 ===
+connection <0.395.0> (127.0.0.1:64898 -> 127.0.0.1:5672): user 'guest' authenticated and granted access to vhost '/'
+
+=INFO REPORT==== 22-Apr-2017::11:35:07 ===
+accepting AMQP connection <0.408.0> ([::1]:64965 -> [::1]:5672)
+
+=INFO REPORT==== 22-Apr-2017::11:35:07 ===
+connection <0.408.0> ([::1]:64965 -> [::1]:5672): user 'guest' authenticated and granted access to vhost '/'
+
+=INFO REPORT==== 22-Apr-2017::11:35:07 ===
+closing AMQP connection <0.408.0> ([::1]:64965 -> [::1]:5672)
+
+=WARNING REPORT==== 22-Apr-2017::11:35:23 ===
+closing AMQP connection <0.395.0> (127.0.0.1:64898 -> 127.0.0.1:5672):
+client unexpectedly closed TCP connection
+
+=WARNING REPORT==== 22-Apr-2017::11:35:23 ===
+closing AMQP connection <0.383.0> (127.0.0.1:64879 -> 127.0.0.1:5672):
+client unexpectedly closed TCP connection
+
+=INFO REPORT==== 22-Apr-2017::11:36:49 ===
+accepting AMQP connection <0.438.0> ([::1]:65063 -> [::1]:5672)
+
+=INFO REPORT==== 22-Apr-2017::11:36:49 ===
+connection <0.438.0> ([::1]:65063 -> [::1]:5672): user 'guest' authenticated and granted access to vhost '/'
+
+=INFO REPORT==== 22-Apr-2017::11:36:51 ===
+accepting AMQP connection <0.449.0> (127.0.0.1:65069 -> 127.0.0.1:5672)
+
+=INFO REPORT==== 22-Apr-2017::11:36:51 ===
+connection <0.449.0> (127.0.0.1:65069 -> 127.0.0.1:5672): user 'guest' authenticated and granted access to vhost '/'
+
+=INFO REPORT==== 22-Apr-2017::11:37:10 ===
+accepting AMQP connection <0.462.0> ([::1]:65111 -> [::1]:5672)
+
+=INFO REPORT==== 22-Apr-2017::11:37:10 ===
+connection <0.462.0> ([::1]:65111 -> [::1]:5672): user 'guest' authenticated and granted access to vhost '/'
+
+=INFO REPORT==== 22-Apr-2017::11:37:10 ===
+closing AMQP connection <0.462.0> ([::1]:65111 -> [::1]:5672)
+
+=WARNING REPORT==== 22-Apr-2017::11:39:58 ===
+closing AMQP connection <0.449.0> (127.0.0.1:65069 -> 127.0.0.1:5672):
+client unexpectedly closed TCP connection
+
+=WARNING REPORT==== 22-Apr-2017::11:39:58 ===
+closing AMQP connection <0.438.0> ([::1]:65063 -> [::1]:5672):
+client unexpectedly closed TCP connection
+
+=INFO REPORT==== 22-Apr-2017::11:40:32 ===
+accepting AMQP connection <0.502.0> ([::1]:65531 -> [::1]:5672)
+
+=INFO REPORT==== 22-Apr-2017::11:40:32 ===
+connection <0.502.0> ([::1]:65531 -> [::1]:5672): user 'guest' authenticated and granted access to vhost '/'
+
+=INFO REPORT==== 22-Apr-2017::11:40:33 ===
+accepting AMQP connection <0.513.0> (127.0.0.1:49152 -> 127.0.0.1:5672)
+
+=INFO REPORT==== 22-Apr-2017::11:40:33 ===
+connection <0.513.0> (127.0.0.1:49152 -> 127.0.0.1:5672): user 'guest' authenticated and granted access to vhost '/'
+
+=INFO REPORT==== 22-Apr-2017::11:40:51 ===
+accepting AMQP connection <0.526.0> ([::1]:49221 -> [::1]:5672)
+
+=INFO REPORT==== 22-Apr-2017::11:40:51 ===
+connection <0.526.0> ([::1]:49221 -> [::1]:5672): user 'guest' authenticated and granted access to vhost '/'
+
+=INFO REPORT==== 22-Apr-2017::11:40:51 ===
+closing AMQP connection <0.526.0> ([::1]:49221 -> [::1]:5672)
+
+=WARNING REPORT==== 22-Apr-2017::11:48:51 ===
+closing AMQP connection <0.513.0> (127.0.0.1:49152 -> 127.0.0.1:5672):
+client unexpectedly closed TCP connection
+
+=WARNING REPORT==== 22-Apr-2017::11:48:51 ===
+closing AMQP connection <0.502.0> ([::1]:65531 -> [::1]:5672):
+client unexpectedly closed TCP connection
+
+=INFO REPORT==== 22-Apr-2017::11:49:21 ===
+accepting AMQP connection <0.601.0> ([::1]:50475 -> [::1]:5672)
+
+=INFO REPORT==== 22-Apr-2017::11:49:21 ===
+connection <0.601.0> ([::1]:50475 -> [::1]:5672): user 'guest' authenticated and granted access to vhost '/'
+
+=INFO REPORT==== 22-Apr-2017::11:49:23 ===
+accepting AMQP connection <0.612.0> (127.0.0.1:50480 -> 127.0.0.1:5672)
+
+=INFO REPORT==== 22-Apr-2017::11:49:23 ===
+connection <0.612.0> (127.0.0.1:50480 -> 127.0.0.1:5672): user 'guest' authenticated and granted access to vhost '/'
+
+=WARNING REPORT==== 22-Apr-2017::11:50:24 ===
+closing AMQP connection <0.612.0> (127.0.0.1:50480 -> 127.0.0.1:5672):
+client unexpectedly closed TCP connection
+
+=WARNING REPORT==== 22-Apr-2017::11:50:24 ===
+closing AMQP connection <0.601.0> ([::1]:50475 -> [::1]:5672):
+client unexpectedly closed TCP connection
+
+=INFO REPORT==== 22-Apr-2017::11:51:03 ===
+accepting AMQP connection <0.639.0> (127.0.0.1:50714 -> 127.0.0.1:5672)
+
+=INFO REPORT==== 22-Apr-2017::11:51:03 ===
+connection <0.639.0> (127.0.0.1:50714 -> 127.0.0.1:5672): user 'guest' authenticated and granted access to vhost '/'
+
+=INFO REPORT==== 22-Apr-2017::11:51:05 ===
+accepting AMQP connection <0.650.0> (127.0.0.1:50723 -> 127.0.0.1:5672)
+
+=INFO REPORT==== 22-Apr-2017::11:51:05 ===
+connection <0.650.0> (127.0.0.1:50723 -> 127.0.0.1:5672): user 'guest' authenticated and granted access to vhost '/'
+
+=INFO REPORT==== 22-Apr-2017::11:52:08 ===
+accepting AMQP connection <0.667.0> (127.0.0.1:50847 -> 127.0.0.1:5672)
+
+=INFO REPORT==== 22-Apr-2017::11:52:08 ===
+connection <0.667.0> (127.0.0.1:50847 -> 127.0.0.1:5672): user 'guest' authenticated and granted access to vhost '/'
+
+=INFO REPORT==== 22-Apr-2017::11:52:08 ===
+closing AMQP connection <0.667.0> (127.0.0.1:50847 -> 127.0.0.1:5672)
+
+=ERROR REPORT==== 22-Apr-2017::11:54:03 ===
+closing AMQP connection <0.639.0> (127.0.0.1:50714 -> 127.0.0.1:5672):
+missed heartbeats from client, timeout: 60s
+
+=ERROR REPORT==== 22-Apr-2017::11:55:05 ===
+closing AMQP connection <0.650.0> (127.0.0.1:50723 -> 127.0.0.1:5672):
+missed heartbeats from client, timeout: 60s
+
+=INFO REPORT==== 22-Apr-2017::11:56:42 ===
+accepting AMQP connection <0.716.0> ([::1]:51006 -> [::1]:5672)
+
+=INFO REPORT==== 22-Apr-2017::11:56:42 ===
+connection <0.716.0> ([::1]:51006 -> [::1]:5672): user 'guest' authenticated and granted access to vhost '/'
+
+=INFO REPORT==== 22-Apr-2017::11:56:44 ===
+accepting AMQP connection <0.728.0> (127.0.0.1:51010 -> 127.0.0.1:5672)
+
+=INFO REPORT==== 22-Apr-2017::11:56:44 ===
+connection <0.728.0> (127.0.0.1:51010 -> 127.0.0.1:5672): user 'guest' authenticated and granted access to vhost '/'
+
+=INFO REPORT==== 22-Apr-2017::11:56:59 ===
+accepting AMQP connection <0.740.0> ([::1]:51051 -> [::1]:5672)
+
+=INFO REPORT==== 22-Apr-2017::11:56:59 ===
+connection <0.740.0> ([::1]:51051 -> [::1]:5672): user 'guest' authenticated and granted access to vhost '/'
+
+=INFO REPORT==== 22-Apr-2017::11:56:59 ===
+closing AMQP connection <0.740.0> ([::1]:51051 -> [::1]:5672)
+
+=ERROR REPORT==== 22-Apr-2017::11:59:42 ===
+closing AMQP connection <0.716.0> ([::1]:51006 -> [::1]:5672):
+missed heartbeats from client, timeout: 60s
+
+=ERROR REPORT==== 22-Apr-2017::11:59:44 ===
+closing AMQP connection <0.728.0> (127.0.0.1:51010 -> 127.0.0.1:5672):
+missed heartbeats from client, timeout: 60s
+
+=INFO REPORT==== 22-Apr-2017::12:00:03 ===
+accepting AMQP connection <0.777.0> ([::1]:51151 -> [::1]:5672)
+
+=INFO REPORT==== 22-Apr-2017::12:00:03 ===
+accepting AMQP connection <0.780.0> ([::1]:51152 -> [::1]:5672)
+
+=INFO REPORT==== 22-Apr-2017::12:00:03 ===
+connection <0.777.0> ([::1]:51151 -> [::1]:5672): user 'guest' authenticated and granted access to vhost '/'
+
+=INFO REPORT==== 22-Apr-2017::12:00:03 ===
+connection <0.780.0> ([::1]:51152 -> [::1]:5672): user 'guest' authenticated and granted access to vhost '/'
+
+=WARNING REPORT==== 22-Apr-2017::12:00:33 ===
+closing AMQP connection <0.780.0> ([::1]:51152 -> [::1]:5672):
+client unexpectedly closed TCP connection
+
+=WARNING REPORT==== 22-Apr-2017::12:00:33 ===
+closing AMQP connection <0.777.0> ([::1]:51151 -> [::1]:5672):
+client unexpectedly closed TCP connection
+
+=INFO REPORT==== 22-Apr-2017::12:01:08 ===
+accepting AMQP connection <0.811.0> ([::1]:51282 -> [::1]:5672)
+
+=INFO REPORT==== 22-Apr-2017::12:01:08 ===
+connection <0.811.0> ([::1]:51282 -> [::1]:5672): user 'guest' authenticated and granted access to vhost '/'
+
+=INFO REPORT==== 22-Apr-2017::12:01:09 ===
+accepting AMQP connection <0.822.0> ([::1]:51286 -> [::1]:5672)
+
+=INFO REPORT==== 22-Apr-2017::12:01:09 ===
+connection <0.822.0> ([::1]:51286 -> [::1]:5672): user 'guest' authenticated and granted access to vhost '/'
+
+=INFO REPORT==== 22-Apr-2017::12:01:23 ===
+accepting AMQP connection <0.834.0> (127.0.0.1:51331 -> 127.0.0.1:5672)
+
+=INFO REPORT==== 22-Apr-2017::12:01:23 ===
+connection <0.834.0> (127.0.0.1:51331 -> 127.0.0.1:5672): user 'guest' authenticated and granted access to vhost '/'
+
+=INFO REPORT==== 22-Apr-2017::12:01:23 ===
+closing AMQP connection <0.834.0> (127.0.0.1:51331 -> 127.0.0.1:5672)
+
+=WARNING REPORT==== 22-Apr-2017::12:01:46 ===
+closing AMQP connection <0.822.0> ([::1]:51286 -> [::1]:5672):
+client unexpectedly closed TCP connection
+
+=WARNING REPORT==== 22-Apr-2017::12:01:46 ===
+closing AMQP connection <0.811.0> ([::1]:51282 -> [::1]:5672):
+client unexpectedly closed TCP connection
+
+=INFO REPORT==== 22-Apr-2017::12:02:18 ===
+accepting AMQP connection <0.857.0> ([::1]:51433 -> [::1]:5672)
+
+=INFO REPORT==== 22-Apr-2017::12:02:18 ===
+connection <0.857.0> ([::1]:51433 -> [::1]:5672): user 'guest' authenticated and granted access to vhost '/'
+
+=INFO REPORT==== 22-Apr-2017::12:02:19 ===
+accepting AMQP connection <0.868.0> (127.0.0.1:51438 -> 127.0.0.1:5672)
+
+=INFO REPORT==== 22-Apr-2017::12:02:19 ===
+connection <0.868.0> (127.0.0.1:51438 -> 127.0.0.1:5672): user 'guest' authenticated and granted access to vhost '/'
+
+=INFO REPORT==== 22-Apr-2017::12:02:53 ===
+accepting AMQP connection <0.884.0> (127.0.0.1:51524 -> 127.0.0.1:5672)
+
+=INFO REPORT==== 22-Apr-2017::12:02:53 ===
+connection <0.884.0> (127.0.0.1:51524 -> 127.0.0.1:5672): user 'guest' authenticated and granted access to vhost '/'
+
+=INFO REPORT==== 22-Apr-2017::12:02:53 ===
+closing AMQP connection <0.884.0> (127.0.0.1:51524 -> 127.0.0.1:5672)
+
+=ERROR REPORT==== 22-Apr-2017::12:06:18 ===
+closing AMQP connection <0.857.0> ([::1]:51433 -> [::1]:5672):
+missed heartbeats from client, timeout: 60s
+
+=ERROR REPORT==== 22-Apr-2017::12:06:19 ===
+closing AMQP connection <0.868.0> (127.0.0.1:51438 -> 127.0.0.1:5672):
+missed heartbeats from client, timeout: 60s
