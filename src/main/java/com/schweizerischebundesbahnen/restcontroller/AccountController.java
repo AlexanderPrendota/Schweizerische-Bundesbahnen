@@ -81,6 +81,13 @@ public class AccountController {
         }
         return userRides;
     }
+
+    /**
+     * Get current auth user rides
+     * @param id rides entity id
+     * @param authentication
+     * @return one User ride
+     */
     @RequestMapping(value = "/ride/{id}", method = RequestMethod.GET)
     public ResponseEntity<?> getUserRide(@PathVariable String id, Authentication authentication){
         User currentUser = userService.findUserByEmail(authentication.getName());

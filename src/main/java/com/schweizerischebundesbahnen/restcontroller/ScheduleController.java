@@ -160,7 +160,11 @@ public class ScheduleController {
         return scheduleService.findAllSchedules();
     }
 
-
+    /**
+     * Update schedule
+     * @param schedule entity
+     * @return updated schedule entity
+     */
     @PreAuthorize("hasAuthority('ADMIN')")
     @RequestMapping(value = "/update",method = RequestMethod.PUT)
     public ResponseEntity<?> updateSchedule(@RequestBody Schedule schedule){
@@ -235,6 +239,14 @@ public class ScheduleController {
         return timeSchedules;
     }
 
+    /**
+     * Get list of Schedule with transfer ways
+     * @param stationDeparture
+     * @param stationArrival
+     * @param date
+     * @return list schedules with and without transfers ways
+     * @throws Exception
+     */
     @RequestMapping(value = "transfer/departure/{stationDeparture}/arrival/{stationArrival}/date/{date}"
             , method = RequestMethod.GET)
     public ResponseEntity<?> getTransferSchedule(@PathVariable String stationDeparture,
@@ -259,8 +271,6 @@ public class ScheduleController {
 
         return ResponseEntity.ok(transverScheduule);
     }
-
-
 
     private void sendMessageForUpdating(){
         try {

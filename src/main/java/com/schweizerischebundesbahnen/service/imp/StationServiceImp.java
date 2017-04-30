@@ -58,6 +58,10 @@ public class StationServiceImp implements StationService {
         stationRepository.delete(station);
     }
 
+    /**
+     * get list of all stations
+     * @return list of all station entity
+     */
     @Override
     public List<Station> findAllStation() {
         List<Station> stations = new ArrayList<>();

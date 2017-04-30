@@ -69,6 +69,10 @@ public class UserServiceImp implements UserService {
         return userRepository.save(user);
     }
 
+    /**
+     * get list of all users
+     * @return
+     */
     @Override
     public List<User> findAllUser() {
         List<User> users = new ArrayList<>();

@@ -29,11 +29,23 @@ public class SeatServiceImp implements SeatService{
         seatRepository.delete(seat);
     }
 
+    /**
+     * Find specific seat by train, carriage and seat number
+     * @param train
+     * @param number
+     * @param cabine
+     * @return seat entity
+     */
     @Override
     public Seat findByTrainAndNumberAndCarriage(Train train, int number, int cabine) {
         return seatRepository.findByTrainAndNumberAndCabine(train,number,cabine);
     }
 
+    /**
+     * get list of seats by train entity
+     * @param train
+     * @return list of seat entity
+     */
     @Override
     public List<Seat> findSeatByTrain(Train train) {
         return seatRepository.findByTrain(train);

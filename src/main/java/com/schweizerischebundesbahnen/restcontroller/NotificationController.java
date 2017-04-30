@@ -32,6 +32,12 @@ public class NotificationController {
     @Autowired
     private UserService userService;
 
+    /**
+     * Send notification to all users
+     * @param mail
+     * @return sending status
+     * @throws MessagingException
+     */
     @RequestMapping(value = "/message",method = RequestMethod.POST)
     public ResponseEntity<?> sendNotify(@RequestBody Mail mail) throws MessagingException{
         if(mail.getSubject().equals("") || mail.getText().equals("")){

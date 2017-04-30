@@ -95,6 +95,10 @@ public class ScheduleServiceImp implements ScheduleService {
         return scheduleRepository.findByStationDeparture(station);
     }
 
+    /**
+     * get list of all schedule
+     * @return list of all schedule entity
+     */
     @Override
     public List<Schedule> findAllSchedules() {
         List<Schedule> schedules = new ArrayList<>();
@@ -102,27 +106,54 @@ public class ScheduleServiceImp implements ScheduleService {
         return schedules;
     }
 
+    /**
+     * get list of schedule by specific train
+     * @param train
+     * @return list of schedule entity
+     */
     @Override
     public List<Schedule> findByTrain(Train train) {
         return scheduleRepository.findByTrain(train);
     }
 
+    /**
+     * get list of schedule by specific station
+     * @param station
+     * @return list of schedule entity
+     */
     @Override
     public List<Schedule> findByStationArrival(Station station) {
         return scheduleRepository.findByStationArrival(station);
     }
 
+    /**
+     * get list of schedule by user wish: station departure and time > current time
+     * @param station
+     * @return  list of schedule entity
+     */
     @Override
     public List<Schedule> findByUserStation(Station station) {
         return scheduleRepository.findByStationDepartureAndTimeDepartureGreaterThanEqual(station,TODAYS_DATE);
 
     }
 
+    /**
+     * get list of schedule by time departure
+     * @param date
+     * @return list of schedule entity
+     */
     @Override
     public List<Schedule> findByTimeDeparture(Date date) {
         return scheduleRepository.findByTimeDeparture(date);
     }
 
+    /**
+     *  get list of schedule with transfer ways
+     * @param departure
+     * @param arrival
+     * @param dateDeparture
+     * @return list of schedule entity
+     */
     @Override
     public List<Schedule> findTransferSchedule(Station departure, Station arrival, Date dateDeparture) {
 

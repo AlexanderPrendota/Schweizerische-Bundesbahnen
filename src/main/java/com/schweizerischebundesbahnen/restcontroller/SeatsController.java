@@ -37,6 +37,14 @@ public class SeatsController {
     @Autowired
     private SeatService seatService;
 
+    /**
+     * Get free seats on the specific train in the specific carriage
+     * @param train
+     * @param timeDeparture
+     * @param carriage
+     * @return List of free number of seats
+     * @throws ParseException
+     */
     @RequestMapping(value = "/freeseats/train/{train}/time/{timeDeparture}/carriage/{carriage}",
     method = RequestMethod.GET)
     public List<Integer> getFreeSeatsOnRide(@PathVariable String train,
@@ -60,6 +68,12 @@ public class SeatsController {
         return seatsFreeNumber;
     }
 
+    /**
+     * Get count of carriage in the specific train
+     * 1 carriage = 20 seats
+     * @param train entuty
+     * @return coutn of train carriage
+     */
     @RequestMapping(value = "/countofcarriage/train/{train}", method = RequestMethod.GET)
     public int getCountOfCarriage(@PathVariable String train){
         Train trainFromUser = trainService.findTrainByName(train);

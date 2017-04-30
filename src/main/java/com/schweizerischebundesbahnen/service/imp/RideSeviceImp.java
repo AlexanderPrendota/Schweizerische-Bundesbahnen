@@ -64,21 +64,42 @@ public class RideSeviceImp implements RideService {
         return rideRepository.findOne(id);
     }
 
+    /**
+     * get list of ride entity by specific train
+     * @param train
+     * @return list of ride entity
+     */
     @Override
     public List<Ride> findByTrain(Train train) {
         return rideRepository.findByTrain(train);
     }
 
+    /**
+     * get list of ride entity by station departure
+     * @param station
+     * @return list of ride entity
+     */
     @Override
     public List<Ride> findByStationDeparture(Station station) {
         return rideRepository.findByStationDeparture(station);
     }
 
+    /**
+     * get list of ride entity by station arrival
+     * @param station
+     * @return list of ride entity
+     */
     @Override
     public List<Ride> findByStationArrival(Station station) {
         return rideRepository.findByStationArrival(station);
     }
 
+    /**
+     * get list of rides by train and time departure
+     * @param train
+     * @param time
+     * @return list of ride entity
+     */
     @Override
     public List<Ride> findByTrainAndTime(Train train, Date time) {
         return rideRepository.findПожалуйстаByTrainAndTimeDeparture(train,time);
