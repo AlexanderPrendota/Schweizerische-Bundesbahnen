@@ -49,7 +49,6 @@ public class ScheduleController {
     private MQSender mqSender = new MQSender();
 
 
-
     /**
      * Getting Schedules by two stations and date
      * Schedules will be found for 1 calendar day
@@ -92,6 +91,98 @@ public class ScheduleController {
         return scheduleService.findByUserStation(stationDepartureFromUser);
     }
 
+    @RequestMapping(value = "/timeschedule/station/{stationDeparture}",method = RequestMethod.GET)
+    public List<TimeSchedule> getListOfTimeScheduleByStationDeparture(@PathVariable String stationDeparture){
+        List<TimeSchedule> timeSchedules = new ArrayList<>();
+        Station stationDepartureFromAPI = stationService.findStationByName(stationDeparture);
+        if (stationDeparture != null){
+            List<Schedule> schedules = scheduleService.findByUserStation(stationDepartureFromAPI);
+            for (Schedule schedule : schedules) {
+                TimeSchedule timeSchedule = TimeSchedule.builder()
+                        .train(schedule.getTrain().getId())
+                        .stationDeparture(schedule.getStationDeparture().getStationName())
+                        .stationArrival(schedule.getStationArrival().getStationName())
+                        .timeDeparture(schedule.getTimeDeparture().toString())
+                        .timeArrival(schedule.getTimeArrival().toString())
+                        .build();
+                timeSchedules.add(timeSchedule);
+            }
+        }
+        return timeSchedules;
+    }
+
+
+    @RequestMapping(value = "/todays",method = RequestMethod.GET)
+    public List<TimeSchedule> getTodaysTimeSchedule(){
+        List<TimeSchedule> timeSchedules = new ArrayList<>();
+        List<Schedule> schedules = scheduleService.findAllSchedules();
+
+        for (Schedule schedule : schedules) {
+            Date departure = DateUtils.addHours(schedule.getTimeDeparture(),-1);
+            Date arrival = DateUtils.addHours(schedule.getTimeArrival(),-1);
+            TimeSchedule timeSchedule = TimeSchedule.builder()
+                    .train(schedule.getTrain().getId())
+                    .stationDeparture(schedule.getStationDeparture().getStationName())
+                    .stationArrival(schedule.getStationArrival().getStationName())
+                    .timeDeparture(departure.toString())
+                    .timeArrival(arrival.toString())
+                    .build();
+            timeSchedules.add(timeSchedule);
+        }
+        return timeSchedules;
+    }
+
+
+    @RequestMapping(value = "/to",method = RequestMethod.GET)
+    public List<TimeSchedule> getTodaySchedule(){
+        List<TimeSchedule> timeSchedules = new ArrayList<>();
+        Date date = Calendar.getInstance().getTime();
+        List<Schedule> schedules = scheduleService.findByTimeDeparture(date);
+        for (Schedule schedule : schedules) {
+            TimeSchedule timeSchedule = TimeSchedule.builder()
+                    .train(schedule.getTrain().getId())
+                    .stationDeparture(schedule.getStationDeparture().getStationName())
+                    .stationArrival(schedule.getStationArrival().getStationName())
+                    .timeDeparture(schedule.getTimeDeparture().toString())
+                    .timeArrival(schedule.getTimeArrival().toString())
+                    .build();
+            timeSchedules.add(timeSchedule);
+        }
+        return timeSchedules;
+    }
+
+    /**
+     * Get list of Schedule with transfer ways
+     * @param stationDeparture
+     * @param stationArrival
+     * @param date
+     * @return list schedules with and without transfers ways
+     * @throws Exception
+     */
+    @RequestMapping(value = "transfer/departure/{stationDeparture}/arrival/{stationArrival}/date/{date}"
+            , method = RequestMethod.GET)
+    public ResponseEntity<?> getTransferSchedule(@PathVariable String stationDeparture,
+                                                 @PathVariable String stationArrival,
+                                                 @PathVariable String date) throws Exception{
+        Station departure = stationService
+                .findStationByName(stationDeparture);
+        Station arrival = stationService
+                .findStationByName(stationArrival);
+
+        SimpleDateFormat formatData = new SimpleDateFormat("yyyy-MM-dd");
+        Date dateDeparture = formatData.parse(date);
+
+        if (departure == null || arrival == null){
+            log.warn("Station not found with getting transver schedule");
+            return new ResponseEntity<>(new StationNotFoundException("Station not found"),HttpStatus.BAD_REQUEST);
+        }
+
+        List<Schedule> transverScheduule = scheduleService.findTransferSchedule(departure,
+                arrival,
+                dateDeparture);
+
+        return ResponseEntity.ok(transverScheduule);
+    }
 
     /**
      *
@@ -198,78 +289,6 @@ public class ScheduleController {
         log.info("Schedule id=" + String.valueOf(schedule.getId()) + " was updated");
 
         return ResponseEntity.ok(oldSchedule);
-    }
-
-    @RequestMapping(value = "/todays",method = RequestMethod.GET)
-    public List<TimeSchedule> getTodaysTimeSchedule(){
-        List<TimeSchedule> timeSchedules = new ArrayList<>();
-        List<Schedule> schedules = scheduleService.findAllSchedules();
-
-        for (Schedule schedule : schedules) {
-            Date departure = DateUtils.addHours(schedule.getTimeDeparture(),-1);
-            Date arrival = DateUtils.addHours(schedule.getTimeArrival(),-1);
-            TimeSchedule timeSchedule = TimeSchedule.builder()
-                    .train(schedule.getTrain().getId())
-                    .stationDeparture(schedule.getStationDeparture().getStationName())
-                    .stationArrival(schedule.getStationArrival().getStationName())
-                    .timeDeparture(departure.toString())
-                    .timeArrival(arrival.toString())
-                    .build();
-            timeSchedules.add(timeSchedule);
-        }
-        return timeSchedules;
-    }
-
-
-    @RequestMapping(value = "/to",method = RequestMethod.GET)
-    public List<TimeSchedule> getTodaySchedule(){
-        List<TimeSchedule> timeSchedules = new ArrayList<>();
-        Date date = Calendar.getInstance().getTime();
-        List<Schedule> schedules = scheduleService.findByTimeDeparture(date);
-        for (Schedule schedule : schedules) {
-            TimeSchedule timeSchedule = TimeSchedule.builder()
-                    .train(schedule.getTrain().getId())
-                    .stationDeparture(schedule.getStationDeparture().getStationName())
-                    .stationArrival(schedule.getStationArrival().getStationName())
-                    .timeDeparture(schedule.getTimeDeparture().toString())
-                    .timeArrival(schedule.getTimeArrival().toString())
-                    .build();
-            timeSchedules.add(timeSchedule);
-        }
-        return timeSchedules;
-    }
-
-    /**
-     * Get list of Schedule with transfer ways
-     * @param stationDeparture
-     * @param stationArrival
-     * @param date
-     * @return list schedules with and without transfers ways
-     * @throws Exception
-     */
-    @RequestMapping(value = "transfer/departure/{stationDeparture}/arrival/{stationArrival}/date/{date}"
-            , method = RequestMethod.GET)
-    public ResponseEntity<?> getTransferSchedule(@PathVariable String stationDeparture,
-                                                 @PathVariable String stationArrival,
-                                                 @PathVariable String date) throws Exception{
-        Station departure = stationService
-                .findStationByName(stationDeparture);
-        Station arrival = stationService
-                .findStationByName(stationArrival);
-
-        SimpleDateFormat formatData = new SimpleDateFormat("yyyy-MM-dd");
-        Date dateDeparture = formatData.parse(date);
-
-        if (departure == null || arrival == null){
-            log.warn("Station not found with getting transver schedule");
-            return new ResponseEntity<>(new StationNotFoundException("Station not found"),HttpStatus.BAD_REQUEST);
-        }
-
-        List<Schedule> transverScheduule = scheduleService.findTransferSchedule(departure,
-                arrival,
-                dateDeparture);
-
-        return ResponseEntity.ok(transverScheduule);
     }
 
     private void sendMessageForUpdating(){
