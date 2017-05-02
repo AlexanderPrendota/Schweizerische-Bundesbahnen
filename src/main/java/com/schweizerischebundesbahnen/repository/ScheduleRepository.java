@@ -32,7 +32,5 @@ public interface ScheduleRepository extends CrudRepository<Schedule,Long> {
 
     List<Schedule> findByStationDepartureAndTimeDepartureBetween (Station stationDeparture, Date start, Date end);
 
-    List<Schedule> findByStationDepartureAndStationArrivalAndTimeDepartureGreaterThanEqual
-            (Station stationDeparture, Station stationArrival, Date start);
-
+    List<Schedule> findByTimeDepartureGreaterThanEqual(Date date);
 }

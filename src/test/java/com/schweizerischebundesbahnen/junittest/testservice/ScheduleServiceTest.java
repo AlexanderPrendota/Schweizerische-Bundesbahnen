@@ -15,6 +15,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -247,6 +248,43 @@ public class ScheduleServiceTest {
         List<Schedule> schedulesTransfer = scheduleService.findTransferSchedule(firstStation,secondStation,date);
         Assert.assertTrue(schedulesTransfer.size() == 0);
     }
+
+    @Test
+    public void testFindScheduleByTimeDepartureMore(){
+        Date date = new Date(1494460800000L);
+        List<Schedule> schedules = scheduleService.findByTimeDepartureMoreThan(date);
+        Assert.assertTrue(schedules.size() > 0);
+    }
+
+    @Test
+    public void testFindScheduleByTimeDepartureMoreTODAY(){
+        Date date = Calendar.getInstance().getTime();
+        List<Schedule> schedules = scheduleService.findByTimeDepartureMoreThan(date);
+        Assert.assertTrue(schedules.size() > 0);
+    }
+
+    @Test
+    public void testFindScheduleByTimeDepartureMoreThanWrongDate(){
+        Date date = new Date(4106332800000L);
+        List<Schedule> schedules = scheduleService.findByTimeDepartureMoreThan(date);
+        Assert.assertTrue(schedules.size() == 0);
+    }
+
+    @Test
+    public void testFindScheduleByTimeDepartureMoreWithEmptyObject(){
+        System.out.println(new Date());
+        List<Schedule> schedules = scheduleService.findByTimeDepartureMoreThan(new Date());
+        Assert.assertTrue(schedules.size() > 0);
+    }
+
+
+    @Test(expected = org.springframework.dao.InvalidDataAccessApiUsageException.class)
+    public void testFindScheduleByTimeDepartureMoreWithNull(){
+        List<Schedule> schedules = scheduleService.findByTimeDepartureMoreThan(null);
+        Assert.assertNull(schedules);
+    }
+
+
 
 
 }

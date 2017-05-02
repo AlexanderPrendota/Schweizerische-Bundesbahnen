@@ -148,6 +148,16 @@ public class ScheduleServiceImp implements ScheduleService {
     }
 
     /**
+     * Get list of schedule more than date
+     * @param date
+     * @return list of schedule entity
+     */
+    @Override
+    public List<Schedule> findByTimeDepartureMoreThan(Date date) {
+        return scheduleRepository.findByTimeDepartureGreaterThanEqual(date);
+    }
+
+    /**
      *  get list of schedule with transfer ways
      * @param departure
      * @param arrival

@@ -36,6 +36,8 @@ public interface ScheduleService {
 
     List<Schedule> findByTimeDeparture(Date date);
 
+    List<Schedule> findByTimeDepartureMoreThan(Date date);
+
     List<Schedule> findTransferSchedule(Station departure, Station arrival, Date dateDeparture);
 
 }

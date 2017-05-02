@@ -115,7 +115,8 @@ public class ScheduleController {
     @RequestMapping(value = "/todays",method = RequestMethod.GET)
     public List<TimeSchedule> getTodaysTimeSchedule(){
         List<TimeSchedule> timeSchedules = new ArrayList<>();
-        List<Schedule> schedules = scheduleService.findAllSchedules();
+        Date date = Calendar.getInstance().getTime();
+        List<Schedule> schedules = scheduleService.findByTimeDepartureMoreThan(date);
 
         for (Schedule schedule : schedules) {
             Date departure = DateUtils.addHours(schedule.getTimeDeparture(),-1);
@@ -132,24 +133,6 @@ public class ScheduleController {
         return timeSchedules;
     }
 
-
-    @RequestMapping(value = "/to",method = RequestMethod.GET)
-    public List<TimeSchedule> getTodaySchedule(){
-        List<TimeSchedule> timeSchedules = new ArrayList<>();
-        Date date = Calendar.getInstance().getTime();
-        List<Schedule> schedules = scheduleService.findByTimeDeparture(date);
-        for (Schedule schedule : schedules) {
-            TimeSchedule timeSchedule = TimeSchedule.builder()
-                    .train(schedule.getTrain().getId())
-                    .stationDeparture(schedule.getStationDeparture().getStationName())
-                    .stationArrival(schedule.getStationArrival().getStationName())
-                    .timeDeparture(schedule.getTimeDeparture().toString())
-                    .timeArrival(schedule.getTimeArrival().toString())
-                    .build();
-            timeSchedules.add(timeSchedule);
-        }
-        return timeSchedules;
-    }
 
     /**
      * Get list of Schedule with transfer ways

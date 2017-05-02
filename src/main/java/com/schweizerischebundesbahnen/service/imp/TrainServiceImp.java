@@ -16,7 +16,7 @@ import java.util.List;
  */
 
 @Service
-public class TrainServiceImp implements TrainService {
+public class        TrainServiceImp implements TrainService {
 
     @Autowired
     private TrainRepository trainRepository;
