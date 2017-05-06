@@ -1,10 +1,6 @@
 package com.schweizerischebundesbahnen.config;
 
-
-
-
 import com.rabbitmq.client.*;
-
 import java.io.IOException;
 import java.util.concurrent.TimeoutException;
 

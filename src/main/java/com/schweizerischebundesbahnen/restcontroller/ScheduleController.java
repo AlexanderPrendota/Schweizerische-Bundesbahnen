@@ -19,10 +19,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 
 /**
@@ -91,6 +88,11 @@ public class ScheduleController {
         return scheduleService.findByUserStation(stationDepartureFromUser);
     }
 
+    /**
+     * Get list if TimeSchedule by Station Departure
+     * @param stationDeparture list od timeshedule entity
+     * @return
+     */
     @RequestMapping(value = "/timeschedule/station/{stationDeparture}",method = RequestMethod.GET)
     public List<TimeSchedule> getListOfTimeScheduleByStationDeparture(@PathVariable String stationDeparture){
         List<TimeSchedule> timeSchedules = new ArrayList<>();
@@ -111,7 +113,26 @@ public class ScheduleController {
         return timeSchedules;
     }
 
+    /**
+     * Get set of station in future schedules
+     * @return set of string station name
+     */
+    @RequestMapping(value = "/future/stations",method = RequestMethod.GET)
+    public Set<String> getFutureStation(){
+        Set<String> stationsNames = new HashSet<>();
+        Date date = Calendar.getInstance().getTime();
+        List<Schedule> schedules = scheduleService.findByTimeDepartureMoreThan(date);
+        for (Schedule schedule : schedules) {
+            stationsNames.add(schedule.getStationDeparture().getStationName());
+        }
+        return stationsNames;
 
+    }
+
+    /**
+     * Get list of future schedules since current day
+     * @return list of schedule entity
+     */
     @RequestMapping(value = "/todays",method = RequestMethod.GET)
     public List<TimeSchedule> getTodaysTimeSchedule(){
         List<TimeSchedule> timeSchedules = new ArrayList<>();
