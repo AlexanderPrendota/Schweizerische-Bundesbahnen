@@ -39,6 +39,15 @@ public class DIDaoTest {
     @Autowired
     private RideRepository rideRepository;
 
+    @Autowired
+    private MessageRepository messageRepository;
+
+    @Autowired
+    private UserChatRepository userChatRepository;
+
+    @Autowired
+    private  ChatRepository chatRepository;
+
 
     @Test
     public void rideDAOTest(){
@@ -73,5 +82,20 @@ public class DIDaoTest {
     @Test
     public void stationDAOTest(){
         Assert.assertNotNull(stationService);
+    }
+
+    @Test
+    public void chatDAOTest(){
+        Assert.assertNotNull(chatRepository);
+    }
+
+    @Test
+    public void messageDAOTest(){
+        Assert.assertNotNull(messageRepository);
+    }
+
+    @Test
+    public void userChatDAOTest(){
+        Assert.assertNotNull(userChatRepository);
     }
 }
