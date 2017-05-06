@@ -1,5 +1,6 @@
 package com.schweizerischebundesbahnen.service.api;
 
+import com.schweizerischebundesbahnen.model.Chat;
 import com.schweizerischebundesbahnen.model.Message;
 import com.schweizerischebundesbahnen.model.MessageDTO;
 
@@ -12,5 +13,5 @@ public interface MessageService {
 
     Message postMessage(long from, MessageDTO messageDTO);
 
-    List<Message> findByChat(long idChat);
+    List<Message> findByChat(Chat id);
 }

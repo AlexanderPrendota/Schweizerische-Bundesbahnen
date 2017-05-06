@@ -72,8 +72,7 @@ public class MessageServiceImp implements MessageService{
     }
 
     @Override
-    public List<Message> findByChat(long idChat) {
-        Chat chat = chatRepository.findOne(idChat);
-        return messageRepository.findByChat(chat);
+    public List<Message> findByChat(Chat id) {
+        return messageRepository.findByChat(id);
     }
 }

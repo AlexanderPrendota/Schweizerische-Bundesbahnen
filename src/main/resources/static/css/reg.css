@@ -191,3 +191,20 @@ input::-webkit-input-placeholder {
 .accountdialog{
     background-color: rgba(128, 245, 252, 0.17) !important;
 }
+
+.fixed_button{
+    position:fixed;
+    top:800px;
+    left:50px;
+    bottom: 50px;
+    width:50px;
+    height:50px;
+    z-index:999;
+    border-radius: 50%;
+    background-color: #5bc0de !important;
+}
+
+.chat_window {
+    visibility: hidden;
+    z-index:999;
+}
