@@ -44,6 +44,12 @@ public class DIServiceTests {
     @Autowired
     private MailService mailService;
 
+    @Autowired
+    private MessageService messageService;
+
+    @Autowired
+    private ChatService chatService;
+
     @Test
     public void trainServiceTest(){
         Assert.assertNotNull(trainService);
@@ -87,5 +93,15 @@ public class DIServiceTests {
     @Test
     public void mailServiceTest(){
         Assert.assertNotNull(mailService);
+    }
+
+    @Test
+    public void chatServiceTest(){
+        Assert.assertNotNull(chatService);
+    }
+
+    @Test
+    public void messageServiceTest(){
+        Assert.assertNotNull(messageService);
     }
 }
