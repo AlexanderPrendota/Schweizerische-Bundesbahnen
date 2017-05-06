@@ -34,8 +34,8 @@ public class MessageController {
     private ChatService chatService;
 
 
-    @RequestMapping(value = "/user/chat/{chatId}",method = RequestMethod.GET)
-    public List<Message> getUserMessage(Authentication authentication, @PathVariable String chatId){
+    @RequestMapping(value = "/admin/chat/{chatId}",method = RequestMethod.GET)
+    public List<Message> getAdminMessage(Authentication authentication, @PathVariable String chatId){
         User user = userService.findUserByEmail(authentication.getName());
         List<Message> messages = new ArrayList<>();
         try{
@@ -55,10 +55,33 @@ public class MessageController {
         return messages;
     }
 
-    @RequestMapping(value = "/post",method = RequestMethod.POST)
-    public List<Message> postUserMessage(@RequestBody MessageDTO messageDTO,Authentication authentication){
+    @RequestMapping(value = "/post/user",method = RequestMethod.POST)
+    public Message postUserMessage(@RequestBody MessageDTO messageDTO, Authentication authentication){
+        User user = userService.findUserByEmail(authentication.getName());
+        List<UserChat> userChats = userChatService.findChatsByUser(user);
+        if (userChats.size() > 0){
+            Chat userChat = userChats.get(0).getChat();
+            messageDTO.setChatId(userChat.getId());
+        }
+        return messageService.postMessage(user,messageDTO);
+    }
 
+    @RequestMapping(value = "/post/admin",method = RequestMethod.POST)
+    public List<Message> postAdminMessage(@RequestBody MessageDTO messageDTO, Authentication authentication){
+        User user = userService.findUserByEmail(authentication.getName());
         return null;
+    }
+
+
+    @RequestMapping(value = "user/chat",method = RequestMethod.GET)
+    public List<Message> getUserMessage(Authentication authentication){
+        User user = userService.findUserByEmail(authentication.getName());
+        List<Message> messages = new ArrayList<>();
+        List<UserChat> userChats = userChatService.findChatsByUser(user);
+        if (userChats.size() > 0){
+            messages = messageService.findByChat(userChats.get(0).getChat());
+        }
+        return messages;
     }
 
 }

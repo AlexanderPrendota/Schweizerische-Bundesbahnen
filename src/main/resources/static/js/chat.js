@@ -55,7 +55,7 @@ function chatShow() {
             return $messages.animate({ scrollTop: $messages.prop('scrollHeight') }, 300);
         };
         $('.send_message').click(function (e) {
-            return sendMessage(getMessageText());
+            sending(getMessageText(),sendMessage);
         });
 
         $('.close').click(function (e) {
@@ -69,14 +69,54 @@ function chatShow() {
 
         $('.message_input').keyup(function (e) {
             if (e.which === 13) {
-                return sendMessage(getMessageText());
+                sending(getMessageText(),sendMessage);
             }
         });
-        sendMessage('Hello Alexander! :)', 'left');
-
+        posting(sendMessage);
     });
 }.call(this));
 
-function sending(text) {
-    
+function sending(text, sendMessage) {
+
+    var messageDTO = {
+        recipientId: 139,
+        text: text,
+        timeStamp: new Date()
+    };
+
+    $.ajax({
+        type: "POST",
+        url : "/message/post/user" ,
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        data: JSON.stringify(messageDTO),
+        success: function (response) {
+            sendMessage(response.text,'right');
+        },
+        error: function () {
+            swal("Oops...", "Sorry! Problems with getting data from server:( Please try later", "error");
+        }
+    });
+}
+
+function posting(sendMessage) {
+    $.ajax({
+        type: "GET",
+        url : "/message/user/chat" ,
+        contentType: "application/json; charset=utf-8",
+        success: function (response) {
+            var user = $('#email').val();
+            for (var i=0; i < response.length;i++){
+                var sender = response[i].sender.email;
+                if(sender === user){
+                    sendMessage(response[i].text, "right");
+                } else{
+                    sendMessage(response[i].text, "left");
+                }
+            }
+        },
+        error: function () {
+            swal("Oops...", "Sorry! Problems with getting data from server:( Please try later", "error");
+        }
+    });
 }

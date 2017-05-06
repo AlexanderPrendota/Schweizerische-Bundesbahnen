@@ -3,6 +3,7 @@ package com.schweizerischebundesbahnen.service.api;
 import com.schweizerischebundesbahnen.model.Chat;
 import com.schweizerischebundesbahnen.model.Message;
 import com.schweizerischebundesbahnen.model.MessageDTO;
+import com.schweizerischebundesbahnen.model.User;
 
 import java.util.List;
 
@@ -11,7 +12,7 @@ import java.util.List;
  */
 public interface MessageService {
 
-    Message postMessage(long from, MessageDTO messageDTO);
+    Message postMessage(User from, MessageDTO messageDTO);
 
     List<Message> findByChat(Chat id);
 }

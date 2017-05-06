@@ -31,9 +31,8 @@ public class MessageServiceImp implements MessageService{
     private UserChatRepository userChatRepository;
 
     @Override
-    public Message postMessage(long from, MessageDTO messageDTO) {
+    public Message postMessage(User sender, MessageDTO messageDTO) {
 
-        User sender = userRepository.findOne(from);
         User recipient = userRepository.findOne(messageDTO.getRecipientId());
         Message message = new Message();
         message.setText(messageDTO.getText());
