@@ -13,4 +13,5 @@ import java.util.List;
 public interface UserChatRepository extends CrudRepository<UserChat,Long> {
     List<UserChat> findByUser(User user);
     UserChat findByChatAndUser(Chat chat, User user);
+    UserChat findByChatAndUserNot(Chat chat, User user);
 }

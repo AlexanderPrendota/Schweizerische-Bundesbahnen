@@ -1,6 +1,5 @@
 package com.schweizerischebundesbahnen.intergation;
 
-import com.schweizerischebundesbahnen.repository.RideRepository;
 import com.schweizerischebundesbahnen.service.api.*;
 import com.schweizerischebundesbahnen.service.imp.MailService;
 import org.junit.Assert;
@@ -46,6 +45,9 @@ public class DIServiceTests {
 
     @Autowired
     private MessageService messageService;
+
+    @Autowired
+    private UserChatService userChatService;
 
     @Autowired
     private ChatService chatService;
@@ -96,12 +98,17 @@ public class DIServiceTests {
     }
 
     @Test
-    public void chatServiceTest(){
-        Assert.assertNotNull(chatService);
+    public void chatUserServiceTest(){
+        Assert.assertNotNull(userChatService);
     }
 
     @Test
     public void messageServiceTest(){
         Assert.assertNotNull(messageService);
+    }
+
+    @Test
+    public void chatServiceTest(){
+        Assert.assertNotNull(chatService);
     }
 }

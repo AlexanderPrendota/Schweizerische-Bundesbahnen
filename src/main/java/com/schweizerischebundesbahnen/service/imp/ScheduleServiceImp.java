@@ -35,8 +35,6 @@ public class ScheduleServiceImp implements ScheduleService {
     @Autowired
     private ScheduleRepository scheduleRepository;
 
-    @Autowired
-    private StationService stationService;
     /**
      * Creating a new schedule entity in database
      * @param schedule new schedule entity
