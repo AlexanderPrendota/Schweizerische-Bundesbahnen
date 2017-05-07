@@ -37,7 +37,9 @@ function showSupport(){
             $("#risestable")
                 .append("<thead>" +
                     "<tr class='tab'>" +
+                    "<th class='tab center'>User ID</th>" +
                     "<th class='tab center'>User Mail</th>" +
+                    "<th class='tab center'>Chat Number</th>" +
                     "</tr>"
                     + "</thead>"
                     + "<tbody>"
@@ -47,13 +49,14 @@ function showSupport(){
                 $("#risestable")
                     .append(
                         "<tr class='tab'>" +
+                        "<td class='tab'>" + response[i].user.id + "</td>" +
                         "<td class='tab'>" + response[i].user.email + "</td>" +
+                        "<td class='tab'>" + response[i].chat.id + "</td>" +
                         + "</tr>");
             }
             $("#risestable")
                 .append("</tbody></table></div>");
 
-            showdeleteButton();
             showConfortTable();
             selectedRow();
 
@@ -97,7 +100,20 @@ function deleteChat() {
 }
 
 function showChat() {
-    alert("show");
+    var shosen = localStorage.getItem('chosen_item');
+    var mail = JSON.parse(shosen);
+    if (localStorage.length > 0) {
+        console.log(mail);
+        $(".chat_window").css("visibility","visible");
+        adminChat()
+    } else {
+        swal({
+            title: "Ops!",
+            text: "Please choose the conversation!",
+            type: "error"
+        });
+        localStorage.clear();
+    }
 }
 
 function addChat() {

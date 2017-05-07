@@ -14,6 +14,7 @@ function chatShow() {
 
 
 (function () {
+
     var Message;
     Message = function (arg) {
         this.text = arg.text, this.message_side = arg.message_side;
@@ -106,9 +107,10 @@ function posting(sendMessage) {
         contentType: "application/json; charset=utf-8",
         success: function (response) {
             var user = $('#email').val();
+            console.log(user);
             for (var i=0; i < response.length;i++){
                 var sender = response[i].sender.email;
-                if(sender === user){
+                if(sender == user){
                     sendMessage(response[i].text, "right");
                 } else{
                     sendMessage(response[i].text, "left");
