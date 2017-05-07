@@ -38,3 +38,21 @@ function autocompliteTrain() {
         }
     });
 }
+
+function autocompliteUsers() {
+    $.ajax({
+        type: "GET",
+        url : '/user/mails',
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function (response) {
+            $( ".autocompliteUsers" ).autocomplete({
+                source: response
+            });
+        },
+        error: function () {
+            swal("Oops...", "Some problems with getting users mail :( Please try later", "error");
+        }
+    });
+}
+

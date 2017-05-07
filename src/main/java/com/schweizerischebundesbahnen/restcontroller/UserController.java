@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -60,6 +61,22 @@ public class UserController {
     @RequestMapping(value = "/allusers", method = RequestMethod.GET)
     public List<User> getAllUsers(){
         return userService.findAllUser();
+    }
+
+    /**
+     * Getting all users mail
+     * @return list of string mail
+     */
+    @RequestMapping(value = "/mail", method = RequestMethod.GET)
+    public List<String> getListOfUsersMail(){
+        List<String> mails = new ArrayList<>();
+        List<User> users = userService.findAllUser();
+        if (users.size() > 0){
+            for (User user : users) {
+                mails.add(user.getEmail());
+            }
+        }
+        return mails;
     }
 
 }

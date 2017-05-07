@@ -38,4 +38,14 @@ public class UserChatServiceImp implements UserChatService {
     public List<UserChat> findChatsByUser(User user){
         return userChatRepository.findByUser(user);
     }
+
+    public List<UserChat> findChats(User user){
+        List<UserChat> userChats = userChatRepository.findByUser(user);
+        List<UserChat> filteredChats = new ArrayList<>();
+        for (UserChat userChat : userChats) {
+            UserChat filteredChat = userChatRepository.findByChatAndUserNot(userChat.getChat(), user);
+            filteredChats.add(filteredChat);
+        }
+        return filteredChats;
+    }
 }
