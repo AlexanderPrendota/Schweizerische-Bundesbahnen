@@ -67,7 +67,7 @@ public class UserController {
      * Getting all users mail
      * @return list of string mail
      */
-    @RequestMapping(value = "/mail", method = RequestMethod.GET)
+    @RequestMapping(value = "/mails", method = RequestMethod.GET)
     public List<String> getListOfUsersMail(){
         List<String> mails = new ArrayList<>();
         List<User> users = userService.findAllUser();

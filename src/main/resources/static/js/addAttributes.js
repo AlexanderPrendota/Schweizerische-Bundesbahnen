@@ -644,6 +644,21 @@ function goDialogStation(){
     } );
 }
 
+function goDialogChat(){
+    $( function() {
+        $( "#dialog" ).dialog({
+            modal: true,
+            closeOnEscape: true,
+            maxWidth:400,
+            maxHeight: 300,
+            width: 400,
+            height: 300,
+            resizable: false,
+            title: "Add new chat!"
+        });
+    } );
+}
+
 function isFirstDateLessThanSecond(stringDate1, stringDate2) {
     var date1 = new Date(stringDate1);
     var date2 = new Date(stringDate2);
