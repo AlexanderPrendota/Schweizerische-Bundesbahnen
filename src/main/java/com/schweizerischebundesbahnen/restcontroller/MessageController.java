@@ -51,7 +51,6 @@ public class MessageController {
         return messageService.postMessage(user, messageDTO);
     }
 
-
     @RequestMapping(value = "user/chat",method = RequestMethod.GET)
     public List<Message> getUserMessage(Authentication authentication){
         User user = userService.findUserByEmail(authentication.getName());
@@ -83,5 +82,18 @@ public class MessageController {
         }
         return messages;
     }
+
+    @RequestMapping(value = "/messages",method = RequestMethod.GET)
+    public int getUserCountMessages(Authentication authentication){
+        User user = userService.findUserByEmail(authentication.getName());
+        List<UserChat> userChats = userChatService.findChatsByUser(user);
+        List<Message> messages = new ArrayList<>();
+        for (UserChat userChat : userChats) {
+            messages.addAll(messageService.findByChat(userChat.getChat()));
+        }
+        return messages.size();
+    }
+
+
 
 }

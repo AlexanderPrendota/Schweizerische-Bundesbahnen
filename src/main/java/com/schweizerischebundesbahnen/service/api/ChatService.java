@@ -12,4 +12,6 @@ public interface ChatService {
 
     void save(Chat chat);
 
+    void deleteChat(Chat chat);
+
 }

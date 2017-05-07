@@ -27,8 +27,6 @@ function showSupport(){
                 .append('<div class="col-sm-12 prop rounded center ">' +
                     '<div class="col-sm-12">' +
                     '<div class="dt-buttons btn-group">' +
-                    '<a onclick="newChat();" class="btn btn-default buttons-create" tabindex="0" aria-controls="risestable" href="#">' +
-                    '<span>New</span></a>' +
                     '<a onclick="showChat();" class="btn btn-default buttons-create" tabindex="0" aria-controls="risestable" href="#">' +
                     '<span>Show</span></a>' +
                     '<a onclick="deleteChat();" class="btn btn-default buttons-selected buttons-remove" tabindex="0" aria-controls="risestable" href="#">' +
@@ -80,32 +78,51 @@ function newChat() {
         '</div>' +
         '</div></div>'
     );
-
     $("#dialog").append(
         '<div class="col-sm-4 prop rounded">' +
         '<div class="input-group way station" style="width: 300px;">' +
         '<span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>' +
         '<input type="text" name="chatmail" id="chatmail" class="form-control autocompliteUsers" placeholder="User mail">'+
         '</div>' +
-        '<input onclick="addChat();" class="btn btn-info" type="submit" id="addchat" value="Create"/>' +
+        '<input class="btn btn-info" type="submit" id="addchat" value="Create"/>' +
         '</div>'
     );
     goDialogChat();
     autocompliteUsers();
-    
 }
 
 function deleteChat() {
-    alert("delete");
-}
-
-function showChat() {
     var shosen = localStorage.getItem('chosen_item');
     var mail = JSON.parse(shosen);
+    var chatID = mail[2];
     if (localStorage.length > 0) {
-        console.log(mail);
-        $(".chat_window").css("visibility","visible");
-        adminChat()
+        swal({
+                title: "Are you sure?",
+                text: "Do u want to delete " + schedule,
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#ddae19",
+                confirmButtonText: "Yes, delete it!",
+                closeOnConfirm: false },
+            function(){
+                $.ajax({
+                    type: "DELETE",
+                    url : "chat/delete/" + chatID ,
+                    contentType: "application/json; charset=utf-8",
+                    success: function (response) {
+                        swal("Good job!", "Chat has been already deleted","success");
+                        showSupport();
+                    },
+                    error: function (error) {
+                        // console.log('request: ', qXHR);
+                        // console.log('status text: ', textStatus);
+                        // console.log('thrown error: ', JSON.stringify(errorThrown));
+                        swal("Oops...", error.responseText, "error");
+                    }
+                });
+            });
+
+        localStorage.clear();
     } else {
         swal({
             title: "Ops!",
@@ -116,6 +133,18 @@ function showChat() {
     }
 }
 
-function addChat() {
-    alert("add");
+function showChat() {
+    var shosen = localStorage.getItem('chosen_item');
+    var mail = JSON.parse(shosen);
+    if (localStorage.length > 0) {
+        console.log(mail);
+        $(".chat_window").css("visibility","visible");
+    } else {
+        swal({
+            title: "Ops!",
+            text: "Please choose the conversation!",
+            type: "error"
+        });
+        localStorage.clear();
+    }
 }

@@ -7,6 +7,7 @@ function adminChat() {
     var shosen = localStorage.getItem('chosen_item');
     var mail = JSON.parse(shosen);
     $('#titlechat').html('Chat with ' + mail[1]);
+    $('.messages').empty();
     (function () {
         var Message;
         Message = function (arg) {
@@ -123,3 +124,25 @@ function posting(sendMessage) {
         }
     });
 }
+
+$( document ).ready(function() {
+    var messages = 0;
+    setInterval(function(){
+        $.ajax({
+            type: "GET",
+            url : "/message/messages" ,
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (response) {
+                console.log("thinking");
+                if (messages != response){
+                    adminChat();
+                    messages = response
+                }
+            },
+            error: function () {
+                console.log("Error with getting servlet data")
+            }
+        });
+    }, 5000);
+});

@@ -24,4 +24,9 @@ public class ChatServiceImp implements ChatService {
     public void save(Chat chat) {
         chatRepository.save(chat);
     }
+
+    @Override
+    public void deleteChat(Chat chat) {
+        chatRepository.delete(chat);
+    }
 }
