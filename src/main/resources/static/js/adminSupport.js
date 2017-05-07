@@ -98,7 +98,7 @@ function deleteChat() {
     if (localStorage.length > 0) {
         swal({
                 title: "Are you sure?",
-                text: "Do u want to delete " + schedule,
+                text: "Do u want to delete chat with" + mail[1] ,
                 type: "warning",
                 showCancelButton: true,
                 confirmButtonColor: "#ddae19",

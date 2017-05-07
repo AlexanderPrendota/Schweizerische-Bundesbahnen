@@ -28,6 +28,7 @@ public class UserChatServiceImp implements UserChatService {
     @Autowired
     private UserRepository userRepository;
 
+    @Override
     public Boolean checkUserInChat(Long idUser, Long idChat){
         User user = userRepository.findOne(idUser);
         Chat chat = chatRepository.findOne(idChat);
@@ -35,11 +36,18 @@ public class UserChatServiceImp implements UserChatService {
         return (userChat != null);
     }
 
+    @Override
+    public List<UserChat> findByChat(Chat chat) {
+        return userChatRepository.findByChat(chat);
+    }
+
+    @Override
     public List<UserChat> findChatsByUser(User user){
         return userChatRepository.findByUser(user);
     }
 
-    public List<UserChat> findChats(User user){
+    @Override
+    public List<UserChat> findChatsUserNot(User user){
         List<UserChat> userChats = userChatRepository.findByUser(user);
         List<UserChat> filteredChats = new ArrayList<>();
         for (UserChat userChat : userChats) {
@@ -47,5 +55,10 @@ public class UserChatServiceImp implements UserChatService {
             filteredChats.add(filteredChat);
         }
         return filteredChats;
+    }
+
+    @Override
+    public void delete(UserChat chat) {
+        userChatRepository.delete(chat);
     }
 }

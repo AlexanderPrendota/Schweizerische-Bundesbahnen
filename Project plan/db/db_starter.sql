@@ -3,9 +3,7 @@ INSERT INTO public.users (id, birthday, email, firstname, image_path, lastname, 
 INSERT INTO public.users (id, birthday, email, firstname, image_path, lastname, password) VALUES (139, '1995-08-31', 'Prendota@mail.ru', 'Alexander', './images/DEFAULT_IMAGE.png', 'Prendota', '$2a$10$0IKsw.1oLvNhpN00RtAZp.XzOdbweuRvSfUbAdgygZnW3YUnEr4wG');
 INSERT INTO public.users (id, birthday, email, firstname, image_path, lastname, password) VALUES (146, '2017-04-26', 'A@a', 'User', 'images/1491555005452.png', 'Bush', '$2a$10$PWcTngFnAQ1qrh9pugls4O7Ir0KmtuiuZVEs9goAQZd4/7qSDofum');
 INSERT INTO public.users (id, birthday, email, firstname, image_path, lastname, password) VALUES (212, '1955-04-25', 'Bob@bob', 'Bob', './images/DEFAULT_IMAGE.png', 'Kelso', '$2a$10$BCm.FxpuybK5Cdsa4FWXZeIoXGlWIt2//6gZfynkZDgIf5Ii4ccIm');
-INSERT INTO public.users (id, birthday, email, firstname, image_path, lastname, password) VALUES (115, NULL, 'testUser@text.com', NULL, NULL, NULL, 'pass');
 INSERT INTO public.users (id, birthday, email, firstname, image_path, lastname, password) VALUES (228, '1994-02-28', 'mepevekic@doanart.com', 'Tom', './images/DEFAULT_IMAGE.png', 'Jon', '$2a$10$lJj5WdsuB9OFYK4d24/a/uA8TTAxRlB0Com65EzAo3y6pkI2a6hOG');
-INSERT INTO public.users (id, birthday, email, firstname, image_path, lastname, password) VALUES (1174, NULL, 'TEST@TEST', NULL, NULL, NULL, 'TEST');
 INSERT INTO public.users (id, birthday, email, firstname, image_path, lastname, password) VALUES (364, '1995-04-30', 'argv123@mail.ru', 'Tom', './images/DEFAULT_IMAGE.png', 'Pitd', '$2a$10$ZgZ9K.CfXP9DhNjLafKGO.88RUo.83YFzUVT/ZRg/Tp5e2zcZic9q');
 INSERT INTO public.users (id, birthday, email, firstname, image_path, lastname, password) VALUES (129, '2017-03-19', 'S@s', 'Joshe', 'images/1491429806827.jpg', 'Light', '$2a$10$8MDcF2y4BPoAWea5pSn/Fe0rENwMH5YW7.roczlFsfhCD0Jl5KYAC');
 INSERT INTO public.roles (id, role) VALUES (444, 'USER');

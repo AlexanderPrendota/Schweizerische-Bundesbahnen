@@ -15,6 +15,10 @@ public interface UserChatService {
 
     Boolean checkUserInChat(Long idUser, Long idChat);
 
-    List<UserChat> findChats(User user);
+    List<UserChat> findByChat(Chat chat);
+
+    List<UserChat> findChatsUserNot(User user);
+
+    void delete(UserChat chat);
 
 }

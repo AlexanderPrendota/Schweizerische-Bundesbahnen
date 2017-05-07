@@ -74,4 +74,9 @@ public class MessageServiceImp implements MessageService{
     public List<Message> findByChat(Chat id) {
         return messageRepository.findByChat(id);
     }
+
+    @Override
+    public void delete(Message message) {
+        messageRepository.delete(message);
+    }
 }

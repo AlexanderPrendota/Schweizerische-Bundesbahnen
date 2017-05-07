@@ -1,9 +1,11 @@
 package com.schweizerischebundesbahnen.restcontroller;
 
 import com.schweizerischebundesbahnen.model.Chat;
+import com.schweizerischebundesbahnen.model.Message;
 import com.schweizerischebundesbahnen.model.User;
 import com.schweizerischebundesbahnen.model.UserChat;
 import com.schweizerischebundesbahnen.service.api.ChatService;
+import com.schweizerischebundesbahnen.service.api.MessageService;
 import com.schweizerischebundesbahnen.service.api.UserChatService;
 import com.schweizerischebundesbahnen.service.api.UserService;
 import lombok.extern.log4j.Log4j;
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -38,19 +41,23 @@ public class ChatController {
     private ChatService chatService;
 
 
+    @Autowired
+    private MessageService messageService;
+
     @RequestMapping(value = "/chats",method = RequestMethod.GET)
     public List<UserChat> getUserChats(Authentication authentication){
         User user = userService.findUserByEmail(authentication.getName());
-        return userChatService.findChats(user);
+        return userChatService.findChatsUserNot(user);
     }
 
     @RequestMapping(value = "/delete/{chatID}",method = RequestMethod.DELETE)
-    public ResponseEntity<?> getUserChats(@PathVariable String chatID, Authentication authentication){
-        User user = userService.findUserByEmail(authentication.getName());
+    public ResponseEntity<?> getUserChats(@PathVariable String chatID){
+        List<Message> messages;
+        List<UserChat> userChats;
        try{
            long id = Long.valueOf(chatID);
-            Chat chat = chatService.findChatById(id);
-            // TODO DELETE CHAT
+           Chat chat = chatService.findChatById(id);
+           messages = messageService.findByChat(chat);
            return ResponseEntity.ok("Chat was deleted!");
        } catch (NumberFormatException e){
            log.warn("Cannot parse the chat ID in deleting chat");

@@ -15,4 +15,6 @@ public interface MessageService {
     Message postMessage(User from, MessageDTO messageDTO);
 
     List<Message> findByChat(Chat id);
+
+    void delete(Message message);
 }

@@ -22,7 +22,7 @@ public class UserChat {
     @JoinColumn(name = "CHAT_ID")
     private Chat chat;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "USER_ID")
     private User user;
 }
