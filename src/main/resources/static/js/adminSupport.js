@@ -149,3 +149,24 @@ function showChat() {
         localStorage.clear();
     }
 }
+
+$( document ).ready(function() {
+    setInterval(function(){
+        $.ajax({
+            type: "GET",
+            url : "/chat/count" ,
+            contentType: "application/json; charset=utf-8",
+            success: function (response) {
+                if(response == 0){
+                    $("#notify").html("");
+                } else {
+                    $("#notify").html(response);
+                }
+            },
+            error: function () {
+                console.log("Error with getting chat notify data")
+            }
+        });
+    }, 5000);
+});
+
