@@ -50,6 +50,12 @@ public class ChatController {
         return userChatService.findChatsUserNot(user);
     }
 
+    @RequestMapping(value = "/count",method = RequestMethod.GET)
+    public int getCountOfUserChat(Authentication authentication){
+        User user = userService.findUserByEmail(authentication.getName());
+        return userChatService.findChatsByUser(user).size();
+    }
+
     @RequestMapping(value = "/delete/{chatID}",method = RequestMethod.DELETE)
     public ResponseEntity<?> getUserChats(@PathVariable String chatID){
         List<Message> messages;
@@ -58,6 +64,10 @@ public class ChatController {
            long id = Long.valueOf(chatID);
            Chat chat = chatService.findChatById(id);
            messages = messageService.findByChat(chat);
+           userChats = userChatService.findByChat(chat);
+           messages.forEach(message -> messageService.delete(message));
+           userChats.forEach(userChat -> userChatService.delete(userChat));
+           chatService.deleteChat(chat);
            return ResponseEntity.ok("Chat was deleted!");
        } catch (NumberFormatException e){
            log.warn("Cannot parse the chat ID in deleting chat");

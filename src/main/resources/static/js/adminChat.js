@@ -1,94 +1,52 @@
 /**
  * Created by aleksandrprendota on 07.05.17.
  */
-var flagVisible = false;
 var messages = 0;
-function adminChat() {
-    var shosen = localStorage.getItem('chosen_item');
-    var mail = JSON.parse(shosen);
-    $('#titlechat').html('Chat with ' + mail[1]);
-    $('.messages').empty();
-    (function () {
-        var Message;
-        Message = function (arg) {
-            this.text = arg.text, this.message_side = arg.message_side;
-            this.draw = function (_this) {
-                return function () {
-                    var $message;
-                    $message = $($('.message_template').clone().html());
-                    $message.addClass(_this.message_side).find('.text').html(_this.text);
-                    $('.messages').append($message);
-                    return setTimeout(function () {
-                        return $message.addClass('appeared');
-                    }, 0);
-                };
-            }(this);
-            return this;
+
+var Message;
+
+Message = function (arg) {
+    this.text = arg.text, this.message_side = arg.message_side;
+    this.draw = function (_this) {
+        return function () {
+            var $message;
+            $message = $($('.message_template').clone().html());
+            $message.addClass(_this.message_side).find('.text').html(_this.text);
+            $('.messages').append($message);
+            return setTimeout(function () {
+                return $message.addClass('appeared');
+            }, 0);
         };
-        $(function () {
-            var getMessageText, message_side, sendMessage;
-            message_side = 'right';
-            getMessageText = function () {
-                var $message_input;
-                $message_input = $('.message_input');
-                return $message_input.val();
-            };
-            sendMessage = function (text, side) {
-                var $messages, message;
-                if (text.trim() === '') {
-                    return;
-                }
-                $('.message_input').val('');
-                $messages = $('.messages');
-                message_side = side;
-                //   message_side = message_side === 'left' ? 'right' : 'left';
-                message = new Message({
-                    text: text,
-                    message_side: message_side
-                });
-                message.draw();
-                return $messages.animate({ scrollTop: $messages.prop('scrollHeight') }, 300);
-            };
-            $('.send_message').click(function (e) {
-                sending(getMessageText(),sendMessage);
-            });
+    }(this);
+    return this;
+};
 
-            $('.close').click(function (e) {
-                $(".chat_window").css("visibility","hidden");
-                flagVisible = false;
-            });
+var getMessageText, message_side, sendMessage;
 
-            $( function() {
-                $( ".moveAble" ).draggable();
-            } );
+message_side = 'right';
 
-            $('.message_input').keyup(function (e) {
-                if (e.which === 13) {
-                    sending(getMessageText(),sendMessage);
-                }
-            });
-            setInterval(function(){
-                $.ajax({
-                    type: "GET",
-                    url : "/message/messages" ,
-                    contentType: "application/json; charset=utf-8",
-                    dataType: "json",
-                    success: function (response) {
-                        console.log("thinking");
-                        if (messages != response){
-                            posting(sendMessage);
-                            messages = response
-                        }
-                    },
-                    error: function () {
-                        console.log("Error with getting servlet data")
-                    }
-                });
-            }, 5000);
-        });
-    }.call(this));
-}
+getMessageText = function () {
+    var $message_input;
+    $message_input = $('.message_input');
+    return $message_input.val();
+};
 
+sendMessage = function (text, side) {
+    var $messages, message;
+    if (text.trim() === '') {
+        return;
+    }
+    $('.message_input').val('');
+    $messages = $('.messages');
+    message_side = side;
+    //   message_side = message_side === 'left' ? 'right' : 'left';
+    message = new Message({
+        text: text,
+        message_side: message_side
+    });
+    message.draw();
+    return $messages.animate({ scrollTop: $messages.prop('scrollHeight') }, 0);
+};
 
 function sending(text, sendMessage) {
 
@@ -122,6 +80,7 @@ function posting(sendMessage) {
     var shosen = localStorage.getItem('chosen_item');
     var mail = JSON.parse(shosen);
     var chatID = mail[2];
+    $('.messages').empty();
     $.ajax({
         type: "GET",
         url : "message/admin/chat/" + chatID ,
@@ -143,6 +102,46 @@ function posting(sendMessage) {
     });
 }
 
-$( document ).ready(function() {
-    adminChat();
-});
+function SHOW() {
+    var shosen = localStorage.getItem('chosen_item');
+    var mail = JSON.parse(shosen);
+    $('#titlechat').html('Chat with ' + mail[1]);
+    $('.messages').empty();
+    $('.send_message').attr("onclick","sending(getMessageText(),sendMessage);");
+
+    $('.close').click(function (e) {
+        localStorage.clear();
+        $(".chat_window").css("display","none");
+        clearInterval(inter);
+        messages = 0;
+    });
+
+    $( ".moveAble" ).draggable();
+
+    // $('.message_input').keyup(function (e) {
+    //     if (e.which === 13) {
+    //         sending(getMessageText(),sendMessage);
+    //     }
+    // });
+
+    var inter = setInterval(function(){
+        $.ajax({
+            type: "GET",
+            url : "/message/messages" ,
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (response) {
+                console.log("thinking");
+                if (messages != response){
+                    posting(sendMessage);
+                    messages = response
+                }
+            },
+            error: function () {
+                console.log("Error with getting count of message")
+            }
+        });
+    }, 3000);
+}
+
+

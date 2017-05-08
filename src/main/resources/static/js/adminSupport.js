@@ -138,7 +138,8 @@ function showChat() {
     var mail = JSON.parse(shosen);
     if (localStorage.length > 0) {
         console.log(mail);
-        $(".chat_window").css("visibility","visible");
+        $(".chat_window").css("display","block");
+        SHOW();
     } else {
         swal({
             title: "Ops!",

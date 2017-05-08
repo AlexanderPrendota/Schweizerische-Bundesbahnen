@@ -18,7 +18,7 @@ public class UserChat {
     @Column(name = "USER_CHAT_ID", nullable =  false)
     private long id;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "CHAT_ID")
     private Chat chat;
 

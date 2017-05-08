@@ -3,7 +3,9 @@ INSERT INTO public.users (id, birthday, email, firstname, image_path, lastname, 
 INSERT INTO public.users (id, birthday, email, firstname, image_path, lastname, password) VALUES (139, '1995-08-31', 'Prendota@mail.ru', 'Alexander', './images/DEFAULT_IMAGE.png', 'Prendota', '$2a$10$0IKsw.1oLvNhpN00RtAZp.XzOdbweuRvSfUbAdgygZnW3YUnEr4wG');
 INSERT INTO public.users (id, birthday, email, firstname, image_path, lastname, password) VALUES (146, '2017-04-26', 'A@a', 'User', 'images/1491555005452.png', 'Bush', '$2a$10$PWcTngFnAQ1qrh9pugls4O7Ir0KmtuiuZVEs9goAQZd4/7qSDofum');
 INSERT INTO public.users (id, birthday, email, firstname, image_path, lastname, password) VALUES (212, '1955-04-25', 'Bob@bob', 'Bob', './images/DEFAULT_IMAGE.png', 'Kelso', '$2a$10$BCm.FxpuybK5Cdsa4FWXZeIoXGlWIt2//6gZfynkZDgIf5Ii4ccIm');
+INSERT INTO public.users (id, birthday, email, firstname, image_path, lastname, password) VALUES (115, NULL, 'testUser@text.com', NULL, NULL, NULL, 'pass');
 INSERT INTO public.users (id, birthday, email, firstname, image_path, lastname, password) VALUES (228, '1994-02-28', 'mepevekic@doanart.com', 'Tom', './images/DEFAULT_IMAGE.png', 'Jon', '$2a$10$lJj5WdsuB9OFYK4d24/a/uA8TTAxRlB0Com65EzAo3y6pkI2a6hOG');
+INSERT INTO public.users (id, birthday, email, firstname, image_path, lastname, password) VALUES (1174, NULL, 'TEST@TEST', NULL, NULL, NULL, 'TEST');
 INSERT INTO public.users (id, birthday, email, firstname, image_path, lastname, password) VALUES (364, '1995-04-30', 'argv123@mail.ru', 'Tom', './images/DEFAULT_IMAGE.png', 'Pitd', '$2a$10$ZgZ9K.CfXP9DhNjLafKGO.88RUo.83YFzUVT/ZRg/Tp5e2zcZic9q');
 INSERT INTO public.users (id, birthday, email, firstname, image_path, lastname, password) VALUES (129, '2017-03-19', 'S@s', 'Joshe', 'images/1491429806827.jpg', 'Light', '$2a$10$8MDcF2y4BPoAWea5pSn/Fe0rENwMH5YW7.roczlFsfhCD0Jl5KYAC');
 INSERT INTO public.roles (id, role) VALUES (444, 'USER');
@@ -601,8 +603,6 @@ INSERT INTO public.schedules (id, time_arrival, time_departure, station_arrival_
 INSERT INTO public.schedules (id, time_arrival, time_departure, station_arrival_id, station_departure_id, train_id) VALUES (1164, '2017-06-02 02:00:00', '2017-06-01 18:00:00', 1014, 361, 'B18');
 INSERT INTO public.schedules (id, time_arrival, time_departure, station_arrival_id, station_departure_id, train_id) VALUES (1166, '2017-06-03 10:00:00', '2017-06-02 06:00:00', 10019, 1014, 'A303');
 INSERT INTO public.schedules (id, time_arrival, time_departure, station_arrival_id, station_departure_id, train_id) VALUES (1165, '2017-06-03 12:00:00', '2017-06-02 04:00:00', 10019, 1014, 'O34');
-INSERT INTO public.rides (id, time_arrival, time_departure, seat_id, station_arrival_id, station_departure_id, ticket_id, train_id) VALUES (1013, '2017-05-11 21:00:00', '2017-05-11 10:00:00', 756, 10019, 194, 1012, 'F01');
-INSERT INTO public.rides (id, time_arrival, time_departure, seat_id, station_arrival_id, station_departure_id, ticket_id, train_id) VALUES (1020, '2017-05-21 08:00:00', '2017-05-20 22:00:00', 936, 1014, 361, 1019, 'SE02');
 INSERT INTO public.rides (id, time_arrival, time_departure, seat_id, station_arrival_id, station_departure_id, ticket_id, train_id) VALUES (1013, '2017-05-11 21:00:00', '2017-05-11 10:00:00', 756, 10019, 194, 1012, 'F01');
 INSERT INTO public.rides (id, time_arrival, time_departure, seat_id, station_arrival_id, station_departure_id, ticket_id, train_id) VALUES (1020, '2017-05-21 08:00:00', '2017-05-20 22:00:00', 936, 1014, 361, 1019, 'SE02');
 INSERT INTO public.tickets (id, user_id) VALUES (1012, 129);

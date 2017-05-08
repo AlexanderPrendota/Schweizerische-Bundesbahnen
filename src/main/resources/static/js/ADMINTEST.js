@@ -1,19 +1,14 @@
+
 /**
- * Created by aleksandrprendota on 06.05.17.
+ * Created by aleksandrprendota on 08.05.17.
  */
 var flagVisible = false;
 var messages = 0;
-function chatShow() {
-    if (!flagVisible){
-        $(".chat_window").css("display","block");
-        flagVisible = true;
-    } else {
-        $(".chat_window").css("display","none");
-        flagVisible = false;
-    }
-}
+function adminChat() {
 
-function processing() {
+    var shosen = localStorage.getItem('chosen_item');
+    var mail = JSON.parse(shosen);
+    $('#titlechat').html('Chat with ' + mail[1]);
     $('.messages').empty();
     (function () {
         var Message;
@@ -54,16 +49,16 @@ function processing() {
                     message_side: message_side
                 });
                 message.draw();
-                return $messages.animate({ scrollTop: $messages.prop('scrollHeight') }, 0);
+                return $messages.animate({ scrollTop: $messages.prop('scrollHeight') }, 300);
             };
             $('.send_message').click(function (e) {
                 sending(getMessageText(),sendMessage);
             });
 
             $('.close').click(function (e) {
+                localStorage.clear();
                 $(".chat_window").css("display","none");
                 flagVisible = false;
-
             });
 
             $( function() {
@@ -92,7 +87,7 @@ function processing() {
                         console.log("Error with getting servlet data")
                     }
                 });
-            }, 3000);
+            }, 5000);
         });
     }.call(this));
 }
@@ -100,15 +95,19 @@ function processing() {
 
 function sending(text, sendMessage) {
 
+    var shosen = localStorage.getItem('chosen_item');
+    var mail = JSON.parse(shosen);
+
     var messageDTO = {
-        recipientId: 139,
+        recipientId: mail[0],
         text: text,
-        timeStamp: new Date()
+        timeStamp: new Date(),
+        chatId: mail[2]
     };
 
     $.ajax({
         type: "POST",
-        url : "/message/post/user" ,
+        url : "/message/post/admin" ,
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         data: JSON.stringify(messageDTO),
@@ -123,17 +122,18 @@ function sending(text, sendMessage) {
 }
 
 function posting(sendMessage) {
-    $('.messages').empty();
+    var shosen = localStorage.getItem('chosen_item');
+    var mail = JSON.parse(shosen);
+    var chatID = mail[2];
     $.ajax({
         type: "GET",
-        url : "/message/user/chat" ,
+        url : "message/admin/chat/" + chatID ,
         contentType: "application/json; charset=utf-8",
         success: function (response) {
-            var user = $('#email').val();
-            console.log(user);
+            var user = "Prendota@mail.ru";
             for (var i=0; i < response.length;i++){
                 var sender = response[i].sender.email;
-                if(sender == user){
+                if(sender === user){
                     sendMessage(response[i].text, "right");
                 } else{
                     sendMessage(response[i].text, "left");
@@ -147,5 +147,5 @@ function posting(sendMessage) {
 }
 
 $( document ).ready(function() {
-    processing();
+    adminChat();
 });
