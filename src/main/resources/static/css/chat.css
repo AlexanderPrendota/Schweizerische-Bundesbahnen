@@ -188,3 +188,10 @@
 .message_template {
     display: none;
 }
+
+.right > .avatar{
+    background-image: url('images/cool.svg')
+}
+.left > .avatar{
+    background-image: url('images/happy.svg')
+}
