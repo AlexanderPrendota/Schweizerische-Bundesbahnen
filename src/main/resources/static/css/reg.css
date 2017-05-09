@@ -78,6 +78,7 @@ input::-webkit-input-placeholder {
     margin-bottom: 20px;
     background-color: #fff;
     border-radius: 12px;
+    z-index: 20;
 }
 .prop{
     background-color: #fff;
@@ -107,7 +108,7 @@ input::-webkit-input-placeholder {
 }
 
 #upload {
-   display: none;
+    display: none;
 }
 
 #mainttable {
@@ -176,7 +177,7 @@ input::-webkit-input-placeholder {
     display: none;
 }
 .col-sm-12 {
-  float: none;
+    float: none;
 }
 .btn-group-justified{
     margin-bottom: 0;
@@ -208,9 +209,6 @@ input::-webkit-input-placeholder {
     display: none;
     z-index:999;
 }
-#maincont{
-    z-index: 10 !important;
-}
 #snow {
     position: absolute;
     width: 100%;
@@ -218,5 +216,5 @@ input::-webkit-input-placeholder {
     background-repeat: no-repeat;
     background-size: cover;
     background-position: 50% 50%;
-    z-index: -10 !important;
+    z-index: 10 !important;
 }

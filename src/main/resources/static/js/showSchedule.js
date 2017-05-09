@@ -15,6 +15,7 @@ function showSchedule() {
     $("#mainttable").css("visibility","hidden");
 
     $("#fon").remove();
+    $("#lose").empty();
     $("#divpic").remove();
     $("#divarr").remove();
     $("#find").attr("onclick","goSchedule(event);");
@@ -55,6 +56,7 @@ function goSchedule(event) {
             } else {
 
                 $("#mainttable").css("visibility","visible");
+                $("#mainttable").css("z-index","20");
                 $("#mainttable")
                     .append("<table id='risestable' class='table table-hover'>");
                 $("#risestable")
@@ -93,11 +95,14 @@ function showSmartSearch() {
     $("#homeact").removeAttr("class");
     $("#sheduleact").removeAttr("class");
     $("#find").removeAttr("onclick");
+    $("#fon").remove();
     $("#train").remove();
     $("#divpic").remove();
+    $("#lose").empty();
     $("#divarr").remove();
     $("#bag").remove();
     $("#showsmsh").empty();
+    $("#mainttable").css("visibility","hidden");
     $("#trip").remove();
     $("#find").attr("onclick","goSmartSearch(event);");
     $("#lose").append('<div id="fon"><img src="images/Landscape.png"/></div>');
