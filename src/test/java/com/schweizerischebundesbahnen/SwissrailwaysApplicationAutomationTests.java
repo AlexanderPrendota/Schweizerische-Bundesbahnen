@@ -36,7 +36,11 @@ import org.junit.runners.Suite;
 		AutomationSmartSearch.class,
 		AutomationSmartSearchNot.class,
 		AutomationFindSupportChat.class,
-		AutomationFindSupportButton.class
+		AutomationFindSupportButton.class,
+		AutomationFindButtonsLoadImage.class,
+		AutomationCheckSVGImgOnSchedule.class,
+		AutomationCheckSVGImgOnHome.class,
+		AutomationCheckRideDetail.class
 		})
 public class SwissrailwaysApplicationAutomationTests {
 
