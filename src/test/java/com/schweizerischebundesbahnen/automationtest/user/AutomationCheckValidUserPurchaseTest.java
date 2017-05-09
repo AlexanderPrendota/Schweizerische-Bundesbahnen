@@ -1,4 +1,4 @@
-package com.schweizerischebundesbahnen.automationtest;
+package com.schweizerischebundesbahnen.automationtest.user;
 
 import org.junit.After;
 import org.junit.Before;
@@ -11,10 +11,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 /**
  * Created by aleksandrprendota on 04.04.17.
- *
- * Check the valid account params in user info
  */
-public class AutomationAccountValidParamsTest {
+public class AutomationCheckValidUserPurchaseTest {
 
     private WebDriver driver = null;
 
@@ -25,7 +23,7 @@ public class AutomationAccountValidParamsTest {
     }
 
     @Test
-    public void automaticCheckValidParamsInUserAccount() throws Exception {
+    public void automaticCheckUserPurchase() throws Exception {
 
         WebDriverWait webDriverWait = new WebDriverWait(driver,10);
 
@@ -35,7 +33,7 @@ public class AutomationAccountValidParamsTest {
 
         webDriverWait.until(ExpectedConditions
                 .presenceOfElementLocated(By.id("email")))
-                .sendKeys("A@a");
+                .sendKeys("S@s");
 
         webDriverWait.until(ExpectedConditions
                 .presenceOfElementLocated(By.xpath("//input[@type = 'submit']")))
@@ -46,7 +44,10 @@ public class AutomationAccountValidParamsTest {
                 .click();
 
         webDriverWait.until(ExpectedConditions
-                .presenceOfElementLocated(By.xpath("//input[@value='User']")));
+                .presenceOfElementLocated(By.id("1013")));
+
+        webDriverWait.until(ExpectedConditions
+                .presenceOfElementLocated(By.xpath("//td[text()='F01']")));
 
     }
 

@@ -1,4 +1,4 @@
-package com.schweizerischebundesbahnen.automationtest;
+package com.schweizerischebundesbahnen.automationtest.user;
 
 import org.junit.After;
 import org.junit.Before;
@@ -12,7 +12,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 /**
  * Created by aleksandrprendota on 17.04.17.
  */
-public class AutomocaticNoWaysByTwoStationAndDate {
+public class AutomationFindRidesTestByTwoStationsAndDate {
 
     private WebDriver driver = null;
 
@@ -40,27 +40,27 @@ public class AutomocaticNoWaysByTwoStationAndDate {
 
         webDriverWait.until(ExpectedConditions
                 .presenceOfElementLocated(By.id("departure")))
-                .sendKeys("Samara");
+                .sendKeys("London");
 
         webDriverWait.until(ExpectedConditions
                 .presenceOfElementLocated(By.id("arrival")))
-                .sendKeys("Yaroslavl");
+                .sendKeys("Basel");
 
         webDriverWait.until(ExpectedConditions
                 .presenceOfElementLocated(By.id("datepicker")))
-                .sendKeys("2017-04-29");
+                .sendKeys("2017-05-11");
 
         webDriverWait.until(ExpectedConditions
                 .presenceOfElementLocated(By.xpath("//input[@type = 'submit']")))
                 .click();
 
         webDriverWait.until(ExpectedConditions
-                .presenceOfElementLocated(By.xpath("//h1[text()='No ways, Darling! :( ']")));
-
+                .presenceOfElementLocated(By.id("1011")));
     }
 
     @After
     public void closeDriver() throws Exception {
         driver.quit();
     }
+
 }

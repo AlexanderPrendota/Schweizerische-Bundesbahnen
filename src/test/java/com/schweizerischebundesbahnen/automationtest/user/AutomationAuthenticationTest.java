@@ -1,4 +1,4 @@
-package com.schweizerischebundesbahnen.automationtest;
+package com.schweizerischebundesbahnen.automationtest.user;
 
 import org.junit.After;
 import org.junit.Before;
@@ -10,9 +10,13 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 /**
- * Created by aleksandrprendota on 17.04.17.
+ * Created by aleksandrprendota on 26.03.17.
+ *
+ * Check the correct authentication
  */
-public class AutomationMakePurchaseByTwoStationAndDate {
+
+
+public class AutomationAuthenticationTest {
 
     private WebDriver driver = null;
 
@@ -23,7 +27,7 @@ public class AutomationMakePurchaseByTwoStationAndDate {
     }
 
     @Test
-    public void automaticMakePuchaseByTwoStationAndDate() throws Exception {
+    public void automaticAuthTest() throws Exception {
 
         WebDriverWait webDriverWait = new WebDriverWait(driver,10);
         webDriverWait.until(ExpectedConditions
@@ -39,29 +43,7 @@ public class AutomationMakePurchaseByTwoStationAndDate {
                 .click();
 
         webDriverWait.until(ExpectedConditions
-                .presenceOfElementLocated(By.id("departure")))
-                .sendKeys("London");
-
-        webDriverWait.until(ExpectedConditions
-                .presenceOfElementLocated(By.id("arrival")))
-                .sendKeys("Basel");
-
-        webDriverWait.until(ExpectedConditions
-                .presenceOfElementLocated(By.id("datepicker")))
-                .sendKeys("2017-05-11");
-
-        webDriverWait.until(ExpectedConditions
-                .presenceOfElementLocated(By.xpath("//input[@type = 'submit']")))
-                .click();
-
-        webDriverWait.until(ExpectedConditions
-                .presenceOfElementLocated(By.id("1011")))
-                .click();
-
-        webDriverWait.until(ExpectedConditions
-                .presenceOfElementLocated(By.xpath("//td[text()='London']")));
-
-
+                .presenceOfElementLocated(By.id("find")));
     }
 
     @After

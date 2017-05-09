@@ -196,7 +196,7 @@ input::-webkit-input-placeholder {
     position:fixed;
     top:800px;
     left:50px;
-    bottom: 100px;
+    bottom: 200px;
     width:70px;
     height:70px;
     z-index:999;

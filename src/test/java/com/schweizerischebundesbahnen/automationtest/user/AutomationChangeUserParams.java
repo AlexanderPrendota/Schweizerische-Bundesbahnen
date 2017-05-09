@@ -1,4 +1,4 @@
-package com.schweizerischebundesbahnen.automationtest;
+package com.schweizerischebundesbahnen.automationtest.user;
 
 import org.junit.After;
 import org.junit.Before;

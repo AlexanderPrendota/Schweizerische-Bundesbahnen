@@ -1,4 +1,4 @@
-package com.schweizerischebundesbahnen.automationtest;
+package com.schweizerischebundesbahnen.automationtest.user;
 
 import org.junit.After;
 import org.junit.Before;
@@ -10,10 +10,9 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 /**
- * Created by aleksandrprendota on 04.04.17.
+ * Created by aleksandrprendota on 17.04.17.
  */
-public class AutomationCheckValidUserPurchaseTest {
-
+public class AutomationMakePurchaseByOneStation {
     private WebDriver driver = null;
 
     @Before
@@ -23,33 +22,42 @@ public class AutomationCheckValidUserPurchaseTest {
     }
 
     @Test
-    public void automaticCheckUserPurchase() throws Exception {
+    public void automaticMakePurchaseByOneStation() throws Exception {
 
         WebDriverWait webDriverWait = new WebDriverWait(driver,10);
-
         webDriverWait.until(ExpectedConditions
                 .presenceOfElementLocated(By.id("password")))
                 .sendKeys("123");
 
         webDriverWait.until(ExpectedConditions
                 .presenceOfElementLocated(By.id("email")))
-                .sendKeys("S@s");
+                .sendKeys("A@a");
 
         webDriverWait.until(ExpectedConditions
                 .presenceOfElementLocated(By.xpath("//input[@type = 'submit']")))
                 .click();
 
         webDriverWait.until(ExpectedConditions
-                .presenceOfElementLocated(By.id("accountuser")))
+                .presenceOfElementLocated(By.id("sheduleact")))
                 .click();
 
         webDriverWait.until(ExpectedConditions
-                .presenceOfElementLocated(By.id("1013")));
+                .presenceOfElementLocated(By.id("departure")))
+                .sendKeys("London");
 
         webDriverWait.until(ExpectedConditions
-                .presenceOfElementLocated(By.xpath("//td[text()='F01']")));
+                .presenceOfElementLocated(By.xpath("//input[@type = 'submit']")))
+                .click();
+
+        webDriverWait.until(ExpectedConditions
+                .presenceOfElementLocated(By.id("1011")))
+                .click();
+
+        webDriverWait.until(ExpectedConditions
+                .presenceOfElementLocated(By.xpath("//td[text()='Basel']")));
 
     }
+
 
     @After
     public void closeDriver() throws Exception {

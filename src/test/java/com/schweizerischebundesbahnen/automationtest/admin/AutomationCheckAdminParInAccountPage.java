@@ -1,4 +1,4 @@
-package com.schweizerischebundesbahnen.automationtest;
+package com.schweizerischebundesbahnen.automationtest.admin;
 
 import org.junit.After;
 import org.junit.Before;
@@ -10,20 +10,19 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 /**
- * Created by aleksandrprendota on 04.04.17.
+ * Created by aleksandrprendota on 09.05.17.
  */
-public class AutomationCheckTrainInAdminPageTest {
-
+public class AutomationCheckAdminParInAccountPage {
     private WebDriver driver = null;
 
     @Before
     public void createDriver() {
         driver = new SafariDriver();
-        driver.get("http://localhost:8080/admin");
+        driver.get("http://localhost:8080/account");
     }
 
     @Test
-    public void automaticCheckTrainsOnAdminPage() throws Exception {
+    public void automaticCheckAdminBarInAccoutnPage() {
 
         WebDriverWait webDriverWait = new WebDriverWait(driver,10);
         webDriverWait.until(ExpectedConditions
@@ -39,14 +38,9 @@ public class AutomationCheckTrainInAdminPageTest {
                 .click();
 
         webDriverWait.until(ExpectedConditions
-                .presenceOfElementLocated(By.id("findtrains")))
-                .click();
+                .presenceOfElementLocated(By.xpath("//a[text()='Admin']")));
 
-        webDriverWait.until(ExpectedConditions
-                .presenceOfElementLocated(By.xpath("//td[text()='F01']")));
 
-        webDriverWait.until(ExpectedConditions
-                .presenceOfElementLocated(By.xpath("//td[text()='A303']")));
 
     }
 

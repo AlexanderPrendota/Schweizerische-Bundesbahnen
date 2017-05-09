@@ -1,6 +1,7 @@
 package com.schweizerischebundesbahnen;
 
-import com.schweizerischebundesbahnen.automationtest.*;
+import com.schweizerischebundesbahnen.automationtest.admin.*;
+import com.schweizerischebundesbahnen.automationtest.user.*;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
@@ -22,7 +23,13 @@ import org.junit.runners.Suite;
 		AutomationMakePurchaseByOneStation.class,
 		AutomocaticNoWaysByTwoStationAndDate.class,
 		AutomationFindStationOnAdminPage.class,
-		AutomationFindScheduleInAdminPage.class
+		AutomationFindScheduleInAdminPage.class,
+		AutomationFindUserInAdminPage.class,
+		AutomationCheckAdminParInAccountPage.class,
+		AutomationCheckSupportInAdminPage.class,
+		AutomationCheckNotifyInAdminPage.class,
+		AutomationCheckAdminParInAccountPage.class,
+		AutomationCheckNotSupportInAccountPageAdmin.class
 		})
 public class SwissrailwaysApplicationAutomationTests {
 

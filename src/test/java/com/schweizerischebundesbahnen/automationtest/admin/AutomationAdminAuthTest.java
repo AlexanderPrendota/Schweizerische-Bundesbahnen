@@ -1,4 +1,4 @@
-package com.schweizerischebundesbahnen.automationtest;
+package com.schweizerischebundesbahnen.automationtest.admin;
 
 import org.junit.After;
 import org.junit.Before;
@@ -10,9 +10,10 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 /**
- * Created by aleksandrprendota on 20.04.17.
+ * Created by aleksandrprendota on 04.04.17.
  */
-public class AutomationFindStationOnAdminPage {
+public class AutomationAdminAuthTest {
+
     private WebDriver driver = null;
 
     @Before
@@ -22,7 +23,7 @@ public class AutomationFindStationOnAdminPage {
     }
 
     @Test
-    public void automaticCheckStationOnAdminPage() throws Exception {
+    public void automaticLogoutTest() throws Exception {
 
         WebDriverWait webDriverWait = new WebDriverWait(driver,10);
         webDriverWait.until(ExpectedConditions
@@ -38,14 +39,10 @@ public class AutomationFindStationOnAdminPage {
                 .click();
 
         webDriverWait.until(ExpectedConditions
-                .presenceOfElementLocated(By.id("addattr")))
-                .click();
-
-        webDriverWait.until(ExpectedConditions
-                .presenceOfElementLocated(By.xpath("//td[text()='Aarau']")));
-
+                .presenceOfElementLocated(By.id("addattr")));
 
     }
+
 
     @After
     public void closeDriver() throws Exception {

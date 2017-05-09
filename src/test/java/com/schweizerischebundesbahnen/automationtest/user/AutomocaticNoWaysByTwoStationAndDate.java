@@ -1,4 +1,4 @@
-package com.schweizerischebundesbahnen.automationtest;
+package com.schweizerischebundesbahnen.automationtest.user;
 
 import org.junit.After;
 import org.junit.Before;
@@ -10,13 +10,9 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 /**
- * Created by aleksandrprendota on 26.03.17.
- *
- * Check the correct authentication
+ * Created by aleksandrprendota on 17.04.17.
  */
-
-
-public class AutomationAuthenticationTest {
+public class AutomocaticNoWaysByTwoStationAndDate {
 
     private WebDriver driver = null;
 
@@ -27,7 +23,7 @@ public class AutomationAuthenticationTest {
     }
 
     @Test
-    public void automaticAuthTest() throws Exception {
+    public void automaticFindingRidesTestByStationAndDate() throws Exception {
 
         WebDriverWait webDriverWait = new WebDriverWait(driver,10);
         webDriverWait.until(ExpectedConditions
@@ -43,12 +39,28 @@ public class AutomationAuthenticationTest {
                 .click();
 
         webDriverWait.until(ExpectedConditions
-                .presenceOfElementLocated(By.id("find")));
+                .presenceOfElementLocated(By.id("departure")))
+                .sendKeys("Samara");
+
+        webDriverWait.until(ExpectedConditions
+                .presenceOfElementLocated(By.id("arrival")))
+                .sendKeys("Yaroslavl");
+
+        webDriverWait.until(ExpectedConditions
+                .presenceOfElementLocated(By.id("datepicker")))
+                .sendKeys("2017-04-29");
+
+        webDriverWait.until(ExpectedConditions
+                .presenceOfElementLocated(By.xpath("//input[@type = 'submit']")))
+                .click();
+
+        webDriverWait.until(ExpectedConditions
+                .presenceOfElementLocated(By.xpath("//h1[text()='No ways, Darling! :( ']")));
+
     }
 
     @After
     public void closeDriver() throws Exception {
         driver.quit();
     }
-
 }

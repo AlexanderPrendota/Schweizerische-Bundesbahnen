@@ -1,4 +1,4 @@
-package com.schweizerischebundesbahnen.automationtest;
+package com.schweizerischebundesbahnen.automationtest.user;
 
 import org.junit.After;
 import org.junit.Before;
@@ -11,19 +11,22 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 /**
  * Created by aleksandrprendota on 04.04.17.
+ *
+ * Check the valid account params in user info
  */
-public class AutomationFindUserOnTrainOnAdminPage {
+public class AutomationAccountValidParamsTest {
 
     private WebDriver driver = null;
 
     @Before
     public void createDriver() {
         driver = new SafariDriver();
-        driver.get("http://localhost:8080/admin");
+        driver.get("http://localhost:8080/home");
     }
 
     @Test
-    public void automaticCheckUsersOnTrainOnAdminPage() throws Exception{
+    public void automaticCheckValidParamsInUserAccount(){
+
         WebDriverWait webDriverWait = new WebDriverWait(driver,10);
 
         webDriverWait.until(ExpectedConditions
@@ -32,33 +35,20 @@ public class AutomationFindUserOnTrainOnAdminPage {
 
         webDriverWait.until(ExpectedConditions
                 .presenceOfElementLocated(By.id("email")))
-                .sendKeys("Prendota@mail.ru");
+                .sendKeys("A@a");
 
         webDriverWait.until(ExpectedConditions
                 .presenceOfElementLocated(By.xpath("//input[@type = 'submit']")))
                 .click();
 
         webDriverWait.until(ExpectedConditions
-                .presenceOfElementLocated(By.id("finduser")))
+                .presenceOfElementLocated(By.id("accountuser")))
                 .click();
 
         webDriverWait.until(ExpectedConditions
-                .presenceOfElementLocated(By.id("trainwithpas")))
-                .sendKeys("F01");
-
-        webDriverWait.until(ExpectedConditions
-                .presenceOfElementLocated(By.id("dateDeparture")))
-                .sendKeys("2017-05-11");
-
-        webDriverWait.until(ExpectedConditions
-                .presenceOfElementLocated(By.id("addtrain")))
-                .click();
-
-        webDriverWait.until(ExpectedConditions
-                .presenceOfElementLocated(By.xpath("//td[text()='S@s']")));
+                .presenceOfElementLocated(By.xpath("//input[@value='User']")));
 
     }
-
 
     @After
     public void closeDriver() throws Exception {
