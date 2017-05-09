@@ -29,7 +29,10 @@ import org.junit.runners.Suite;
 		AutomationCheckSupportInAdminPage.class,
 		AutomationCheckNotifyInAdminPage.class,
 		AutomationCheckAdminParInAccountPage.class,
-		AutomationCheckNotSupportInAccountPageAdmin.class
+		AutomationCheckNotSupportInAccountPageAdmin.class,
+		AutomationCheckNewDialogInAdminPageOnSchedule.class,
+		AutomationCheckNewDialogInAdminPageOnStation.class,
+		AutomationCheckNewDialogInAdminPageOnTrain.class
 		})
 public class SwissrailwaysApplicationAutomationTests {
 

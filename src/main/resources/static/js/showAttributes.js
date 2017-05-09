@@ -28,7 +28,7 @@ function showAllTrains() {
                 .append('<div class="col-sm-12 prop rounded center ">' +
                     '<div class="col-sm-12">' +
                     '<div class="dt-buttons btn-group">' +
-                    '<a onclick="addTrains();" class="btn btn-default buttons-create" tabindex="0" aria-controls="risestable" href="#">' +
+                    '<a id="newtrain" onclick="addTrains();" class="btn btn-default buttons-create" tabindex="0" aria-controls="risestable" href="#">' +
                     '<span>New</span></a>' +
                     '<a onclick="showrowTrain();" class="btn btn-default buttons-selected buttons-remove" tabindex="0" aria-controls="risestable" href="#">' +
                     '<span>Delete</span></a></div></div>'+
@@ -90,7 +90,7 @@ function showAllStation() {
                 .append('<div class="col-sm-12 prop rounded center">' +
                     '<div class="col-sm-12">' +
                     '<div class="dt-buttons btn-group">' +
-                    '<a onclick="addStations();" class="btn btn-default buttons-create" tabindex="0" aria-controls="risestable" href="#">' +
+                    '<a id="newstation" onclick="addStations();" class="btn btn-default buttons-create" tabindex="0" aria-controls="risestable" href="#">' +
                     '<span>New</span></a>' +
                     '<a onclick="showrowStation();" class="btn btn-default buttons-selected buttons-remove" tabindex="0" aria-controls="risestable" href="#">' +
                     '<span>Delete</span></a></div></div>'+
@@ -407,7 +407,7 @@ function scheduleAppendix() {
         .append('<div class="col-sm-12 prop rounded center" style="width: 1000px;">' +
             '<div class="col-sm-12">' +
             '<div class="dt-buttons btn-group">' +
-            '<a onclick="addSchedule();" class="btn btn-default buttons-create" tabindex="0" aria-controls="risestable" href="#">' +
+            '<a id="newschedule" onclick="addSchedule();" class="btn btn-default buttons-create" tabindex="0" aria-controls="risestable" href="#">' +
             '<span>New</span></a>' +
             '<a onclick="showEditSchedule();" class="btn btn-default buttons-selected buttons-edit" tabindex="0" aria-controls="risestable" href="#">' +
             '<span>Edit</span></a>' +
