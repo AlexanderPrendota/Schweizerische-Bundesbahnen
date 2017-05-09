@@ -1,4 +1,4 @@
-package com.schweizerischebundesbahnen.automationtest.admin;
+package com.schweizerischebundesbahnen.automationtest.user;
 
 import org.junit.After;
 import org.junit.Before;
@@ -12,17 +12,18 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 /**
  * Created by aleksandrprendota on 09.05.17.
  */
-public class AutomationCheckAdminParInAccountPage {
+public class AutomationSmartSearch {
+
     private WebDriver driver = null;
 
     @Before
     public void createDriver() {
         driver = new SafariDriver();
-        driver.get("http://localhost:8080/account");
+        driver.get("http://localhost:8080/home");
     }
 
     @Test
-    public void automaticCheckAdminBarInAccoutnPage() {
+    public void automaticFindSmartWays() throws Exception {
 
         WebDriverWait webDriverWait = new WebDriverWait(driver,10);
         webDriverWait.until(ExpectedConditions
@@ -31,15 +32,35 @@ public class AutomationCheckAdminParInAccountPage {
 
         webDriverWait.until(ExpectedConditions
                 .presenceOfElementLocated(By.id("email")))
-                .sendKeys("Prendota@mail.ru");
+                .sendKeys("A@a");
+
+        webDriverWait.until(ExpectedConditions
+                .presenceOfElementLocated(By.xpath("//input[@type = 'submit']")))
+                .click();
+
+
+        webDriverWait.until(ExpectedConditions
+                .presenceOfElementLocated(By.id("smartsearch")))
+                .click();
+
+        webDriverWait.until(ExpectedConditions
+                .presenceOfElementLocated(By.id("departure")))
+                .sendKeys("Yaroslavl");
+
+        webDriverWait.until(ExpectedConditions
+                .presenceOfElementLocated(By.id("arrival")))
+                .sendKeys("Basel");
+
+        webDriverWait.until(ExpectedConditions
+                .presenceOfElementLocated(By.id("datepicker")))
+                .sendKeys("2017-06-01");
 
         webDriverWait.until(ExpectedConditions
                 .presenceOfElementLocated(By.xpath("//input[@type = 'submit']")))
                 .click();
 
         webDriverWait.until(ExpectedConditions
-                .presenceOfElementLocated(By.xpath("//a[text()='Admin']")));
-
+                .presenceOfElementLocated(By.id("1165")));
     }
 
     @After

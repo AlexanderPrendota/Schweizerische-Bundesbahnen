@@ -1,6 +1,7 @@
-package com.schweizerischebundesbahnen.automationtest.admin;
+package com.schweizerischebundesbahnen.automationtest.user;
 
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
@@ -12,7 +13,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 /**
  * Created by aleksandrprendota on 09.05.17.
  */
-public class AutomationCheckAdminParInAccountPage {
+public class AutomationNoAdminBarOnUser {
+
     private WebDriver driver = null;
 
     @Before
@@ -31,14 +33,15 @@ public class AutomationCheckAdminParInAccountPage {
 
         webDriverWait.until(ExpectedConditions
                 .presenceOfElementLocated(By.id("email")))
-                .sendKeys("Prendota@mail.ru");
+                .sendKeys("S@s");
 
         webDriverWait.until(ExpectedConditions
                 .presenceOfElementLocated(By.xpath("//input[@type = 'submit']")))
                 .click();
 
-        webDriverWait.until(ExpectedConditions
-                .presenceOfElementLocated(By.xpath("//a[text()='Admin']")));
+        Boolean isPresent = driver.findElements(By.xpath("//a[text()='Admin']")).size() > 0;
+
+        Assert.assertFalse(isPresent);
 
     }
 
