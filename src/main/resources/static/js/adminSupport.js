@@ -139,7 +139,7 @@ function showChat() {
     if (localStorage.length > 0) {
         console.log(mail);
         $(".chat_window").css("display","block");
-        SHOW();
+        showChatAdmin();
     } else {
         swal({
             title: "Ops!",

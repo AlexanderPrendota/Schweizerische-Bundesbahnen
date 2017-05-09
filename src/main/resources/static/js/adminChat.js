@@ -102,7 +102,7 @@ function posting(sendMessage) {
     });
 }
 
-function SHOW() {
+function showChatAdmin() {
     var shosen = localStorage.getItem('chosen_item');
     var mail = JSON.parse(shosen);
     $('#titlechat').html('Chat with ' + mail[1]);
