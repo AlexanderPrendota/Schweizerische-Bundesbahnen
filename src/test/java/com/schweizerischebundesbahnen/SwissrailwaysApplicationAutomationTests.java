@@ -40,7 +40,9 @@ import org.junit.runners.Suite;
 		AutomationFindButtonsLoadImage.class,
 		AutomationCheckSVGImgOnSchedule.class,
 		AutomationCheckSVGImgOnHome.class,
-		AutomationCheckRideDetail.class
+		AutomationCheckRideDetail.class,
+		AutomationBuyTicketAfterSmartSearch.class,
+		AutomationViewSittingInPurchase.class
 		})
 public class SwissrailwaysApplicationAutomationTests {
 
