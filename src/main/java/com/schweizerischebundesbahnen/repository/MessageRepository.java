@@ -2,6 +2,7 @@ package com.schweizerischebundesbahnen.repository;
 
 import com.schweizerischebundesbahnen.model.Chat;
 import com.schweizerischebundesbahnen.model.Message;
+import com.schweizerischebundesbahnen.model.User;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
@@ -11,4 +12,5 @@ import java.util.List;
  */
 public interface MessageRepository extends CrudRepository<Message,Long> {
     List<Message> findByChat(Chat chat);
+    List<Message> findBySender(User user);
 }

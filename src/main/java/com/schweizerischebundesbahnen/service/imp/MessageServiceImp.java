@@ -87,6 +87,11 @@ public class MessageServiceImp implements MessageService{
         return messageRepository.findByChat(id);
     }
 
+    @Override
+    public List<Message> findBySender(User user) {
+        return messageRepository.findBySender(user);
+    }
+
     /**
      * Delete message from db
      * @param message Message entity

@@ -16,5 +16,7 @@ public interface MessageService {
 
     List<Message> findByChat(Chat id);
 
+    List<Message> findBySender(User user);
+
     void delete(Message message);
 }

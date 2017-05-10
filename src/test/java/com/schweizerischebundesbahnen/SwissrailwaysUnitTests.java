@@ -2,6 +2,7 @@ package com.schweizerischebundesbahnen;
 
 import com.schweizerischebundesbahnen.intergation.DIServiceTests;
 import com.schweizerischebundesbahnen.intergation.DIDaoTest;
+import com.schweizerischebundesbahnen.junittest.testcontrollers.SecurityControllerTest;
 import com.schweizerischebundesbahnen.junittest.testcontrollers.ViewControllerTest;
 import com.schweizerischebundesbahnen.junittest.testservice.*;
 import org.junit.runner.RunWith;
@@ -13,6 +14,7 @@ import org.junit.runners.Suite;
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
         ViewControllerTest.class,
+        SecurityControllerTest.class,
         AuthServiceTest.class,
         UserServiceTest.class,
         TrainServiceTest.class,
@@ -22,6 +24,7 @@ import org.junit.runners.Suite;
         RideServiceTest.class,
         StationServiceTest.class,
         SeatServiceTest.class,
+        MessageServiceTest.class,
         DIServiceTests.class,
         DIDaoTest.class})
 public class SwissrailwaysUnitTests {
