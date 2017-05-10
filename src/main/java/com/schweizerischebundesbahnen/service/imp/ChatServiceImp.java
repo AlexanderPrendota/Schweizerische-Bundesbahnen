@@ -15,16 +15,29 @@ public class ChatServiceImp implements ChatService {
     @Autowired
     private ChatRepository chatRepository;
 
+    /**
+     * get chat by id
+     * @param id
+     * @return chat entity
+     */
     @Override
     public Chat findChatById(Long id) {
         return chatRepository.findOne(id);
     }
 
+    /**
+     * Save chat to db
+     * @param chat
+     */
     @Override
     public void save(Chat chat) {
         chatRepository.save(chat);
     }
 
+    /**
+     * Delete chat
+     * @param chat
+     */
     @Override
     public void deleteChat(Chat chat) {
         chatRepository.delete(chat);

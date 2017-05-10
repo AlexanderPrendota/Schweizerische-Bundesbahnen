@@ -28,6 +28,12 @@ public class UserChatServiceImp implements UserChatService {
     @Autowired
     private UserRepository userRepository;
 
+    /**
+     * Check user in chat
+     * @param idUser user entity id
+     * @param idChat chat id
+     * @return true/false
+     */
     @Override
     public Boolean checkUserInChat(Long idUser, Long idChat){
         User user = userRepository.findOne(idUser);
@@ -36,16 +42,31 @@ public class UserChatServiceImp implements UserChatService {
         return (userChat != null);
     }
 
+    /**
+     * get list of userchat entity by chat
+     * @param chat entity
+     * @return list of userchat entity
+     */
     @Override
     public List<UserChat> findByChat(Chat chat) {
         return userChatRepository.findByChat(chat);
     }
 
+    /**
+     *  get list of userchat entity by user entity
+     * @param user
+     * @return list of userchat entity
+     */
     @Override
     public List<UserChat> findChatsByUser(User user){
         return userChatRepository.findByUser(user);
     }
 
+    /**
+     * get list od userchat entity by not user entity
+     * @param user entity
+     * @return list of userchat entity
+     */
     @Override
     public List<UserChat> findChatsUserNot(User user){
         List<UserChat> userChats = userChatRepository.findByUser(user);
@@ -57,6 +78,10 @@ public class UserChatServiceImp implements UserChatService {
         return filteredChats;
     }
 
+    /**
+     * Delete userchat entity
+     * @param chat entity
+     */
     @Override
     public void delete(UserChat chat) {
         userChatRepository.delete(chat);

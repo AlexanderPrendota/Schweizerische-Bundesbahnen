@@ -30,6 +30,13 @@ public class MessageServiceImp implements MessageService{
     @Autowired
     private UserChatRepository userChatRepository;
 
+    /**
+     * Post message entity to db
+     * of creating chat with the first message
+     * @param sender User entity who sends a message
+     * @param messageDTO
+     * @return new Message entity
+     */
     @Override
     public Message postMessage(User sender, MessageDTO messageDTO) {
 
@@ -70,11 +77,20 @@ public class MessageServiceImp implements MessageService{
         return messageRepository.save(message);
     }
 
+    /**
+     * Getting list of message by chat entity
+     * @param id chat entity
+     * @return
+     */
     @Override
     public List<Message> findByChat(Chat id) {
         return messageRepository.findByChat(id);
     }
 
+    /**
+     * Delete message from db
+     * @param message Message entity
+     */
     @Override
     public void delete(Message message) {
         messageRepository.delete(message);

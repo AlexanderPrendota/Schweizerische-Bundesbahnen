@@ -20,6 +20,11 @@ public class AdminController {
     @Autowired
     private UserService userService;
 
+    /**
+     * Check admin params in Authentication user
+     * @param authentication
+     * @return true/false
+     */
     @RequestMapping(method = RequestMethod.GET)
     public Boolean isAdmin(Authentication authentication) {
         User user = userService.findUserByEmail(authentication.getName());

@@ -34,6 +34,13 @@ public class MessageController {
     private ChatService chatService;
 
 
+    /**
+     * post new user message to db
+     * cause user must have only one chat with admin
+     * @param messageDTO
+     * @param authentication
+     * @return new message
+     */
     @RequestMapping(value = "/post/user",method = RequestMethod.POST)
     public Message postUserMessage(@RequestBody MessageDTO messageDTO, Authentication authentication){
         User user = userService.findUserByEmail(authentication.getName());
@@ -45,12 +52,23 @@ public class MessageController {
         return messageService.postMessage(user,messageDTO);
     }
 
+    /**
+     * post new admin message to db
+     * @param messageDTO
+     * @param authentication
+     * @return new message
+     */
     @RequestMapping(value = "/post/admin",method = RequestMethod.POST)
     public Message postAdminMessage(@RequestBody MessageDTO messageDTO, Authentication authentication){
         User user = userService.findUserByEmail(authentication.getName());
         return messageService.postMessage(user, messageDTO);
     }
 
+    /**
+     * Get all of user messages
+     * @param authentication
+     * @return list of message entity
+     */
     @RequestMapping(value = "user/chat",method = RequestMethod.GET)
     public List<Message> getUserMessage(Authentication authentication){
         User user = userService.findUserByEmail(authentication.getName());
@@ -62,6 +80,12 @@ public class MessageController {
         return messages;
     }
 
+    /**
+     * get all of admin messages
+     * @param authentication
+     * @param chatId
+     * @return list of message entity
+     */
     @RequestMapping(value = "/admin/chat/{chatId}",method = RequestMethod.GET)
     public List<Message> getAdminMessage(Authentication authentication, @PathVariable String chatId){
         User user = userService.findUserByEmail(authentication.getName());
@@ -83,6 +107,11 @@ public class MessageController {
         return messages;
     }
 
+    /**
+     * getting count of message
+     * @param authentication
+     * @return count
+     */
     @RequestMapping(value = "/messages",method = RequestMethod.GET)
     public int getUserCountMessages(Authentication authentication){
         User user = userService.findUserByEmail(authentication.getName());

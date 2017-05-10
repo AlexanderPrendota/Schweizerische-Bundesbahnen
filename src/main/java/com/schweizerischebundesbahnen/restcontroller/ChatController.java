@@ -44,20 +44,36 @@ public class ChatController {
     @Autowired
     private MessageService messageService;
 
+    /**
+     * getting list user chats without his params
+     * @param authentication
+     * @return  list of userrchat entity
+     */
     @RequestMapping(value = "/chats",method = RequestMethod.GET)
     public List<UserChat> getUserChats(Authentication authentication){
         User user = userService.findUserByEmail(authentication.getName());
         return userChatService.findChatsUserNot(user);
     }
 
+    /**
+     * Get count of user chats
+     * @param authentication
+     * @ count
+     */
     @RequestMapping(value = "/count",method = RequestMethod.GET)
     public int getCountOfUserChat(Authentication authentication){
         User user = userService.findUserByEmail(authentication.getName());
         return userChatService.findChatsByUser(user).size();
     }
 
+    /**
+     * Delete chat/message/userchat.
+     * Clean task in db
+     * @param chatID
+     * @return
+     */
     @RequestMapping(value = "/delete/{chatID}",method = RequestMethod.DELETE)
-    public ResponseEntity<?> getUserChats(@PathVariable String chatID){
+    public ResponseEntity<?> geleteUserChats(@PathVariable String chatID){
         List<Message> messages;
         List<UserChat> userChats;
        try{
