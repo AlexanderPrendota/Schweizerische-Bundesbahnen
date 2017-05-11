@@ -38,11 +38,10 @@ public class AccountController {
     /**
      * Getting user entity from database
      * @param authentication — current user in session
-     * @return User with his fiels from database
+     * @return User with his fields from database
      */
     @RequestMapping(value = "/user", method = RequestMethod.GET)
     public User getUserParamsOnAccountPage(Authentication authentication){
-        User us = userService.findUserByEmail(authentication.getName());
         return userService.findUserByEmail(authentication.getName());
     }
 

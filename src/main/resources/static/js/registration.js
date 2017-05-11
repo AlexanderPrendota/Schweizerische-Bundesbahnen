@@ -109,7 +109,7 @@ function sendAjax(data, url, callback) {
                 confirmButtonColor: "#77dd55",
                 confirmButtonText: "OK!",
                 closeOnConfirm: false }, function(){
-                window.location = "/login";
+                window.location = "/home";
             });
         },
         error: function () {

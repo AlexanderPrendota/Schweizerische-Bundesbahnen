@@ -94,8 +94,8 @@ function newChat() {
 function deleteChat() {
     var shosen = localStorage.getItem('chosen_item');
     var mail = JSON.parse(shosen);
-    var chatID = mail[2];
     if (localStorage.length > 0) {
+        var chatID = mail[2];
         swal({
                 title: "Are you sure?",
                 text: "Do u want to delete chat with" + mail[1] ,
