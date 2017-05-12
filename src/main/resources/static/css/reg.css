@@ -219,7 +219,7 @@ input::-webkit-input-placeholder {
     background-repeat: no-repeat;
     background-size: cover;
     background-position: 50% 50%;
-    z-index: 10 !important;
+    z-index: 10;
 }
 
 .blank_row {
@@ -230,5 +230,11 @@ input::-webkit-input-placeholder {
 #chartdiv {
     width : 500px;
     height  : 500px;
+    background-color: #3f3e3b; color: #fff;
+}
+
+#chartdiv1 {
+    width : 1000px !important;
+    height  : 500px !important;
     background-color: #3f3e3b; color: #fff;
 }

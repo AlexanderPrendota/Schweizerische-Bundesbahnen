@@ -250,4 +250,16 @@ public class RideServiceTest {
         Assert.assertTrue(statisctics.size() > 0);
     }
 
+    @Test
+    public void getMoneyStatistisc(){
+        List<Map> statisctics = rideService.getMoneyStatictics();
+        Assert.assertTrue(statisctics.size() > 0);
+    }
+
+    @Test
+    public void getOrderByRidesValidSizeMoreZero(){
+        List<Ride> rides = rideService.findRidesOrderByTimeDeparture();
+        Assert.assertTrue(rides.size() > 0);
+    }
+
 }

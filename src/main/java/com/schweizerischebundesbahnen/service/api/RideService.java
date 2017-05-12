@@ -8,6 +8,7 @@ import com.schweizerischebundesbahnen.model.Train;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 /**
  * Created by aleksandrprendota on 01.04.17.
@@ -35,5 +36,7 @@ public interface RideService {
     List<Map> getMoneyStatictics();
 
     List<Map> getBoughtStationStatistics();
+
+    List<Ride> findRidesOrderByTimeDeparture();
 
 }

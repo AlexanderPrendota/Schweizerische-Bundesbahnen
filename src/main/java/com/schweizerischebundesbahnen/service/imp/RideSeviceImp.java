@@ -5,10 +5,12 @@ import com.schweizerischebundesbahnen.model.Station;
 import com.schweizerischebundesbahnen.model.Ticket;
 import com.schweizerischebundesbahnen.model.Train;
 import com.schweizerischebundesbahnen.repository.RideRepository;
+import com.schweizerischebundesbahnen.service.api.PriceService;
 import com.schweizerischebundesbahnen.service.api.RideService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
@@ -21,6 +23,9 @@ public class RideSeviceImp implements RideService {
 
     @Autowired
     private RideRepository rideRepository;
+
+    @Autowired
+    private PriceService priceService;
 
     /**
      * Creating a ride entity in dtabase
@@ -116,16 +121,37 @@ public class RideSeviceImp implements RideService {
     }
 
     @Override
-    public List<Map> getMoneyStatictics() {
-        return null;
+    public List<Map> getMoneyStatictics(){
+        List<Ride> rides = findRidesOrderByTimeDeparture();
+        List<Map> statistics = new ArrayList<>();
+        List<String> dates = new ArrayList<>();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        for (Ride ride : rides) {
+            String date = dateFormat.format(ride.getTimeDeparture());
+            Double price = priceService.getPrice(ride.getStationDeparture(),ride.getStationArrival());
+            if (dates.contains(date)){
+                for (Map statistic : statistics) {
+                    if(statistic.get("date").equals(date)) {
+                        Double priceTMP = (Double) statistic.get("value") + price;
+                        statistic.put("value", priceTMP);
+                    }
+                }
+            } else {
+                dates.add(date);
+                Map value = new HashMap();
+                value.put("date",date);
+                value.put("value",price);
+                statistics.add(value);
+            }
+        }
+
+        return statistics;
     }
 
     @Override
     public List<Map> getBoughtStationStatistics() {
-        List<Ride> rides = new ArrayList<>();
+        List<Ride> rides = findAllRides();
         long count = 0;
-
-        rideRepository.findAll().forEach(rides::add);
         List<Map> statistics = new ArrayList<>();
         Set<String> cities = new HashSet<>();
         for (Ride ride : rides) {
@@ -145,5 +171,10 @@ public class RideSeviceImp implements RideService {
         }
 
         return statistics;
+    }
+
+    @Override
+    public List<Ride> findRidesOrderByTimeDeparture() {
+        return rideRepository.findByOrderByTimeDeparture();
     }
 }

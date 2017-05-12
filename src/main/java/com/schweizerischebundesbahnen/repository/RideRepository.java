@@ -25,4 +25,6 @@ public interface RideRepository  extends CrudRepository<Ride, Long> {
     List<Ride> findByTrainAndTimeDepartureBetween(Train train, Date start, Date end);
 
     List<Ride> findПожалуйстаByTrainAndTimeDeparture(Train train, Date date);
+
+    List<Ride> findByOrderByTimeDeparture();
 }
