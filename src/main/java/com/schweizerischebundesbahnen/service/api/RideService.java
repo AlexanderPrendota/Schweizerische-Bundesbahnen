@@ -7,6 +7,7 @@ import com.schweizerischebundesbahnen.model.Train;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by aleksandrprendota on 01.04.17.
@@ -21,6 +22,8 @@ public interface RideService {
 
     Ride findRideById(Long id);
 
+    List<Ride> findAllRides();
+
     List<Ride> findByTrain(Train train);
 
     List<Ride> findByStationDeparture(Station station);
@@ -28,4 +31,9 @@ public interface RideService {
     List<Ride> findByStationArrival(Station station);
 
     List<Ride> findByTrainAndTime(Train train, Date time);
+
+    List<Map> getMoneyStatictics();
+
+    List<Map> getBoughtStationStatistics();
+
 }

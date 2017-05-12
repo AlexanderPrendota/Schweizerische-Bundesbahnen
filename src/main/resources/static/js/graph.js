@@ -6,6 +6,7 @@ function showGraph() {
     $("#dialog").empty();
     $("#logo").empty();
     $("#fon").remove();
+    $("#chartdiv").remove();
     $.ajax({
         type: "GET",
         url : '/station/allstations',
@@ -13,7 +14,6 @@ function showGraph() {
         dataType: "json",
         success: function (response) {
             station_data = response;
-            $('#chartdiv').css("display","block");
             $('#dialog').append('<div id="chartdiv"></div>');
             var chart = AmCharts.makeChart( "chartdiv", {
                 "type": "xy",

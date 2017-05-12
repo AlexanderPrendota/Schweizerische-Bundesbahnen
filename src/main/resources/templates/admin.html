@@ -8,9 +8,12 @@
         <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
         <script src="https://www.amcharts.com/lib/3/amcharts.js"></script>
         <script src="https://www.amcharts.com/lib/3/xy.js"></script>
+        <script src="https://www.amcharts.com/lib/3/pie.js"></script>
         <script src="https://www.amcharts.com/lib/3/plugins/export/export.min.js"></script>
         <link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" />
         <script src="https://www.amcharts.com/lib/3/themes/chalk.js"></script>
+        <script src="https://www.amcharts.com/lib/3/themes/light.js"></script>
+
         <!-- GRAPH LIBS -->
         <link rel="stylesheet" href="css/bootstrap.css"/>
         <link rel="stylesheet" href="css/chat.css"/>
@@ -50,6 +53,7 @@
                     </ul>
                     <ul id="navright" class="nav navbar-nav navbar-right">
                         <li class="active"><a href="admin">Admin</a></li>
+                        <li id="statistics" onclick="showStatistics()"><a>Statistics</a></li>
                         <li id="supportbutton" onclick="showSupport()"><a> <span id="notify" class="badge pull-right"></span>Support</a></li>
                         <li><a href="account">Account</a></li>
                         <li><a href="logout">Logout</a></li>
@@ -139,6 +143,7 @@
     </div>
     <div id="lose"></div>
     <script src="js/addAttributes.js"></script>
+    <script src="js/statistics.js"></script>
     <script src="js/passangerOnTrain.js"></script>
     <script src="js/adminSupport.js"></script>
     <script src="js/adminChat.js"></script>

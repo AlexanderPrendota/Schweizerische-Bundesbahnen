@@ -18,6 +18,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by aleksandrprendota on 04.04.17.
@@ -241,6 +242,12 @@ public class RideServiceTest {
     public void checkRindRidesByEmptyTrainAndDates(){
         List<Ride> rides = rideService.findRidesByTrainAndDate(new Train(),new Date(),new Date());
         Assert.assertTrue(rides.size() == 0);
+    }
+
+    @Test
+    public void getBoughtStatistics(){
+        List<Map> statisctics = rideService.getBoughtStationStatistics();
+        Assert.assertTrue(statisctics.size() > 0);
     }
 
 }

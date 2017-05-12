@@ -9,8 +9,7 @@ import com.schweizerischebundesbahnen.service.api.RideService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by aleksandrprendota on 01.04.17.
@@ -65,6 +64,17 @@ public class RideSeviceImp implements RideService {
     }
 
     /**
+     * Get list of all rides
+     * @return list rides
+     */
+    @Override
+    public List<Ride> findAllRides() {
+        List<Ride> rides = new ArrayList<>();
+        rideRepository.findAll().forEach(rides::add);
+        return rides;
+    }
+
+    /**
      * get list of ride entity by specific train
      * @param train
      * @return list of ride entity
@@ -103,5 +113,37 @@ public class RideSeviceImp implements RideService {
     @Override
     public List<Ride> findByTrainAndTime(Train train, Date time) {
         return rideRepository.findПожалуйстаByTrainAndTimeDeparture(train,time);
+    }
+
+    @Override
+    public List<Map> getMoneyStatictics() {
+        return null;
+    }
+
+    @Override
+    public List<Map> getBoughtStationStatistics() {
+        List<Ride> rides = new ArrayList<>();
+        long count = 0;
+
+        rideRepository.findAll().forEach(rides::add);
+        List<Map> statistics = new ArrayList<>();
+        Set<String> cities = new HashSet<>();
+        for (Ride ride : rides) {
+            cities.add(ride.getStationDeparture().getStationName());
+        }
+        for (Object city : cities) {
+            for (Ride ride : rides) {
+                if(ride.getStationDeparture().getStationName().equals(city)){
+                    count++;
+                }
+            }
+            Map value = new HashMap();
+            value.put("City", city);
+            value.put("Bought", count);
+            statistics.add(value);
+            count=0;
+        }
+
+        return statistics;
     }
 }
