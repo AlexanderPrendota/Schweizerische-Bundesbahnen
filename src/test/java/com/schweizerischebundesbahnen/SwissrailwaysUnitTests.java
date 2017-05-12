@@ -25,6 +25,7 @@ import org.junit.runners.Suite;
         StationServiceTest.class,
         SeatServiceTest.class,
         MessageServiceTest.class,
+        PriceServiceTest.class,
         DIServiceTests.class,
         DIDaoTest.class})
 public class SwissrailwaysUnitTests {

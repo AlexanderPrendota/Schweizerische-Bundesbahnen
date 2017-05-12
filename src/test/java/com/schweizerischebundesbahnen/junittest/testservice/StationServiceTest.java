@@ -47,7 +47,7 @@ public class StationServiceTest {
 
     @Test
     public void testFindStationById(){
-        Assert.assertEquals(stationService.findStationById(10058L).getStationName(),"Fribourg");
+        Assert.assertEquals(stationService.findStationById(10024L).getStationName(),"Laufen");
     }
 
     @Test

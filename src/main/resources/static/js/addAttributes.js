@@ -237,9 +237,20 @@ function addStations() {
     $("#dialog").append(
         '<div class="col-sm-4 prop rounded">' +
         '<div class="input-group way station" style="width: 300px;">' +
-        '<span class="input-group-addon"><i class="fa fa-train" aria-hidden="true"></i></span>' +
+        '<span class="input-group-addon"><i class="fa fa-home" aria-hidden="true"></i></span>' +
         '<input type="text" name="departure" id="stationname" class="form-control " placeholder="Station">'+
         '</div>' +
+
+        '<div class="input-group way station" style="width: 300px;">' +
+        '<span class="input-group-addon"><i class="fa fa-bar-chart" aria-hidden="true"></i></span>' +
+        '<input type="text" name="x_cor" id="x_cor" class="form-control " placeholder="x">'+
+        '</div>' +
+
+        '<div class="input-group way station" style="width: 300px;">' +
+        '<span class="input-group-addon"><i class="fa fa-bar-chart" aria-hidden="true"></i></span>' +
+        '<input type="text" name="y_cor" id="y_cor" class="form-control " placeholder="y">'+
+        '</div>' +
+
         '<input onclick="goAddStation();" class="btn btn-info" type="submit" id="addstation" value="Add Station"/>' +
         '</div>'
     );
@@ -287,6 +298,8 @@ function goToSend() {
 
 function goAddStation(){
     var stationname = $("#stationname");
+    var x_cor = $("#x_cor");
+    var y_cor = $("#y_cor");
 
     if (stationname.val() === '') {
         swal("Oops...", "Please write correct name of station", "error");
@@ -295,7 +308,7 @@ function goAddStation(){
 
     $.ajax({
         type: "POST",
-        url : '/station/add/' + stationname.val(),
+        url : '/station/add/' + stationname.val() + '/x_cor/' + x_cor.val() + '/y_cor/' + y_cor.val(),
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         success: function (response) {

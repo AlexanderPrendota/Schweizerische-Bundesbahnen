@@ -21,5 +21,11 @@ public class Station {
     @Column(name = "STATION_NAME")
     public String stationName;
 
+    @Column(name = "x")
+    public int x;
+
+    @Column(name = "y")
+    public int y;
+
 
 }

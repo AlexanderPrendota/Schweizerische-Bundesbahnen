@@ -41,11 +41,23 @@ public class StationsController {
      */
 
     @PreAuthorize("hasAuthority('ADMIN')")
-    @RequestMapping(value = "/add/{stationname}", method = RequestMethod.POST)
-    public ResponseEntity<?> addNewStation(@PathVariable String stationname){
+    @RequestMapping(value = "/add/{stationname}/x_cor/{x_cor}/y_cor/{y_cor}", method = RequestMethod.POST)
+    public ResponseEntity<?> addNewStation(@PathVariable String stationname,
+                                           @PathVariable String x_cor,
+                                           @PathVariable String y_cor){
+        Integer x;
+        Integer y;
+        try {
+            x = Integer.valueOf(x_cor);
+            y = Integer.valueOf(y_cor);
+        } catch (Exception e){
+            return new ResponseEntity<>("Please add correct integer number ", HttpStatus.BAD_REQUEST);
+        }
         if (stationService.findStationByName(stationname) == null){
             Station station = new Station();
             station.setStationName(stationname);
+            station.setX(x);
+            station.setY(y);
             stationService.addStation(station);
             log.info("New Station '" + stationname + "' was added");
             return ResponseEntity.ok(station);
