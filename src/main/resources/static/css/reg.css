@@ -22,6 +22,9 @@ h2, h3{
     font-family: 'Passion One', cursive;
     margin-bottom: 20px;
 }
+h4,h5{
+    font-family: 'Passion One', cursive;
+}
 
 hr{
     width: 10%;
@@ -217,4 +220,9 @@ input::-webkit-input-placeholder {
     background-size: cover;
     background-position: 50% 50%;
     z-index: 10 !important;
+}
+
+.blank_row {
+    height: 10px;
+    background-color: #FFFFFF;
 }

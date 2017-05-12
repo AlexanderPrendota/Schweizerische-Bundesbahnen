@@ -56,16 +56,15 @@ function goSchedule(event) {
             } else {
 
                 $("#mainttable").css("visibility","visible");
-                $("#mainttable").css("z-index","20");
                 $("#mainttable")
                     .append("<table id='risestable' class='table table-hover'>");
                 $("#risestable")
                     .append("<thead>" +
                         "<tr class='tab'>" +
-                        "<th class='tab'>Train Number</th>" +
-                        "<th class='tab'>Station Departure</th>" +
-                        "<th class='tab'>Departure</th>" + "<th class='tab'>Station Arrival</th>" +
-                        "<th class='tab'>Arrival</th>" + "</tr>" + "</thead>" + "<tbody>");
+                        "<th class='tab'><h4>Train Number</h4></th>" +
+                        "<th class='tab'><h4>Station Departure</h4></th>" +
+                        "<th class='tab'><h4>Departure</h4></th>" + "<th class='tab'><h4>Station Arrival</h4></th>" +
+                        "<th class='tab'><h4>Arrival</h4></th>" + "</tr>" + "</thead>" + "<tbody>");
                 for (var i = 0; i < response.length; i++) {
                     $("#risestable")
                         .append("<tr id='"+response[i].id+"' class='tab'>" +
@@ -159,24 +158,46 @@ function goSmartSearch(event) {
                     "<h1 class='title'>No ways, Darling! Even Smart! :( </h1>" +
                     "</div></div></div>");
             } else {
+                var countOfWay = 1;
+                var st_arrival = $("#arrival").val();
+                var theFirstsWay = [];
                 $("#mainttable").css("visibility","visible");
                 $("#mainttable")
                     .append("<table id='risestable' class='table table-hover'>");
                 $("#risestable")
                     .append("<thead>" +
                         "<tr class='tab'>" +
-                        "<th class='tab'>Train Number</th>" +
-                        "<th class='tab'>Station Departure</th>" +
-                        "<th class='tab'>Departure</th>" + "<th class='tab'>Station Arrival</th>" +
-                        "<th class='tab'>Arrival</th>" + "</tr>" + "</thead>" + "<tbody>");
+                        "<th class='tab'><h4>Train Number</h4></th>" +
+                        "<th class='tab'><h4>Station Departure</h4></th>" +
+                        "<th class='tab'><h4>Departure</h4></th>" + "<th class='tab'><h4>Station Arrival</h4></th>" +
+                        "<th class='tab'><h4>Arrival</h4></th>" + "</tr>" + "</thead>" + "<tbody>");
                 for (var i = 0; i < response.length; i++) {
-                    $("#risestable")
-                        .append("<tr id='"+response[i].id+"' class='tab'>" +
-                            "<td class='tab'>" + response[i].train.id + "</td>" +
-                            "<td class='tab'>" + response[i].stationDeparture.stationName + "</td>" +
-                            "<td class='tab'>" +  new Date(response[i].timeDeparture).toLocaleString() + "</td>" +
-                            "<td class='tab'>" + response[i].stationArrival.stationName + "</td>"
-                            + "<td class='tab'>" + new Date(response[i].timeArrival).toLocaleString() + "</td>" + "</tr>");
+                    if (response[i].stationArrival.stationName != st_arrival){
+                        theFirstsWay = response[i];
+                        console.log(theFirstsWay);
+                    } else {
+                        if (theFirstsWay.length != 0){
+
+                            $("#risestable")
+                                .append('<tr class="blank_row"><td><h5>'+ countOfWay+'.</h5></td><td></td><td></td><td></td><td></td></tr>');
+                            countOfWay++;
+                            $("#risestable")
+                                .append("<tr id='"+theFirstsWay.id+"' class='tab'>" +
+                                    "<td class='tab'>" + theFirstsWay.train.id + "</td>" +
+                                    "<td class='tab'>" + theFirstsWay.stationDeparture.stationName + "</td>" +
+                                    "<td class='tab'>" +  new Date(theFirstsWay.timeDeparture).toLocaleString() + "</td>" +
+                                    "<td class='tab'>" + theFirstsWay.stationArrival.stationName + "</td>"
+                                    + "<td class='tab'>" + new Date(theFirstsWay.timeArrival).toLocaleString() + "</td>" + "</tr><hr/>");
+                        }
+                        $("#risestable")
+                            .append("<tr id='"+response[i].id+"' class='tab'>" +
+                                "<td class='tab'>" + response[i].train.id + "</td>" +
+                                "<td class='tab'>" + response[i].stationDeparture.stationName + "</td>" +
+                                "<td class='tab'>" +  new Date(response[i].timeDeparture).toLocaleString() + "</td>" +
+                                "<td class='tab'>" + response[i].stationArrival.stationName + "</td>"
+                                + "<td class='tab'>" + new Date(response[i].timeArrival).toLocaleString() + "</td>" + "</tr><hr/>");
+                    }
+
                 }
                 $("#risestable")
                     .append("</tbody></table>");

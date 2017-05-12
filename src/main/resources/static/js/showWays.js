@@ -59,11 +59,11 @@ function showWays(event) {
                 .append("<table id='risestable' class='table table-hover'>");
             $("#risestable")
                 .append("<thead>" +
-                "<tr class='tab'>" +
-                "<th class='tab'>Train Number</th>" +
-                "<th class='tab'>Station Departure</th>" +
-                "<th class='tab'>Departure</th>" + "<th class='tab'>Station Arrival</th>" +
-                "<th class='tab'>Arrival </th>" + "</tr>" + "</thead>" + "<tbody>");
+                    "<tr class='tab'>" +
+                    "<th class='tab'><h4>Train Number</h4></th>" +
+                    "<th class='tab'><h4>Station Departure</h4></th>" +
+                    "<th class='tab'><h4>Departure</h4></th>" + "<th class='tab'><h4>Station Arrival</h4></th>" +
+                    "<th class='tab'><h4>Arrival</h4></th>" + "</tr>" + "</thead>" + "<tbody>");
             for (var i = 0; i < response.length; i++) {
                 $("#risestable")
                     .append("<tr id='"+response[i].id+"' class='tab'>" +

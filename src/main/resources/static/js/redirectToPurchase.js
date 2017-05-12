@@ -10,7 +10,9 @@ function toPurchase() {
         var tableData = $(this).children("td").map(function() {
             return $(this).text();
         }).get();
-        console.log(tableData);
+        if (tableData.length == 0){
+            return '';
+        }
         var sendData = {
             id: idRide,
             train_number : tableData[0],
