@@ -13,10 +13,9 @@
         <link href='https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet'/>
         <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <script src="js/purchase.js"></script>
     </head>
     <body onload="viewParamsInPurchasePage();">
-
-
 
         <div class="container">
             <div class="navbar navbar-default"  role="navigation">
@@ -108,8 +107,14 @@
                         <option>20</option>
                     </select>
                 </div>
+                <div class="input-group way">
+                    <span class="input-group-addon"><i class="fa fa-eur" aria-hidden="true"></i></span>
+                    <input type="text" name="price" id="pricelabel" class="form-control " readonly="readonly"/>
+                </div>
             </div>
+
             <div id="ticket"></div>
+
 
             <div class="prop rounded">
                 <table id="risestable" class="table table-hover">
@@ -149,7 +154,6 @@
         </script>
         <script src="js/bootstrap.js"></script>
         <script src="js/drawImage.js"></script>
-        <script src="js/purchase.js"></script>
         <script src="js/showFreeSeats.js"></script>
         <script src="js/jquery.lazylinepainter-1.7.0.min.js"></script>
         <script src="js/sweetalert.min.js"></script>

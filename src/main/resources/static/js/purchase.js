@@ -19,8 +19,28 @@ function viewParamsInPurchasePage() {
     });
     getTotalCarriage();
     drawTicket();
+    getPrice();
 }
+function getPrice() {
 
+    var tripValue = localStorage.getItem('trip');
+    var trip = JSON.parse(tripValue);
+
+    var dep_st = trip.station_departure;
+    var arr_st = trip.station_arrival;
+    $.ajax({
+        type: "GET",
+        url : '/price/departure/' + dep_st + '/arrival/' + arr_st,
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function (response) {
+            $("#pricelabel").attr("value", response);
+        },
+        error: function () {
+            swal("Oops...", "Problems with getting price!", "error");
+        }
+    });
+}
 function buyRide() {
     var tripValue = localStorage.getItem('trip');
     var trip = JSON.parse(tripValue);
