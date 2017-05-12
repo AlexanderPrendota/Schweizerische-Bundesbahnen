@@ -306,6 +306,16 @@ function goAddStation(){
         return '';
     }
 
+    if (x_cor.val() === '') {
+        swal("Oops...", "Please write correct X coordinate", "error");
+        return '';
+    }
+
+    if (y_cor.val() === '') {
+        swal("Oops...", "Please write correct Y coordinate", "error");
+        return '';
+    }
+
     $.ajax({
         type: "POST",
         url : '/station/add/' + stationname.val() + '/x_cor/' + x_cor.val() + '/y_cor/' + y_cor.val(),

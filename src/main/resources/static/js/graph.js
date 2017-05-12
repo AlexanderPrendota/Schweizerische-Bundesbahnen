@@ -56,9 +56,9 @@ function goDialogGraph(){
             modal: true,
             closeOnEscape: true,
             maxWidth:550,
-            maxHeight: 550,
+            maxHeight: 560,
             width: 550,
-            height: 550,
+            height: 560,
             resizable: false,
             title: "Graph of stations!"
         });

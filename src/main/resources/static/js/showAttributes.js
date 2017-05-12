@@ -101,6 +101,7 @@ function showAllStation() {
                 .append("<thead>" +
                     "<tr class='tab'>" +
                     "<th class='tab center'>Station Name</th>" +
+                    "<th class='tab center'>Coordinates</th>" +
                     "</tr>"
                     + "</thead>"
                     + "<tbody>"
@@ -111,6 +112,7 @@ function showAllStation() {
                     .append(
                         "<tr class='tab'>" +
                         "<td class='tab'>"+ response[i].stationName + "</td>" +
+                        "<td class='tab'>("+ response[i].x + ";" + response[i].y + ")</td>" +
                         + "</tr>");
             }
             $("#risestable")
