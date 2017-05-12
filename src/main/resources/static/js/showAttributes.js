@@ -93,7 +93,9 @@ function showAllStation() {
                     '<a id="newstation" onclick="addStations();" class="btn btn-default buttons-create" tabindex="0" aria-controls="risestable" href="#">' +
                     '<span>New</span></a>' +
                     '<a onclick="showrowStation();" class="btn btn-default buttons-selected buttons-remove" tabindex="0" aria-controls="risestable" href="#">' +
-                    '<span>Delete</span></a></div></div>'+
+                    '<span>Delete</span></a>'+
+                    '<a onclick="showGraph();" class="btn btn-default buttons-selected buttons-create" tabindex="0" aria-controls="risestable" href="#">' +
+                    '<span>Show Graph</span></a></div></div>'+
                     "<table id='risestable' class='table table-hover'>");
             $("#risestable")
                 .append("<thead>" +

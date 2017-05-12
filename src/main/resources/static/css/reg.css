@@ -226,3 +226,9 @@ input::-webkit-input-placeholder {
     height: 10px;
     background-color: #FFFFFF;
 }
+
+#chartdiv {
+    width : 500px;
+    height  : 500px;
+    background-color: #3f3e3b; color: #fff;
+}

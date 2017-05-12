@@ -2,12 +2,14 @@ package com.schweizerischebundesbahnen.service.imp;
 
 import com.schweizerischebundesbahnen.model.PointDTO;
 import com.schweizerischebundesbahnen.service.api.PriceService;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Service;
 
 /**
  * Created by aleksandrprendota on 12.05.17.
  */
 @Service
+@ConfigurationProperties(prefix="coefficient")
 public class PriceServiceImp implements PriceService {
 
     private static Double PRICE = 20.3;
