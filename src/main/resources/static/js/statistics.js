@@ -17,7 +17,6 @@ function showStatistics() {
         '</div></div>'
     );
     statisticBoughtByStation();
-    moneyStatistics();
 }
 
 function statisticBoughtByStation() {
@@ -36,7 +35,6 @@ function statisticBoughtByStation() {
                 '</div></div>'
             );
             $('#source').append('<div class="center" id="chartdiv"></div>');
-         //   $('#chartdiv').css('background-color','#D3D3D3');
             $('#chartdiv').css('wight','300px');
             $('#chartdiv').css('height','300px');
             var chart = AmCharts.makeChart( "chartdiv", {
@@ -46,7 +44,7 @@ function statisticBoughtByStation() {
                 "valueField": "Bought",
                 "titleField": "City",
                 "startEffect": "elastic",
-                "startDuration": 2,
+                "startDuration": 5,
                 "labelRadius": 15,
                 "innerRadius": "50%",
                 "depth3D": 10,
@@ -54,12 +52,12 @@ function statisticBoughtByStation() {
                 "angle": 35
             } );
 
-
         },
         error: function () {
             swal("Oops...", "Some problems with getting train :( Please try later", "error");
         }
     });
+    moneyStatistics();
 }
 
 function moneyStatistics() {
@@ -77,8 +75,7 @@ function moneyStatistics() {
                 '</div>' +
                 '</div></div>'
             );
-            $('#source').append('<div class="center"id="chartdiv1"></div>');
- //           $('#chartdiv1').css('background-color','#D3D3D3');
+            $('#source').append('<div class="center" id="chartdiv1"></div>');
             var chart = AmCharts.makeChart("chartdiv1", {
                 "type": "serial",
                 "theme": "chalk",

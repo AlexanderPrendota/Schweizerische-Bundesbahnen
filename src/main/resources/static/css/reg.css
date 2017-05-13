@@ -228,13 +228,13 @@ input::-webkit-input-placeholder {
 }
 
 #chartdiv {
-    width : 500px;
-    height  : 500px;
+    width : 1000px;
+    height  : 1000px;
     background-color: #3f3e3b; color: #fff;
 }
 
 #chartdiv1 {
-    width : 1000px !important;
-    height  : 500px !important;
+    width : 1000px;
+    height  : 500px;
     background-color: #3f3e3b; color: #fff;
 }

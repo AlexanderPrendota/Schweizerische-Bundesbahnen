@@ -14,7 +14,7 @@ function showGraph() {
         dataType: "json",
         success: function (response) {
             station_data = response;
-            $('#dialog').append('<div id="chartdiv"></div>');
+            $('#dialog').append('<div style="height: 600px; width: 600px;" id="chartdiv"></div>');
             var chart = AmCharts.makeChart( "chartdiv", {
                 "type": "xy",
                 "theme": "chalk",
@@ -55,10 +55,10 @@ function goDialogGraph(){
         $( "#dialog" ).dialog({
             modal: true,
             closeOnEscape: true,
-            maxWidth:550,
-            maxHeight: 560,
-            width: 550,
-            height: 560,
+            maxWidth:650,
+            maxHeight: 660,
+            width: 650,
+            height: 660,
             resizable: false,
             title: "Graph of stations!"
         });
