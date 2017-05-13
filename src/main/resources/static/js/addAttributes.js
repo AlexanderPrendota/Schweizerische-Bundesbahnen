@@ -622,10 +622,6 @@ function confirmUpdateSchedule() {
             swal("Oops...", "Sorry! Problems :( Please try later", "error");
         }
     });
-
-
-
-
 }
 
 function goDialogSchedule(){

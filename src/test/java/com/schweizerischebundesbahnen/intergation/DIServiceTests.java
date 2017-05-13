@@ -52,6 +52,8 @@ public class DIServiceTests {
     @Autowired
     private ChatService chatService;
 
+    @Autowired
+    private PriceService priceService;
     @Test
     public void trainServiceTest(){
         Assert.assertNotNull(trainService);
@@ -110,5 +112,9 @@ public class DIServiceTests {
     @Test
     public void chatServiceTest(){
         Assert.assertNotNull(chatService);
+    }
+    @Test
+    public void priceServiceTest(){
+        Assert.assertNotNull(priceService);
     }
 }
