@@ -3,6 +3,9 @@
  */
 
 function showUser() {
+    $("#adminbutton").attr("class","active");
+    $("#supportbutton").removeAttr("class");
+    $("#statistics").removeAttr("class");
     $("#source").empty();
     $("#logo").empty();
     $("#fon").remove();
@@ -28,6 +31,9 @@ function showUser() {
 }
 
 function addNotify() {
+    $("#adminbutton").attr("class","active");
+    $("#supportbutton").removeAttr("class");
+    $("#statistics").removeAttr("class");
     $("#source").empty();
     $("#logo").empty();
     $("#fon").remove();

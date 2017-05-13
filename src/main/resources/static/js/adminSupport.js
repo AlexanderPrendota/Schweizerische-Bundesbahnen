@@ -3,6 +3,10 @@
  */
 
 function showSupport(){
+    $("#supportbutton").attr("class","active");
+    $("#statistics").removeAttr("class");
+    $("#adminbutton").removeAttr("class");
+
     $("#dialog").empty();
     $("#logo").empty();
     $("#fon").remove();

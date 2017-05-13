@@ -3,6 +3,10 @@
  */
 
 function showPanelToFindPassenger(){
+    $("#adminbutton").attr("class","active");
+    $("#supportbutton").removeAttr("class");
+    $("#statistics").removeAttr("class");
+
     $("#source").empty();
     $("#logo").empty();
     $("#fon").remove();

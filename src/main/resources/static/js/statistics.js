@@ -2,6 +2,10 @@
  * Created by aleksandrprendota on 12.05.17.
  */
 function showStatistics() {
+    $("#statistics").attr("class","active");
+    $("#supportbutton").removeAttr("class");
+    $("#adminbutton").removeAttr("class");
+
     $("#dialog").empty();
     $("#logo").empty();
     $("#chartdiv").remove();

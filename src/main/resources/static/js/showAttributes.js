@@ -3,6 +3,9 @@
  */
 
 function showAllTrains() {
+    $("#adminbutton").attr("class","active");
+    $("#supportbutton").removeAttr("class");
+    $("#statistics").removeAttr("class");
 
     $("#fon").remove();
     $("#source").empty();
@@ -64,6 +67,9 @@ function showAllTrains() {
 }
 
 function showAllStation() {
+    $("#adminbutton").attr("class","active");
+    $("#supportbutton").removeAttr("class");
+    $("#statistics").removeAttr("class");
 
     $("#fon").remove();
     $("#source").empty();
@@ -185,6 +191,9 @@ function showAllUsers() {
 }
 
 function showAllSchedule() {
+    $("#adminbutton").attr("class","active");
+    $("#supportbutton").removeAttr("class");
+    $("#statistics").removeAttr("class");
     $("#fon").remove();
     $("#source").empty();
     $("#logo").empty();
