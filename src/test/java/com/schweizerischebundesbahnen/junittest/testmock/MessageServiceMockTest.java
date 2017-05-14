@@ -2,7 +2,6 @@ package com.schweizerischebundesbahnen.junittest.testmock;
 
 import com.schweizerischebundesbahnen.model.Chat;
 import com.schweizerischebundesbahnen.model.Message;
-import com.schweizerischebundesbahnen.model.MessageDTO;
 import com.schweizerischebundesbahnen.model.User;
 import com.schweizerischebundesbahnen.repository.MessageRepository;
 import com.schweizerischebundesbahnen.service.imp.MessageServiceImp;
@@ -14,7 +13,6 @@ import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import java.util.ArrayList;
-import java.util.Date;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
