@@ -26,8 +26,8 @@ public class SecurityControllerTest {
 
     @Test(expected = AuthenticationCredentialsNotFoundException.class)
     public void testGetListOfUsers(){
-        List<Schedule> todaysTimeSchedule = scheduleController.getAllSchedules();
-        Assert.assertTrue(todaysTimeSchedule.size() > 0);
+        List<Schedule> todayTimeSchedule = scheduleController.getAllSchedules();
+        Assert.assertTrue(todayTimeSchedule.size() > 0);
     }
 
     @Test

@@ -21,6 +21,7 @@ public class PriceServiceImp implements PriceService {
         return Math.round(price * 100.0) / 100.0;
     }
 
+    @Override
     public Double calculateDistance(PointDTO firstWay, PointDTO secondWay){
         return Math.sqrt(Math.pow(secondWay.getX() - firstWay.getX(), 2) + (Math.pow(secondWay.getY() - firstWay.getY(),2)));
     }
