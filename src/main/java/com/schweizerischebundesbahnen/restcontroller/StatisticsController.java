@@ -1,6 +1,7 @@
 package com.schweizerischebundesbahnen.restcontroller;
 
 import com.schweizerischebundesbahnen.service.api.RideService;
+import com.schweizerischebundesbahnen.service.api.StatisticService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -17,15 +18,20 @@ import org.springframework.web.bind.annotation.RestController;
 public class StatisticsController {
 
     @Autowired
-    private RideService rideService;
+    private StatisticService statisticService;
 
-    @RequestMapping(value = "bought",method = RequestMethod.GET)
-    public ResponseEntity<?> getStatisticsAboutBoughtTickets(){
-        return ResponseEntity.ok(rideService.getBoughtStationStatistics());
+    @RequestMapping(value = "bought/departure",method = RequestMethod.GET)
+    public ResponseEntity<?> getStatisticsAboutBoughtDepartureTickets(){
+        return ResponseEntity.ok(statisticService.getBoughtStationDepartureStatistics());
+    }
+
+    @RequestMapping(value = "bought/arrival",method = RequestMethod.GET)
+    public ResponseEntity<?> getStatisticsAboutBoughtArrivalTickets(){
+        return ResponseEntity.ok(statisticService.getBoughtStationArrivalStatistics());
     }
 
     @RequestMapping(value = "cash",method = RequestMethod.GET)
     public ResponseEntity<?> getMoneyStatisticsByDate(){
-        return ResponseEntity.ok(rideService.getMoneyStatictics());
+        return ResponseEntity.ok(statisticService.getMoneyStatictics());
     }
 }

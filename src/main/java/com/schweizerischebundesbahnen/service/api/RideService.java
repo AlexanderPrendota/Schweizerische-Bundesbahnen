@@ -33,10 +33,6 @@ public interface RideService {
 
     List<Ride> findByTrainAndTime(Train train, Date time);
 
-    List<Map> getMoneyStatictics();
-
-    List<Map> getBoughtStationStatistics();
-
     List<Ride> findRidesOrderByTimeDeparture();
 
 }

@@ -10,6 +10,7 @@ function showStatistics() {
     $("#logo").empty();
     $("#chartdiv").remove();
     $("#chartdiv1").remove();
+    $("#chartdiv2").remove();
     $("#fon").remove();
     $("#source").empty();
     $("#logo").append(
@@ -20,13 +21,15 @@ function showStatistics() {
         '</div>' +
         '</div></div>'
     );
-    statisticBoughtByStation();
+    statisticBoughtByStationDeparture();
+    statisticBoughtByStationArrival();
+    moneyStatistics();
 }
 
-function statisticBoughtByStation() {
+function statisticBoughtByStationDeparture() {
     $.ajax({
         type: "GET",
-        url : '/statistics/bought',
+        url : '/statistics/bought/departure',
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         success: function (response) {
@@ -34,7 +37,7 @@ function statisticBoughtByStation() {
                 '<div class="container">' +
                 '<div class="panel-heading">' +
                 '<div class="panel-title text-center">' +
-                '<h3 class="title">Bought tickets by cities</h3>' +
+                '<h3 class="title">Bought tickets by station departure</h3>' +
                 '</div>' +
                 '</div></div>'
             );
@@ -61,7 +64,46 @@ function statisticBoughtByStation() {
             swal("Oops...", "Some problems with getting train :( Please try later", "error");
         }
     });
-    moneyStatistics();
+}
+
+function statisticBoughtByStationArrival() {
+    $.ajax({
+        type: "GET",
+        url : '/statistics/bought/arrival',
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function (response) {
+            $("#source").append(
+                '<div class="container">' +
+                '<div class="panel-heading">' +
+                '<div class="panel-title text-center">' +
+                '<h3 class="title">Bought tickets by station arrival</h3>' +
+                '</div>' +
+                '</div></div>'
+            );
+            $('#source').append('<div class="center" id="chartdiv2"></div>');
+            $('#chartdiv2').css('wight','300px');
+            $('#chartdiv2').css('height','300px');
+            var chart = AmCharts.makeChart( "chartdiv2", {
+                "type": "pie",
+                "theme": "chalk",
+                "dataProvider": response,
+                "valueField": "Bought",
+                "titleField": "City",
+                "startEffect": "elastic",
+                "startDuration": 5,
+                "labelRadius": 15,
+                "innerRadius": "50%",
+                "depth3D": 10,
+                "balloonText": "[[title]]<br><span style='font-size:14px'><b>[[value]]</b> ([[percents]]%)</span>",
+                "angle": 35
+            } );
+
+        },
+        error: function () {
+            swal("Oops...", "Some problems with getting train :( Please try later", "error");
+        }
+    });
 }
 
 function moneyStatistics() {

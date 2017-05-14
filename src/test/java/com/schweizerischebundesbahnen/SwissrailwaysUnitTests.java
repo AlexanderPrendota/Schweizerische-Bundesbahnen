@@ -20,6 +20,7 @@ import org.junit.runners.Suite;
         TrainServiceTest.class,
         TicketServiceTest.class,
         StorageServiceTest.class,
+        StatisticServiceTest.class,
         ScheduleServiceTest.class,
         RideServiceTest.class,
         StationServiceTest.class,

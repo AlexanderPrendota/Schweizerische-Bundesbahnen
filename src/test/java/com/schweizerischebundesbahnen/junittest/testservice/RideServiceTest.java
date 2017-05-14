@@ -244,17 +244,6 @@ public class RideServiceTest {
         Assert.assertTrue(rides.size() == 0);
     }
 
-    @Test
-    public void getBoughtStatistics(){
-        List<Map> statisctics = rideService.getBoughtStationStatistics();
-        Assert.assertTrue(statisctics.size() > 0);
-    }
-
-    @Test
-    public void getMoneyStatistisc(){
-        List<Map> statisctics = rideService.getMoneyStatictics();
-        Assert.assertTrue(statisctics.size() > 0);
-    }
 
     @Test
     public void getOrderByRidesValidSizeMoreZero(){
@@ -266,12 +255,6 @@ public class RideServiceTest {
     public void getAllListOfRide(){
         List<Ride> rides = rideService.findAllRides();
         Assert.assertTrue(rides.size() > 0);
-    }
-
-    @Test
-    public void getCorrectMoneyStatistisc(){
-        List<Map> statisctics = rideService.getMoneyStatictics();
-        Assert.assertTrue(statisctics.get(0).containsValue(116.53));
     }
 
 
