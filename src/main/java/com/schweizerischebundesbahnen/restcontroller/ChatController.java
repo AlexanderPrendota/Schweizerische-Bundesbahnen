@@ -73,7 +73,7 @@ public class ChatController {
      * @return
      */
     @RequestMapping(value = "/delete/{chatID}",method = RequestMethod.DELETE)
-    public ResponseEntity<?> geleteUserChats(@PathVariable String chatID){
+    public ResponseEntity<?> deleteUserChats(@PathVariable String chatID){
         List<Message> messages;
         List<UserChat> userChats;
        try{

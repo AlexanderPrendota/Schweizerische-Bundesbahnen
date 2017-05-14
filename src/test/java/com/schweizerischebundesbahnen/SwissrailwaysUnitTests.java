@@ -2,10 +2,12 @@ package com.schweizerischebundesbahnen;
 
 import com.schweizerischebundesbahnen.intergation.DIServiceTests;
 import com.schweizerischebundesbahnen.intergation.DIDaoTest;
-import com.schweizerischebundesbahnen.junittest.testcontrollers.SecurityControllerTest;
-import com.schweizerischebundesbahnen.junittest.testcontrollers.ViewControllerTest;
+import com.schweizerischebundesbahnen.intergation.testcontrollers.SecurityControllerTest;
+import com.schweizerischebundesbahnen.intergation.testcontrollers.ViewControllerTest;
+import com.schweizerischebundesbahnen.junittest.testcontrollersmock.*;
 import com.schweizerischebundesbahnen.junittest.testmock.*;
 import com.schweizerischebundesbahnen.junittest.testservice.*;
+import com.schweizerischebundesbahnen.restcontroller.*;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
@@ -39,7 +41,11 @@ import org.junit.runners.Suite;
         SeatServiceMockTest.class,
         UserChatServiceMockTest.class,
         RideServiceTestMock.class,
-        ScheduleServiceTestMock.class
+        ScheduleServiceTestMock.class,
+        StationControllerTest.class,
+        PriceControllerTest.class,
+        StationControllerTest.class,
+        ScheduleControllerTest.class
      })
 public class SwissrailwaysUnitTests {
 }

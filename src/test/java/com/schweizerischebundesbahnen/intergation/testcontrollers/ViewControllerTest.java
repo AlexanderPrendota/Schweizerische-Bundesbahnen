@@ -1,4 +1,4 @@
-package com.schweizerischebundesbahnen.junittest.testcontrollers;
+package com.schweizerischebundesbahnen.intergation.testcontrollers;
 
 import org.junit.Before;
 import org.junit.Test;

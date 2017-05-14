@@ -1,4 +1,4 @@
-package com.schweizerischebundesbahnen.junittest.testcontrollers;
+package com.schweizerischebundesbahnen.intergation.testcontrollers;
 
 import com.schweizerischebundesbahnen.model.Schedule;
 import com.schweizerischebundesbahnen.model.TimeSchedule;
