@@ -15,6 +15,7 @@ import java.util.*;
  */
 @Service
 public class StatisticServiceImp implements StatisticService{
+
     @Autowired
     private RideService rideService;
 

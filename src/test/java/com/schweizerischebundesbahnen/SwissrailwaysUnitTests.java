@@ -35,6 +35,9 @@ import org.junit.runners.Suite;
         MessageServiceMockTest.class,
         StationServiceMockTest.class,
         ChatServiceMockTest.class,
-        TicketServiceMockTest.class})
+        TicketServiceMockTest.class,
+        SeatServiceMockTest.class,
+        UserChatServiceMockTest.class
+     })
 public class SwissrailwaysUnitTests {
 }

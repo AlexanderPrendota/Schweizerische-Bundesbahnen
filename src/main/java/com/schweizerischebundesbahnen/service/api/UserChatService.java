@@ -21,4 +21,6 @@ public interface UserChatService {
 
     void delete(UserChat chat);
 
+    UserChat save(UserChat userChat);
+
 }

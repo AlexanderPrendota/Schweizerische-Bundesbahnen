@@ -2,7 +2,6 @@ package com.schweizerischebundesbahnen.junittest.testmock;
 
 import com.schweizerischebundesbahnen.model.Train;
 import com.schweizerischebundesbahnen.repository.TrainRepository;
-import com.schweizerischebundesbahnen.service.api.TrainService;
 import com.schweizerischebundesbahnen.service.imp.TrainServiceImp;
 import org.junit.Before;
 import org.junit.Test;
@@ -34,6 +33,7 @@ public class TrainServiceMockTest {
     public void setUp() {
         train = new Train();
         train.setId("MockTrain");
+
     }
 
     @Test

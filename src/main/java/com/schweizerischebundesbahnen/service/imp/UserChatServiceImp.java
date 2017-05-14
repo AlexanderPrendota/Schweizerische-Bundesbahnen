@@ -86,4 +86,14 @@ public class UserChatServiceImp implements UserChatService {
     public void delete(UserChat chat) {
         userChatRepository.delete(chat);
     }
+
+    /**
+     * save the userchat entity
+     * @param userChat
+     * @return entity userchat
+     */
+    @Override
+    public UserChat save(UserChat userChat) {
+        return userChatRepository.save(userChat);
+    }
 }
