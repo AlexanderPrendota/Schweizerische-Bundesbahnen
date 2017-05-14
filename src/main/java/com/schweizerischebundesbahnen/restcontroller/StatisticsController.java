@@ -32,6 +32,6 @@ public class StatisticsController {
 
     @RequestMapping(value = "cash",method = RequestMethod.GET)
     public ResponseEntity<?> getMoneyStatisticsByDate(){
-        return ResponseEntity.ok(statisticService.getMoneyStatictics());
+        return ResponseEntity.ok(statisticService.getMoneyStatistics());
     }
 }

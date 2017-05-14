@@ -7,7 +7,7 @@ import java.util.Map;
  * Created by aleksandrprendota on 14.05.17.
  */
 public interface StatisticService {
-    List<Map> getMoneyStatictics();
+    List<Map> getMoneyStatistics();
     List<Map> getBoughtStationDepartureStatistics();
     List<Map> getBoughtStationArrivalStatistics();
 }

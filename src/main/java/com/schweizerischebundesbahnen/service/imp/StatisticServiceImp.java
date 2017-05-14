@@ -1,10 +1,8 @@
 package com.schweizerischebundesbahnen.service.imp;
 
 import com.schweizerischebundesbahnen.model.Ride;
-import com.schweizerischebundesbahnen.repository.RideRepository;
 import com.schweizerischebundesbahnen.service.api.PriceService;
 import com.schweizerischebundesbahnen.service.api.RideService;
-import com.schweizerischebundesbahnen.service.api.StationService;
 import com.schweizerischebundesbahnen.service.api.StatisticService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,7 +22,7 @@ public class StatisticServiceImp implements StatisticService{
     private PriceService priceService;
 
     @Override
-    public List<Map> getMoneyStatictics(){
+    public List<Map> getMoneyStatistics(){
         List<Ride> rides = rideService.findRidesOrderByTimeDeparture();
         List<Map> statistics = new ArrayList<>();
         List<String> dates = new ArrayList<>();
