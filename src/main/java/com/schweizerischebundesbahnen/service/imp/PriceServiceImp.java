@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
  * Created by aleksandrprendota on 12.05.17.
  */
 @Service
-@ConfigurationProperties(prefix="coefficient")
 public class PriceServiceImp implements PriceService {
 
     private static Double PRICE = 10.3;
