@@ -109,13 +109,6 @@ public class ScheduleControllerTest {
     }
 
     @Test
-    public void testGetTodaysSchedule(){
-        when(scheduleService.findByTimeDepartureMoreThan(new Date())).thenReturn(new ArrayList<Schedule>());
-        scheduleController.getTodaysTimeSchedule();
-        verify(scheduleService).findByTimeDepartureMoreThan(new Date());
-    }
-
-    @Test
     public void testAddTheScheduleMock(){
         when(trainService.findTrainByName("T")).thenReturn(train);
         when(stationService.findStationByName("Basel")).thenReturn(stationArrival);
