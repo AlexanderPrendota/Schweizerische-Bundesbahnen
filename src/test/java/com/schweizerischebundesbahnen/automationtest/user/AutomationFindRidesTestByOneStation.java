@@ -52,7 +52,7 @@ public class AutomationFindRidesTestByOneStation {
 
 
         webDriverWait.until(ExpectedConditions
-                .presenceOfElementLocated(By.id("1011")));
+                .presenceOfElementLocated(By.id("1699")));
 
 
     }

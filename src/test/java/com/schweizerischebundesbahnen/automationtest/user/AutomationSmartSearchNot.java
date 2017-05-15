@@ -48,7 +48,7 @@ public class AutomationSmartSearchNot {
 
         webDriverWait.until(ExpectedConditions
                 .presenceOfElementLocated(By.id("arrival")))
-                .sendKeys("Birsfelden");
+                .sendKeys("Samara");
 
         webDriverWait.until(ExpectedConditions
                 .presenceOfElementLocated(By.id("datepicker")))

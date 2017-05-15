@@ -42,7 +42,7 @@ public class AutomationFindStationOnAdminPage {
                 .click();
 
         webDriverWait.until(ExpectedConditions
-                .presenceOfElementLocated(By.xpath("//td[text()='Aarau']")));
+                .presenceOfElementLocated(By.xpath("//td[text()='Yaroslavl']")));
 
 
     }

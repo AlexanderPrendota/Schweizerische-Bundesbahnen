@@ -50,7 +50,7 @@ public class AutomationMakePurchaseByOneStation {
                 .click();
 
         webDriverWait.until(ExpectedConditions
-                .presenceOfElementLocated(By.id("1011")))
+                .presenceOfElementLocated(By.id("1699")))
                 .click();
 
         webDriverWait.until(ExpectedConditions

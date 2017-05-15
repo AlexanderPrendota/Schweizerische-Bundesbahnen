@@ -37,19 +37,20 @@ public class StationsController {
      * Create a station on save one to databese
      * Only user with role 'ADMIN' can to what
      * @param stationname
-     * @return 200 and new Station entity
+     * @param x_cor
+     *@param y_cor @return 200 and new Station entity
      */
 
     @PreAuthorize("hasAuthority('ADMIN')")
     @RequestMapping(value = "/add/{stationname}/x_cor/{x_cor}/y_cor/{y_cor}", method = RequestMethod.POST)
     public ResponseEntity<?> addNewStation(@PathVariable String stationname,
-                                           @PathVariable String x_cor,
-                                           @PathVariable String y_cor){
+                                           @PathVariable Integer x_cor,
+                                           @PathVariable Integer y_cor){
         Integer x;
         Integer y;
         try {
-            x = Integer.valueOf(x_cor);
-            y = Integer.valueOf(y_cor);
+            x = x_cor;
+            y = y_cor;
         } catch (Exception e){
             return new ResponseEntity<>("Please add correct integer number ", HttpStatus.BAD_REQUEST);
         }

@@ -51,5 +51,6 @@ public class PriceControllerTest {
         when(priceService.getPrice(stationDeparture,stationArrival)).thenReturn(1.414);
         priceController.getRidePrice("Yaroslavl","Moscow");
         verify(priceService).getPrice(stationDeparture,stationArrival);
+
     }
 }
