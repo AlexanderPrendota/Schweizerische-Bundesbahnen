@@ -6,8 +6,7 @@ import com.schweizerischebundesbahnen.intergation.testcontrollers.SecurityContro
 import com.schweizerischebundesbahnen.intergation.testcontrollers.ViewControllerTest;
 import com.schweizerischebundesbahnen.junittest.testcontrollersmock.*;
 import com.schweizerischebundesbahnen.junittest.testmock.*;
-import com.schweizerischebundesbahnen.junittest.testservice.*;
-import com.schweizerischebundesbahnen.restcontroller.*;
+import com.schweizerischebundesbahnen.intergation.testservice.*;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 

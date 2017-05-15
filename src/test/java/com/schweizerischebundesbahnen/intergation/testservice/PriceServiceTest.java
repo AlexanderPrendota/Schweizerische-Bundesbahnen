@@ -1,4 +1,4 @@
-package com.schweizerischebundesbahnen.junittest.testservice;
+package com.schweizerischebundesbahnen.intergation.testservice;
 
 
 import com.schweizerischebundesbahnen.model.PointDTO;
@@ -12,8 +12,6 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-
-import java.text.DecimalFormat;
 
 /**
  * Created by aleksandrprendota on 12.05.17.

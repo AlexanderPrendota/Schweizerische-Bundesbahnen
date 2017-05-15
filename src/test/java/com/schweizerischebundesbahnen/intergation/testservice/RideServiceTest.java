@@ -1,4 +1,4 @@
-package com.schweizerischebundesbahnen.junittest.testservice;
+package com.schweizerischebundesbahnen.intergation.testservice;
 
 import com.schweizerischebundesbahnen.model.Ride;
 import com.schweizerischebundesbahnen.model.Station;
@@ -8,7 +8,6 @@ import com.schweizerischebundesbahnen.service.api.RideService;
 import com.schweizerischebundesbahnen.service.api.StationService;
 import com.schweizerischebundesbahnen.service.api.TicketService;
 import com.schweizerischebundesbahnen.service.api.TrainService;
-import com.sun.tools.javac.api.ClientCodeWrapper;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -18,7 +17,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by aleksandrprendota on 04.04.17.

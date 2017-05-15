@@ -1,4 +1,4 @@
-package com.schweizerischebundesbahnen.junittest.testservice;
+package com.schweizerischebundesbahnen.intergation.testservice;
 
 import com.schweizerischebundesbahnen.service.api.StatisticService;
 import org.junit.Assert;
