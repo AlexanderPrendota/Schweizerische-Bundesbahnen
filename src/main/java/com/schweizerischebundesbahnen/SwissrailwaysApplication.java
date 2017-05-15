@@ -10,7 +10,6 @@ import org.springframework.context.annotation.aspectj.EnableSpringConfigured;
 @EnableSpringConfigured
 @EnableAutoConfiguration
 @SpringBootApplication
-
 public class SwissrailwaysApplication {
 
 	public static void main(String[] args) throws Exception{

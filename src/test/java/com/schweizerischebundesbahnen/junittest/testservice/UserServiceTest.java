@@ -67,6 +67,8 @@ public class UserServiceTest {
     public void checkSaveUser() {
         User user = new User();
         user.setEmail("TEST@TEST");
+        user.setFirstname("Tester");
+        user.setLastname("Tester's");
         user.setPassword("TEST");
         userService.save(user);
         Assert.assertEquals(userService.findUserByEmail("TEST@TEST").getEmail(),"TEST@TEST");

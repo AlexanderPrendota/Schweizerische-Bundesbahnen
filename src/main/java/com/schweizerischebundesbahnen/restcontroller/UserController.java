@@ -2,7 +2,9 @@ package com.schweizerischebundesbahnen.restcontroller;
 
 import com.schweizerischebundesbahnen.model.Ticket;
 import com.schweizerischebundesbahnen.model.User;
+import com.schweizerischebundesbahnen.model.UserChat;
 import com.schweizerischebundesbahnen.service.api.TicketService;
+import com.schweizerischebundesbahnen.service.api.UserChatService;
 import com.schweizerischebundesbahnen.service.api.UserService;
 import lombok.extern.log4j.Log4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +33,9 @@ public class UserController {
 
     @Autowired
     private TicketService ticketService;
+
+    @Autowired
+    private UserChatService userChatService;
     /**
      * Delete user entity by email
      * @param email field from user entity
@@ -43,14 +48,15 @@ public class UserController {
             return new ResponseEntity<>("Incorrect user email", HttpStatus.BAD_REQUEST);
         }
         List<Ticket> userTickets = ticketService.findTicketsByUser(user);
+        List<UserChat> userChats = userChatService.findChatsByUser(user);
 
-        if (!email.equals("") && userTickets.size() == 0) {
+        if (!email.equals("") && userTickets.size() == 0 && userChats.size() == 0) {
             userService.delete(user);
             log.info("User " + email + " was deleted" );
             return ResponseEntity.ok("User was deleted");
 
         } else {
-            return new ResponseEntity<>("We cann't delete this user. He has a tickets", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("We cann't delete this user :(", HttpStatus.BAD_REQUEST);
         }
     }
 
