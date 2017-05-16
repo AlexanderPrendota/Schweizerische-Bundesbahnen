@@ -31,6 +31,7 @@ public class ScheduleControllerTest {
     private Station stationArrival;
     private Schedule schedule;
     private Train train;
+    private Date date;
 
     @Mock
     private TrainService trainService;
@@ -66,8 +67,7 @@ public class ScheduleControllerTest {
         schedule.setStationArrival(stationArrival);
         schedule.setStationDeparture(stationDeparture);
 
-
-
+        date = new Date();
     }
 
     @Test
@@ -103,9 +103,9 @@ public class ScheduleControllerTest {
 
     @Test
     public void testGetFutureSchedule(){
-        when(scheduleService.findByTimeDepartureMoreThan(new Date())).thenReturn(new ArrayList<Schedule>());
+        when(scheduleService.findByTimeDepartureMoreThan(date)).thenReturn(new ArrayList<Schedule>());
         scheduleController.getFutureStation();
-        verify(scheduleService).findByTimeDepartureMoreThan(new Date());
+        verify(scheduleService).findByTimeDepartureMoreThan(date);
     }
 
     @Test

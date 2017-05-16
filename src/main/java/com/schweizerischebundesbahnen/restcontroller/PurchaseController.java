@@ -1,8 +1,6 @@
 package com.schweizerischebundesbahnen.restcontroller;
 
 import com.google.zxing.WriterException;
-import com.schweizerischebundesbahnen.exceptions.PurchaseAlreadyExistExceprion;
-import com.schweizerischebundesbahnen.exceptions.PurchaseTimeOutException;
 import com.schweizerischebundesbahnen.model.*;
 import com.schweizerischebundesbahnen.service.api.RideService;
 import com.schweizerischebundesbahnen.service.api.SeatService;
@@ -21,7 +19,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.mail.MessagingException;
-import javax.persistence.criteria.CriteriaBuilder;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
