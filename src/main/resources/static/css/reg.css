@@ -233,7 +233,7 @@ input::-webkit-input-placeholder {
     background-color: #3f3e3b; color: #fff;
 }
 
-#chartdiv1, #chartdiv2 {
+#chartdiv1, #chartdiv2, #chartdiv3{
     width : 1000px;
     height  : 500px;
     background-color: #3f3e3b; color: #fff;

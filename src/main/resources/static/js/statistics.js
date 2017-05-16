@@ -11,6 +11,7 @@ function showStatistics() {
     $("#chartdiv").remove();
     $("#chartdiv1").remove();
     $("#chartdiv2").remove();
+    $("#chartdiv3").remove();
     $("#fon").remove();
     $("#source").empty();
     $("#logo").append(
@@ -23,6 +24,7 @@ function showStatistics() {
     );
     statisticBoughtByStationDeparture();
     statisticBoughtByStationArrival();
+    attendanceStatistics();
     moneyStatistics();
 }
 
@@ -61,7 +63,7 @@ function statisticBoughtByStationDeparture() {
 
         },
         error: function () {
-            swal("Oops...", "Some problems with getting train :( Please try later", "error");
+            swal("Oops...", "Some problems with getting station departure statistics :( Please try later", "error");
         }
     });
 }
@@ -101,7 +103,7 @@ function statisticBoughtByStationArrival() {
 
         },
         error: function () {
-            swal("Oops...", "Some problems with getting train :( Please try later", "error");
+            swal("Oops...", "Some problems with getting station arrival statistics :( Please try later", "error");
         }
     });
 }
@@ -207,7 +209,56 @@ function moneyStatistics() {
 
         },
         error: function () {
-            swal("Oops...", "Some problems with getting train :( Please try later", "error");
+            swal("Oops...", "Some problems with getting money statistics :( Please try later", "error");
+        }
+    });
+}
+
+function attendanceStatistics() {
+    $.ajax({
+        type: "GET",
+        url : '/attendance',
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function (response) {
+            $("#source").append(
+                '<div class="container">' +
+                '<div class="panel-heading">' +
+                '<div class="panel-title text-center">' +
+                '<h3 class="title">Attendance statistics</h3>' +
+                '</div>' +
+                '</div></div>'
+            );
+            $('#source').append('<div class="center" id="chartdiv3"></div>');
+            var chart = AmCharts.makeChart("chartdiv3", {
+                "theme": "chalk",
+                "type": "serial",
+                "dataDateFormat": "YYYY-MM-DD",
+                "startDuration": 2,
+                "dataProvider": response,
+                "graphs": [{
+                    "balloonText": "[[category]]: <b>[[value]]</b>",
+                    "fillAlphas": 5,
+                    "lineAlpha":1,
+                    "type": "column",
+                    "valueField": "count"
+                }],
+                "depth3D": 40,
+                "angle": 20,
+                "chartCursor": {
+                    "categoryBalloonEnabled": false,
+                    "cursorAlpha": 0,
+                    "zoomable": false
+                },
+                "categoryField": "date",
+                "categoryAxis": {
+                    "gridPosition": "start",
+                    "labelRotation": 90
+                }
+            });
+        },
+        error: function () {
+            swal("Oops...", "Some problems with getting attendance :( Please try later", "error");
         }
     });
 }

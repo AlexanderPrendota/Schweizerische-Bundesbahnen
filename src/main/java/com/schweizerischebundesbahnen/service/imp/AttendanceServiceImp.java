@@ -6,7 +6,9 @@ import com.schweizerischebundesbahnen.service.api.AttendanceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by aleksandrprendota on 16.05.17.
@@ -16,6 +18,7 @@ public class AttendanceServiceImp implements AttendanceService {
 
     @Autowired
     private AttendanceRepository attendanceRepository;
+
     @Override
     public Attendance getAttendanceById(Long id) {
         return attendanceRepository.findOne(id);
@@ -44,5 +47,12 @@ public class AttendanceServiceImp implements AttendanceService {
     @Override
     public Attendance findAttendanceByDate(Date date) {
         return attendanceRepository.findByDate(date);
+    }
+
+    @Override
+    public List<Attendance> findAllAttendance() {
+        List<Attendance> attendances = new ArrayList<>();
+        attendanceRepository.findAll().forEach(attendances::add);
+        return attendances;
     }
 }
