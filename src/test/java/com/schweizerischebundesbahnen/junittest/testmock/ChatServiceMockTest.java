@@ -2,7 +2,6 @@ package com.schweizerischebundesbahnen.junittest.testmock;
 
 import com.schweizerischebundesbahnen.model.Chat;
 import com.schweizerischebundesbahnen.repository.ChatRepository;
-import com.schweizerischebundesbahnen.repository.StationRepository;
 import com.schweizerischebundesbahnen.service.imp.ChatServiceImp;
 import org.junit.Before;
 import org.junit.Test;

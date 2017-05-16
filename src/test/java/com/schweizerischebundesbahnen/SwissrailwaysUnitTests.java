@@ -49,7 +49,9 @@ import org.junit.runners.Suite;
         SeatControllerTest.class,
         NotificationControllerTest.class,
         TrainControllerTest.class,
-        UserControllerTest.class
+        UserControllerTest.class,
+        AttendanceServiceTestMock.class,
+        AttendanceControllerTest.class
      })
 public class SwissrailwaysUnitTests {
 }
