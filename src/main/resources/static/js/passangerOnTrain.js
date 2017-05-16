@@ -78,9 +78,9 @@ function getPassangerOnTrain() {
                 $("#risestable")
                     .append("<thead>" +
                         "<tr class='tab'>" +
-                        "<th class='tab center'>Email</th>" +
-                        "<th class='tab center'>First Name</th>" +
-                        "<th class='tab center'>Last Name</th>" +
+                        "<th class='tab center'><h4>Email</h4></th>" +
+                        "<th class='tab center'><h4>First Name</h4></th>" +
+                        "<th class='tab center'><h4>Last Name</h4></th>" +
                         "</tr>"
                         + "</thead>"
                         + "<tbody>"

@@ -43,13 +43,9 @@ public class AutomationLogoutTest {
                 .click();
 
         webDriverWait.until(ExpectedConditions
-                .presenceOfElementLocated(By.xpath("//div[text()='You have been logged out']")))
-                .click();
-
+                .presenceOfElementLocated(By.xpath("//div[text()='You have been logged out']")));
 
     }
-
-
 
     @After
     public void closeDriver() throws Exception {

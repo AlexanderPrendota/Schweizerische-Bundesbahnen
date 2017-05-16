@@ -150,6 +150,7 @@ function goSmartSearch(event) {
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         success: function (response) {
+            var list = [];
             if (response.length === 0 || response == null){
                 $("#mainttable").css("visibility","hidden");
                 $("#lose").append("<div class='container'>" +
@@ -181,6 +182,7 @@ function goSmartSearch(event) {
                             $("#risestable")
                                 .append('<tr class="blank_row"><td><h5>'+ countOfWay+'.</h5></td><td></td><td></td><td></td><td></td></tr>');
                             countOfWay++;
+                            list.push(countOfWay + ".");
                             $("#risestable")
                                 .append("<tr id='"+theFirstsWay.id+"' class='tab'>" +
                                     "<td class='tab'>" + theFirstsWay.train.id + "</td>" +
@@ -188,6 +190,7 @@ function goSmartSearch(event) {
                                     "<td class='tab'>" +  new Date(theFirstsWay.timeDeparture).toLocaleString() + "</td>" +
                                     "<td class='tab'>" + theFirstsWay.stationArrival.stationName + "</td>"
                                     + "<td class='tab'>" + new Date(theFirstsWay.timeArrival).toLocaleString() + "</td>" + "</tr><hr/>");
+                            list.push(theFirstsWay);
                         }
                         $("#risestable")
                             .append("<tr id='"+response[i].id+"' class='tab'>" +
@@ -196,11 +199,16 @@ function goSmartSearch(event) {
                                 "<td class='tab'>" +  new Date(response[i].timeDeparture).toLocaleString() + "</td>" +
                                 "<td class='tab'>" + response[i].stationArrival.stationName + "</td>"
                                 + "<td class='tab'>" + new Date(response[i].timeArrival).toLocaleString() + "</td>" + "</tr><hr/>");
+                        list.push(response[i]);
                     }
 
                 }
                 $("#risestable")
                     .append("</tbody></table>");
+
+
+                localStorage.setItem('listofschedules', JSON.stringify(list));
+                console.log(list);
                 toPurchase();
             }
         },

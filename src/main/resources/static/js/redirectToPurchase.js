@@ -10,7 +10,8 @@ function toPurchase() {
         var tableData = $(this).children("td").map(function() {
             return $(this).text();
         }).get();
-        if (tableData.length == 0){
+        console.log(tableData);
+        if (tableData.length < 1){
             return '';
         }
         var sendData = {

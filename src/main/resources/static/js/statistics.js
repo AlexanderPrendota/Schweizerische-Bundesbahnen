@@ -22,10 +22,15 @@ function showStatistics() {
         '</div>' +
         '</div></div>'
     );
-    statisticBoughtByStationDeparture();
-    statisticBoughtByStationArrival();
-    attendanceStatistics();
-    moneyStatistics();
+
+    var promise = new Promise(function(resolve, reject) {
+    });
+
+    promise.then(statisticBoughtByStationDeparture());
+    promise.then(statisticBoughtByStationArrival());
+    promise.then(attendanceStatistics());
+    promise.then(moneyStatistics());
+
 }
 
 function statisticBoughtByStationDeparture() {
