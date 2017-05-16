@@ -29,6 +29,7 @@ import org.junit.runners.Suite;
         SeatServiceTest.class,
         MessageServiceTest.class,
         PriceServiceTest.class,
+        AttendanceServiceTest.class,
         DIServiceTests.class,
         DIDaoTest.class,
         UserServiceMockTest.class,

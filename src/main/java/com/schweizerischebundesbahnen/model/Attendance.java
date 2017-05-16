@@ -19,7 +19,7 @@ public class Attendance {
     @Column(name = "ATTENDANCE_ID", nullable = false)
     public long id;
 
-    @Column(name = "DATE")
+    @Column(name = "DATE", unique = true)
     @Temporal(TemporalType.DATE)
     public Date date;
 

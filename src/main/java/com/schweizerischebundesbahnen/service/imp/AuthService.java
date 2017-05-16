@@ -2,6 +2,7 @@ package com.schweizerischebundesbahnen.service.imp;
 
 import com.schweizerischebundesbahnen.model.User;
 import com.schweizerischebundesbahnen.repository.UserRepository;
+import com.schweizerischebundesbahnen.service.api.AttendanceService;
 import lombok.extern.log4j.Log4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.InternalAuthenticationServiceException;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -27,6 +29,9 @@ public class AuthService implements UserDetailsService {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private AttendanceService attendanceService;
 
     /**
      * @param username - user Email
@@ -52,6 +57,7 @@ public class AuthService implements UserDetailsService {
             loadedUser = new org.springframework.security.core.userdetails.User(
                     client.getEmail(), client.getPassword(),
                     client.getRoles());
+            attendanceService.updateAttendance(new Date());
         } catch (Exception repositoryProblem) {
             throw new InternalAuthenticationServiceException(repositoryProblem.getMessage(), repositoryProblem);
         }

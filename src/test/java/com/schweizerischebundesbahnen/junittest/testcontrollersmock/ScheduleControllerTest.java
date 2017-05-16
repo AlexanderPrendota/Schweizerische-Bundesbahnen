@@ -46,7 +46,7 @@ public class ScheduleControllerTest {
     private ScheduleController scheduleController;
 
     @Before
-    public void setup(){
+    public void setup() {
 
         stationDeparture = new Station();
         stationDeparture.setStationName("Yaroslavl");
@@ -71,7 +71,7 @@ public class ScheduleControllerTest {
     }
 
     @Test
-    public void testGetScheduleByStationDeparture() throws Exception{
+    public void testGetScheduleByStationDeparture() throws Exception {
         when(stationService.findStationByName("Yaroslavl")).thenReturn(stationDeparture);
         when(scheduleService.findByUserStation(stationDeparture)).thenReturn(new ArrayList<Schedule>());
         scheduleController.getListOfScheduleByStationDeparture("Yaroslavl");
@@ -81,35 +81,29 @@ public class ScheduleControllerTest {
     }
 
     @Test
-    public void testFindTransferSchedule() throws Exception{
+    public void testFindTransferSchedule() throws Exception {
         when(stationService.findStationByName("Yaroslavl")).thenReturn(stationDeparture);
         when(stationService.findStationByName("Basel")).thenReturn(stationArrival);
-        when(scheduleService.findTransferSchedule(stationDeparture,stationArrival, new Date(1496260800000L)))
+        when(scheduleService.findTransferSchedule(stationDeparture, stationArrival, new Date(1496260800000L)))
                 .thenReturn(new ArrayList<Schedule>());
 
-        scheduleController.getTransferSchedule("Yaroslavl","Basel","2017-06-01");
+        scheduleController.getTransferSchedule("Yaroslavl", "Basel", "2017-06-01");
 
-        verify(scheduleService).findTransferSchedule(stationDeparture,stationArrival, new Date(1496260800000L));
+        verify(scheduleService).findTransferSchedule(stationDeparture, stationArrival, new Date(1496260800000L));
         verify(stationService).findStationByName(stationDeparture.getStationName());
         verify(stationService).findStationByName(stationArrival.getStationName());
     }
 
     @Test
-    public void testGetAllScheduleControllerMock(){
+    public void testGetAllScheduleControllerMock() {
         when(scheduleService.findAllSchedules()).thenReturn(new ArrayList<Schedule>());
         scheduleController.getAllSchedules();
         verify(scheduleService).findAllSchedules();
     }
 
-    @Test
-    public void testGetFutureSchedule(){
-        when(scheduleService.findByTimeDepartureMoreThan(date)).thenReturn(new ArrayList<Schedule>());
-        scheduleController.getFutureStation();
-        verify(scheduleService).findByTimeDepartureMoreThan(date);
-    }
 
     @Test
-    public void testAddTheScheduleMock(){
+    public void testAddTheScheduleMock() {
         when(trainService.findTrainByName("T")).thenReturn(train);
         when(stationService.findStationByName("Basel")).thenReturn(stationArrival);
         when(stationService.findStationByName("Yaroslavl")).thenReturn(stationDeparture);
@@ -120,7 +114,7 @@ public class ScheduleControllerTest {
     }
 
     @Test
-    public void testUpdateTheScheduleMock(){
+    public void testUpdateTheScheduleMock() {
         when(scheduleService.findScheduleById(17L)).thenReturn(schedule);
         when(trainService.findTrainByName("T")).thenReturn(train);
         when(stationService.findStationByName("Basel")).thenReturn(stationArrival);
@@ -133,5 +127,14 @@ public class ScheduleControllerTest {
 
     }
 
+    @Test
+    public void testGetTimeScheduleScheduleByStationDeparture() throws Exception {
+        when(stationService.findStationByName("Yaroslavl")).thenReturn(stationDeparture);
+        when(scheduleService.findByUserStation(stationDeparture)).thenReturn(new ArrayList<Schedule>());
+        scheduleController.getListOfTimeScheduleByStationDeparture("Yaroslavl");
+        verify(scheduleService).findByUserStation(stationDeparture);
+        verify(stationService).findStationByName(stationDeparture.getStationName());
 
+
+    }
 }
