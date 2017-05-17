@@ -23,6 +23,6 @@ public class AttendanceController {
 
     @RequestMapping(method = RequestMethod.GET)
     public List<Attendance> getAttendanceStatistic(){
-        return attendanceService.findAllAttendance();
+        return attendanceService.findSortedAttendance();
     }
 }

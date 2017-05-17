@@ -55,4 +55,9 @@ public class AttendanceServiceImp implements AttendanceService {
         attendanceRepository.findAll().forEach(attendances::add);
         return attendances;
     }
+
+    @Override
+    public List<Attendance> findSortedAttendance() {
+        return attendanceRepository.findByOrderByDate();
+    }
 }

@@ -28,8 +28,8 @@ public class AttendanceControllerTest {
 
     @Test
     public void testAttendanceStatisticMock(){
-        when(attendanceService.findAllAttendance()).thenReturn(new ArrayList<Attendance>());
+        when(attendanceService.findSortedAttendance()).thenReturn(new ArrayList<Attendance>());
         attendanceController.getAttendanceStatistic();
-        verify(attendanceService).findAllAttendance();
+        verify(attendanceService).findSortedAttendance();
     }
 }

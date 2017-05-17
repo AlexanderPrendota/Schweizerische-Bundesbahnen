@@ -20,5 +20,7 @@ public interface AttendanceService {
 
     List<Attendance> findAllAttendance();
 
+    List<Attendance> findSortedAttendance();
+
 
 }

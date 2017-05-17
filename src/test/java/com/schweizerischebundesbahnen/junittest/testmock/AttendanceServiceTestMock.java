@@ -71,4 +71,11 @@ public class AttendanceServiceTestMock {
         attendanceService.findAttendanceByDate(date);
         verify(attendanceRepository).findByDate(date);
     }
+
+    @Test
+    public void testFindSortedAttendanceMock(){
+        when(attendanceRepository.findByOrderByDate()).thenReturn(new ArrayList<Attendance>());
+        attendanceService.findSortedAttendance();
+        verify(attendanceRepository).findByOrderByDate();
+    }
 }

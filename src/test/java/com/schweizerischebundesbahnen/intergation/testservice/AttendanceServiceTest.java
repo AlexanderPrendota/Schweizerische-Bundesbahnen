@@ -53,4 +53,10 @@ public class AttendanceServiceTest {
         Assert.assertTrue(attendances.size() > 0);
     }
 
+    @Test
+    public void testFindSortedAttendance(){
+        List<Attendance> attendances = attendanceService.findSortedAttendance();
+        Assert.assertTrue(attendances.size() > 0);
+    }
+
 }
