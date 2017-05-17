@@ -408,7 +408,34 @@ function setSeatSecond(button) {
 }
 
 function buyTransferRide() {
+    var tripValue = localStorage.getItem('trip');
+    var trip = JSON.parse(tripValue);
+    var carriage = $('#carriage').val();
+    var number = $('#seat').val();
+    var carriage1 = $('#carriage1').val();
+    var number1 = $('#seat1').val();
     
+    $.ajax({
+        type: "POST",
+        url : '/purchase/multi/c/' + carriage + '/n/' + number + '/c1/' + carriage1 + '/n1/' + number1,
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        data: JSON.stringify(trip),
+        success: function (response) {
+            swal({
+                title: "You bought the ride!",
+                text: "We've already sent a ticket to your email!",
+                type: "success",
+                confirmButtonColor: "#77dd55",
+                confirmButtonText: "OK!",
+                closeOnConfirm: false }, function(){
+                window.location = "/account";
+            });
+        },
+        error: function (error) {
+            swal("Oops...", error.responseText, "error");
+        }
+    });
 }
 
 

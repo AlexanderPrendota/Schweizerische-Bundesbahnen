@@ -13,19 +13,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.jws.soap.SOAPBinding;
 import javax.mail.MessagingException;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Created by aleksandrprendota on 30.03.17.
@@ -91,7 +86,7 @@ public class PurchaseController {
         int seatNumber = Integer.parseInt(number);
         int cabineNumber = Integer.parseInt(carriage);
 
-        if (seatNumber <= 0 && cabineNumber <= 0){
+        if (seatNumber <= 0 || cabineNumber <= 0){
             return new ResponseEntity<>("Please choose another seats!"
                     ,HttpStatus.BAD_REQUEST);
         }
@@ -124,6 +119,85 @@ public class PurchaseController {
         }
     }
 
+    @RequestMapping(value = "/multi/c/{carriage}/n/{number}/c1/{carriage1}/n1/{number1}",method = RequestMethod.POST)
+    public ResponseEntity<?> makeMultiPurchase(Authentication auth,
+                                               @RequestBody List<Schedule> schedules,
+                                               @PathVariable String carriage,
+                                               @PathVariable String number,
+                                               @PathVariable String carriage1,
+                                               @PathVariable String number1) throws IOException, MessagingException, WriterException {
+
+        User currentUser = userService.findUserByEmail(auth.getName());
+        // Try to find the same rides from user
+
+        int alreadyExistRide = 0;
+
+        for (Schedule schedule : schedules) {
+
+            // if time to departure > 10 min throw PurchaseTimeOutException
+            if (schedule.getTimeDeparture().getTime()/1000L + 600L < UNIX_TIME ) {
+                log.warn("The Unsuccessfully purchase 'cause time departure less than 10 minutes");
+                return new ResponseEntity<>("Time Departure less than 10 minutes"
+                        ,HttpStatus.BAD_REQUEST);
+            }
+        }
+
+        // seat validation
+        if (!checkValidSeat(carriage,number,schedules.get(0).getTrain(),schedules.get(0).getTimeDeparture())){
+            return new ResponseEntity<>("Please choose another seats! on train:" + schedules.get(0).getTrain().getId()
+                    ,HttpStatus.BAD_REQUEST);
+        }
+
+
+        // seat validation
+        if (!checkValidSeat(carriage1,number1,schedules.get(1).getTrain(),schedules.get(1).getTimeDeparture())){
+            return new ResponseEntity<>("Please choose another seats! on train:" + schedules.get(1).getTrain().getId()
+                    ,HttpStatus.BAD_REQUEST);
+        }
+
+
+        List<Ticket> usersTickets = ticketService.findTicketsByUser(currentUser);
+        int seatNumber = Integer.parseInt(number);
+        int cabineNumber = Integer.parseInt(carriage);
+        int seatNumber1 = Integer.parseInt(number1);
+        int cabineNumber1 = Integer.parseInt(carriage1);
+
+        // seats number validation
+        if (seatNumber <= 0 || cabineNumber <= 0 || seatNumber1 <= 0 || cabineNumber1 <= 0){
+            return new ResponseEntity<>("Please choose another seats!"
+                    ,HttpStatus.BAD_REQUEST);
+        }
+
+        // Only 2 ride in ticket!
+        Seat seat = seatService.findByTrainAndNumberAndCarriage(schedules.get(0).getTrain(), seatNumber, cabineNumber);
+        Seat seat1 = seatService.findByTrainAndNumberAndCarriage(schedules.get(1).getTrain(), seatNumber, cabineNumber);
+
+        if (usersTickets.size() == 0) {
+
+            List<Ride> rides = buyTwoRide(schedules,seat,seat1,currentUser);
+            return ResponseEntity.ok(rides);
+        } else {
+            for (Schedule schedule : schedules) {
+                for (Ticket usersTicket : usersTickets) {
+                    Ride tmpRide = rideService.findByTicket(usersTicket);
+                    if((tmpRide.getTimeDeparture().getTime() / 1000L == schedule.getTimeDeparture().getTime() / 1000L)) {
+                        if  ((tmpRide.getTrain().getId()).equals(schedule.getTrain().getId())){
+                            alreadyExistRide += 1;
+                            log.warn("User = " + auth.getName() + " has already got the ride = " + schedule.getId());
+                        }
+                    }
+                }
+            }
+            // If user has got 2 equal ride — PurchaseAlreadyExistExceprion
+            if (alreadyExistRide > 0){
+                return new ResponseEntity<>("User has already got ride!",
+                        HttpStatus.BAD_REQUEST);
+            } else {
+                List<Ride> rides = buyTwoRide(schedules,seat,seat1,currentUser);
+                return ResponseEntity.ok(rides);
+            }
+        }
+    }
 
     private Ride buyTheRide(User currentUser, Schedule schedule, Seat seat){
 
@@ -198,7 +272,21 @@ public class PurchaseController {
 
     }
 
-
+    private List<Ride> buyTwoRide(List<Schedule> schedules, Seat seat1, Seat seat2 , User user) throws IOException, MessagingException, WriterException {
+        List<Ride> rides = new ArrayList<>();
+        // make first ride
+        Ride rideOne;
+        rideOne = buyTheRide(user,schedules.get(0), seat1);
+        sendBoughtTicket(rideOne,user);
+        // make second ride
+        Ride rideTwo;
+        rideTwo = buyTheRide(user,schedules.get(1), seat2);
+        sendBoughtTicket(rideTwo,user);
+        // send ride to client
+        rides.add(rideOne);
+        rides.add(rideTwo);
+        return rides;
+    }
 }
 
 

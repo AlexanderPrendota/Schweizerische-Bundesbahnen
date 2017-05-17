@@ -131,6 +131,12 @@ input::-webkit-input-placeholder {
 #fon, #imagegroup{
     text-align: center;
 }
+#wait{
+    text-align: center;
+    border-radius: 20px;
+    display: none;
+    z-index: 10;
+}
 #train, #bag{
     position: absolute;
     top: 120px;
