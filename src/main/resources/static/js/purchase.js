@@ -46,7 +46,6 @@ function buyRide() {
     var trip = JSON.parse(tripValue);
     var carriage = $('#carriage');
     var number = $('#seat');
-
     $.ajax({
         type: "POST",
         url : '/purchase/ride/' + trip.id + '/carriage/' + carriage.val() + '/seat/' + number.val(),

@@ -32,7 +32,6 @@
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li><a href="home">Home</a></li>
-                        <li><a href="http://localhost:16170/helloworld/">Timetable</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="/account">Account</a></li>
@@ -72,13 +71,13 @@
                 <span class="input-group-addon"><i class="fa fa-calendar" aria-hidden="true"></i></span>
                 <input type="text" name="date" id="birthday" class="form-control"  readonly="readonly"/>
             </div>
+            <div><h4 class="name1">Train</h4></div>
             Carriage:
             <div class="input-group way">
                 <span class="input-group-addon"><i class="fa fa-tag" aria-hidden="true"></i></span>
                 <select id="carriage" class="form-control selector">
                 </select>
             </div>
-
             Seat:
             <div class="input-group way">
                 <span class="input-group-addon"><i class="fa fa-ticket" aria-hidden="true" style="float: right;"></i></span>
@@ -108,7 +107,7 @@
             <div class="input-group way">
                 <input class="btn btn-info" id="showseats" onclick="showFreeSeatsFirstWay();" type="submit" value="Show seats"/>
             </div>
-
+            <div><h4 class="name2">Train</h4></div>
             Carriage:
             <div class="input-group way">
                 <span class="input-group-addon"><i class="fa fa-tag" aria-hidden="true"></i></span>
@@ -213,6 +212,7 @@
         $("#time_departure").html(new Date(trip[0].timeDeparture).toLocaleString());
         $("#station_arrival").html(trip[0].stationArrival.stationName);
         $("#time_arrival").html(new Date(trip[0].timeArrival).toLocaleString());
+        $(".name1").html("Train: " + trip[0].train.id);
 
         $(".setid2").attr("id", trip[1].id);
         $("#train_number2").html( trip[1].train.id);
@@ -220,6 +220,7 @@
         $("#time_departure2").html(new Date(trip[1].timeDeparture).toLocaleString());
         $("#station_arrival2").html(trip[1].stationArrival.stationName);
         $("#time_arrival2").html(new Date(trip[1].timeArrival).toLocaleString());
+        $(".name2").html("Train: " + trip[1].train.id);
     </script>
     <script src="js/bootstrap.js"></script>
     <script src="js/multipurchase.js"></script>

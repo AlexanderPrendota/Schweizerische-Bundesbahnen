@@ -23,13 +23,43 @@ function showStatistics() {
         '</div></div>'
     );
 
-    var promise = new Promise(function(resolve, reject) {
-    });
 
-    promise.then(statisticBoughtByStationDeparture());
-    promise.then(statisticBoughtByStationArrival());
-    promise.then(attendanceStatistics());
-    promise.then(moneyStatistics());
+    function chain(callback) {
+        var queue = [];
+        function _next() {
+            var cb = queue.shift();
+            if (cb) {
+                cb(_next);
+            }
+        }
+        setTimeout(_next, 0);
+        var then = function(cb) {
+            queue.push(cb);
+            return { then: then }
+        };
+        return then(callback);
+    }
+    chain(function(next) {
+        statisticBoughtByStationDeparture();
+        next();
+    }).then(function(next) {
+        statisticBoughtByStationArrival();
+        next();
+    }).then(function(next) {
+        setTimeout(function() {
+            moneyStatistics();
+            next();
+        }, 300);
+    }).then(function(next) {
+        setTimeout(function() {
+            attendanceStatistics();
+            next();
+        }, 300);
+    });
+    // promise.then(statisticBoughtByStationDeparture());
+    // promise.then(statisticBoughtByStationArrival());
+    // promise.then(attendanceStatistics());
+    // promise.then(moneyStatistics());
 
 }
 
