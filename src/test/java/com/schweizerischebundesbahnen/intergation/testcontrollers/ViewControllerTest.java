@@ -81,4 +81,13 @@ public class ViewControllerTest {
                 .andDo(print());
     }
 
+    @Test
+    public void multiPurchaseViewTest() throws Exception{
+        this.mockMvc.perform(get("/multipurchase"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("multipurchase"))
+                .andDo(print());
+    }
+
+
 }

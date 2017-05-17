@@ -34,7 +34,6 @@ function showFreeSeats() {
                 // history.go(-1);
 
             });
-
         }
     });
     

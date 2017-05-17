@@ -188,6 +188,31 @@ public class ScheduleController {
         return ResponseEntity.ok(transverScheduule);
     }
 
+    @RequestMapping(value = "transfer/pretty/departure/{stationDeparture}/arrival/{stationArrival}/date/{date}"
+            , method = RequestMethod.GET)
+    public ResponseEntity<?> getTSchedule(@PathVariable String stationDeparture,
+                                                 @PathVariable String stationArrival,
+                                                 @PathVariable String date) throws Exception{
+        Station departure = stationService
+                .findStationByName(stationDeparture);
+        Station arrival = stationService
+                .findStationByName(stationArrival);
+
+        SimpleDateFormat formatData = new SimpleDateFormat("yyyy-MM-dd");
+        Date dateDeparture = formatData.parse(date);
+
+        if (departure == null || arrival == null){
+            log.warn("Station not found with getting transver schedule");
+            return new ResponseEntity<>(new StationNotFoundException("Station not found"),HttpStatus.BAD_REQUEST);
+        }
+
+        List<?> transverScheduule = scheduleService.transfer(departure,
+                arrival,
+                dateDeparture);
+
+        return ResponseEntity.ok(transverScheduule);
+    }
+
     /**
      *
      * Create the new schedule entity in db

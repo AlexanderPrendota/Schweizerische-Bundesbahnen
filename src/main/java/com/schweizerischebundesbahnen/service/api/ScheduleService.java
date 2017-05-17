@@ -40,4 +40,6 @@ public interface ScheduleService {
 
     List<Schedule> findTransferSchedule(Station departure, Station arrival, Date dateDeparture);
 
+    List<?> transfer(Station departure, Station arrival, Date dateDeparture);
+
 }

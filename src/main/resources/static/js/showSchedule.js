@@ -142,7 +142,7 @@ function goSmartSearch(event) {
         return '';
     }
 
-    var url = 'schedule/transfer/departure/' + departure.val() + '/arrival/' + arrival.val() + '/date/' + date.val();
+    var url = 'schedule/transfer/pretty/departure/' + departure.val() + '/arrival/' + arrival.val() + '/date/' + date.val();
 
     $.ajax({
         type: "GET",
@@ -150,7 +150,6 @@ function goSmartSearch(event) {
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         success: function (response) {
-            var list = [];
             if (response.length === 0 || response == null){
                 $("#mainttable").css("visibility","hidden");
                 $("#lose").append("<div class='container'>" +
@@ -159,9 +158,7 @@ function goSmartSearch(event) {
                     "<h1 class='title'>No ways, Darling! Even Smart! :( </h1>" +
                     "</div></div></div>");
             } else {
-                var countOfWay = 1;
                 var st_arrival = $("#arrival").val();
-                var theFirstsWay = [];
                 $("#mainttable").css("visibility","visible");
                 $("#mainttable")
                     .append("<table id='risestable' class='table table-hover'>");
@@ -173,47 +170,109 @@ function goSmartSearch(event) {
                         "<th class='tab'><h4>Departure</h4></th>" + "<th class='tab'><h4>Station Arrival</h4></th>" +
                         "<th class='tab'><h4>Arrival</h4></th>" + "</tr>" + "</thead>" + "<tbody>");
                 for (var i = 0; i < response.length; i++) {
-                    if (response[i].stationArrival.stationName != st_arrival){
-                        theFirstsWay = response[i];
-                        console.log(theFirstsWay);
-                    } else {
-                        if (theFirstsWay.length != 0){
-
-                            $("#risestable")
-                                .append('<tr class="blank_row"><td><h5>'+ countOfWay+'.</h5></td><td></td><td></td><td></td><td></td></tr>');
-                            countOfWay++;
-                            list.push(countOfWay + ".");
-                            $("#risestable")
-                                .append("<tr id='"+theFirstsWay.id+"' class='tab'>" +
-                                    "<td class='tab'>" + theFirstsWay.train.id + "</td>" +
-                                    "<td class='tab'>" + theFirstsWay.stationDeparture.stationName + "</td>" +
-                                    "<td class='tab'>" +  new Date(theFirstsWay.timeDeparture).toLocaleString() + "</td>" +
-                                    "<td class='tab'>" + theFirstsWay.stationArrival.stationName + "</td>"
-                                    + "<td class='tab'>" + new Date(theFirstsWay.timeArrival).toLocaleString() + "</td>" + "</tr><hr/>");
-                            list.push(theFirstsWay);
-                        }
+                    for (var key in response[i]) {
                         $("#risestable")
-                            .append("<tr id='"+response[i].id+"' class='tab'>" +
-                                "<td class='tab'>" + response[i].train.id + "</td>" +
-                                "<td class='tab'>" + response[i].stationDeparture.stationName + "</td>" +
-                                "<td class='tab'>" +  new Date(response[i].timeDeparture).toLocaleString() + "</td>" +
-                                "<td class='tab'>" + response[i].stationArrival.stationName + "</td>"
-                                + "<td class='tab'>" + new Date(response[i].timeArrival).toLocaleString() + "</td>" + "</tr><hr/>");
-                        list.push(response[i]);
+                            .append('<tr id="' + key + '" class="blank_row"><td class="blank_row"><h5>' + key +'.</h5></td>' +
+                                '<td class="blank_row"></td>' +
+                                '<td class="blank_row"></td>' +
+                                '<td class="blank_row"></td>' +
+                                '<td class="blank_row"></td></tr>');
+                        if (response[i].hasOwnProperty(key)){
+                            for (var j = 0; j < response[i][key].length; j++){
+                                console.log();
+                                $("#risestable")
+                                    .append("<tr id='"+ response[i][key][j].id+"' class='tab'>" +
+                                        "<td class='tab'>" + response[i][key][j].train.id + "</td>" +
+                                        "<td class='tab'>" + response[i][key][j].stationDeparture.stationName + "</td>" +
+                                        "<td class='tab'>" +  new Date(response[i][key][j].timeDeparture).toLocaleString() + "</td>" +
+                                        "<td class='tab'>" + response[i][key][j].stationArrival.stationName + "</td>"
+                                        + "<td class='tab'>" + new Date(response[i][key][j].timeArrival).toLocaleString() + "</td>" + "</tr><hr/>");
+                            }
+                        }
                     }
-
                 }
-                $("#risestable")
-                    .append("</tbody></table>");
-
-
-                localStorage.setItem('listofschedules', JSON.stringify(list));
-                console.log(list);
-                toPurchase();
             }
+            $("#risestable")
+                .append("</tbody></table>");
+            localStorage.setItem('smartways', JSON.stringify(response));
+            toPurchase();
         },
         error: function () {
             swal("Oops...", "Wrong information!", "error");
         }
     });
 }
+
+
+// $.ajax({
+//     type: "GET",
+//     url : url,
+//     contentType: "application/json; charset=utf-8",
+//     dataType: "json",
+//     success: function (response) {
+//         var list = [];
+//         if (response.length === 0 || response == null){
+//             $("#mainttable").css("visibility","hidden");
+//             $("#lose").append("<div class='container'>" +
+//                 "<div class='panel-heading'>" +
+//                 "<div class='panel-title text-center'>" +
+//                 "<h1 class='title'>No ways, Darling! Even Smart! :( </h1>" +
+//                 "</div></div></div>");
+//         } else {
+//             var countOfWay = 1;
+//             var st_arrival = $("#arrival").val();
+//             var theFirstsWay = [];
+//             $("#mainttable").css("visibility","visible");
+//             $("#mainttable")
+//                 .append("<table id='risestable' class='table table-hover'>");
+//             $("#risestable")
+//                 .append("<thead>" +
+//                     "<tr class='tab'>" +
+//                     "<th class='tab'><h4>Train Number</h4></th>" +
+//                     "<th class='tab'><h4>Station Departure</h4></th>" +
+//                     "<th class='tab'><h4>Departure</h4></th>" + "<th class='tab'><h4>Station Arrival</h4></th>" +
+//                     "<th class='tab'><h4>Arrival</h4></th>" + "</tr>" + "</thead>" + "<tbody>");
+//             for (var i = 0; i < response.length; i++) {
+//                 if (response[i].stationArrival.stationName != st_arrival){
+//                     theFirstsWay = response[i];
+//                     console.log(theFirstsWay);
+//                 } else {
+//                     if (theFirstsWay.length != 0){
+//
+//                         $("#risestable")
+//                             .append('<tr class="blank_row"><td><h5>'+ countOfWay+'.</h5></td><td></td><td></td><td></td><td></td></tr>');
+//                         countOfWay++;
+//                         list.push(countOfWay + ".");
+//                         $("#risestable")
+//                             .append("<tr id='"+theFirstsWay.id+"' class='tab'>" +
+//                                 "<td class='tab'>" + theFirstsWay.train.id + "</td>" +
+//                                 "<td class='tab'>" + theFirstsWay.stationDeparture.stationName + "</td>" +
+//                                 "<td class='tab'>" +  new Date(theFirstsWay.timeDeparture).toLocaleString() + "</td>" +
+//                                 "<td class='tab'>" + theFirstsWay.stationArrival.stationName + "</td>"
+//                                 + "<td class='tab'>" + new Date(theFirstsWay.timeArrival).toLocaleString() + "</td>" + "</tr><hr/>");
+//                         list.push(theFirstsWay);
+//                     }
+//                     $("#risestable")
+//                         .append("<tr id='"+response[i].id+"' class='tab'>" +
+//                             "<td class='tab'>" + response[i].train.id + "</td>" +
+//                             "<td class='tab'>" + response[i].stationDeparture.stationName + "</td>" +
+//                             "<td class='tab'>" +  new Date(response[i].timeDeparture).toLocaleString() + "</td>" +
+//                             "<td class='tab'>" + response[i].stationArrival.stationName + "</td>"
+//                             + "<td class='tab'>" + new Date(response[i].timeArrival).toLocaleString() + "</td>" + "</tr><hr/>");
+//                     list.push(response[i]);
+//                 }
+//
+//             }
+//             $("#risestable")
+//                 .append("</tbody></table>");
+//
+//
+//             localStorage.setItem('listofschedules', JSON.stringify(list));
+//             console.log(list);
+//             toPurchase();
+//         }
+//     },
+//     error: function () {
+//         swal("Oops...", "Wrong information!", "error");
+//     }
+// });

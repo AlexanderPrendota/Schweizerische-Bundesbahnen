@@ -39,6 +39,10 @@ public class ViewController {
     public String purchasePage(Model model) {
         return "purchase";
     }
+    @RequestMapping(value = "/multipurchase", method = RequestMethod.GET)
+    public String multiPurchasePage(Model model) {
+        return "multipurchase";
+    }
 
     @PreAuthorize("hasAuthority('ADMIN')")
     @RequestMapping(value = "/admin", method = RequestMethod.GET)

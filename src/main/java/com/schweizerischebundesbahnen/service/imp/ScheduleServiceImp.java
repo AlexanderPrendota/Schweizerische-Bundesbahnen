@@ -10,12 +10,10 @@ import lombok.extern.log4j.Log4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 import static com.schweizerischebundesbahnen.restcontroller.ScheduleController.CURRENT_DAY;
 
@@ -194,4 +192,58 @@ public class ScheduleServiceImp implements ScheduleService {
         return resultTransferSchedule;
     }
 
+
+    @Override
+    public List<?> transfer(Station departure, Station arrival, Date dateDeparture){
+
+        List<Map<Integer,List>> structure = new ArrayList<>();
+        Integer countOfWays = 1;
+
+        Date endDate = new Date(dateDeparture.getTime() + CURRENT_DAY);
+        List<Schedule> resultTransferSchedule = scheduleRepository
+                .findByStationDepartureAndStationArrivalAndTimeDepartureBetween(departure,arrival,dateDeparture,endDate);
+
+        List<Schedule> possibleScheduleByStationDeparture = scheduleRepository
+                .findByStationDepartureAndTimeDepartureBetween(departure, dateDeparture, endDate);
+
+        for (Schedule schedule : resultTransferSchedule) {
+            List list = new ArrayList<>();
+            Map<Integer,List> map = new HashMap<>();
+            list.add(schedule);
+            map.put(countOfWays,list);
+            structure.add(map);
+            countOfWays++;
+        }
+
+        if (possibleScheduleByStationDeparture.size() == 0){
+            return resultTransferSchedule;
+        }
+
+        for (Schedule possibleSchedule : possibleScheduleByStationDeparture) {
+            Date currentTransferDay = new Date(possibleSchedule.getTimeArrival().getTime() + ONE_DAY);
+
+            List<Schedule> transferSchedule = scheduleRepository
+                    .findByStationDepartureAndStationArrivalAndTimeDepartureBetween(
+                            possibleSchedule.getStationArrival(),
+                            arrival,
+                            possibleSchedule.getTimeArrival(), currentTransferDay
+                    );
+
+            if (transferSchedule.size() != 0){
+                resultTransferSchedule.add(possibleSchedule);
+                for (Schedule schedule : transferSchedule) {
+                    List list = new ArrayList<>();
+                    Map<Integer,List> map = new HashMap<>();
+                    list.add(possibleSchedule);
+                    list.add(schedule);
+                    map.put(countOfWays,list);
+                    structure.add(map);
+                    countOfWays++;
+                    resultTransferSchedule.add(schedule);
+                }
+            }
+        }
+        return structure;
+
+    }
 }
