@@ -414,7 +414,7 @@ function buyTransferRide() {
     var number = $('#seat').val();
     var carriage1 = $('#carriage1').val();
     var number1 = $('#seat1').val();
-    
+    $('#slow').css('display','block');
     $.ajax({
         type: "POST",
         url : '/purchase/multi/c/' + carriage + '/n/' + number + '/c1/' + carriage1 + '/n1/' + number1,
@@ -422,9 +422,10 @@ function buyTransferRide() {
         dataType: "json",
         data: JSON.stringify(trip),
         success: function (response) {
+            $('#slow').css('display','none');
             swal({
-                title: "You bought the ride!",
-                text: "We've already sent a ticket to your email!",
+                title: "You bought rides!",
+                text: "We've already sent tickets to your email!",
                 type: "success",
                 confirmButtonColor: "#77dd55",
                 confirmButtonText: "OK!",
@@ -433,6 +434,7 @@ function buyTransferRide() {
             });
         },
         error: function (error) {
+            $('#slow').css('display','none');
             swal("Oops...", error.responseText, "error");
         }
     });

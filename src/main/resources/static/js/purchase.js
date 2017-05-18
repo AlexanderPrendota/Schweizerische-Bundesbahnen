@@ -46,12 +46,15 @@ function buyRide() {
     var trip = JSON.parse(tripValue);
     var carriage = $('#carriage');
     var number = $('#seat');
+    $('#wait').css('display','block');
+    $('#ticket').remove();
     $.ajax({
         type: "POST",
         url : '/purchase/ride/' + trip.id + '/carriage/' + carriage.val() + '/seat/' + number.val(),
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         success: function (response) {
+            $('#wait').css('display','none');
             swal({
                 title: "You bought the ride!",
                 text: "We've already sent a ticket to your email!",
@@ -63,6 +66,7 @@ function buyRide() {
             });
         },
         error: function (error) {
+            $('#wait').css('display','none');
             swal("Oops...", error.responseText, "error");
             // swal({
             //     title: "Oops...",

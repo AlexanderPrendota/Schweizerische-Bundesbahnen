@@ -132,8 +132,23 @@ input::-webkit-input-placeholder {
     text-align: center;
 }
 #wait{
+    position: absolute;
+    width: 70%;
+    bottom: 50%;
+    top: 40%;
     text-align: center;
-    border-radius: 20px;
+    margin: 0 auto;
+    display: none;
+    z-index: 10;
+}
+
+#slow{
+    position: absolute;
+    width: 70%;
+    bottom: 50%;
+    top: 60%;
+    text-align: center;
+    margin: 0 auto;
     display: none;
     z-index: 10;
 }
