@@ -34,7 +34,7 @@ function getPrice() {
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         success: function (response) {
-            $("#pricelabel").attr("value", response);
+            $("#pricelabel").attr("value", Math.round(response * 100) / 100);
         },
         error: function () {
             swal("Oops...", "Problems with getting price!", "error");

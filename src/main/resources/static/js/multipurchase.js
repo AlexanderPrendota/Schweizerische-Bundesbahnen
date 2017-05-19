@@ -46,7 +46,8 @@ function getPrice() {
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 success: function (response) {
-                    $("#pricelabel").attr("value", response1 + response);
+                    var price = Math.round((response1 + response) * 100) / 100;
+                    $("#pricelabel").attr("value", price);
                 }
             });
         },

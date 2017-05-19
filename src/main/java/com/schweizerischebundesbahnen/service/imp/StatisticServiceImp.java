@@ -35,7 +35,7 @@ public class StatisticServiceImp implements StatisticService{
                 for (Map statistic : statistics) {
                     if(statistic.get("date").equals(date)) {
                         Double priceTMP = (Double) statistic.get("value") + price;
-                        statistic.put("value", priceTMP);
+                        statistic.put("value", Math.round(priceTMP * 100.0) / 100.0);
                     }
                 }
             } else {
