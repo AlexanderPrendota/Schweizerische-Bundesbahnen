@@ -192,7 +192,14 @@ public class ScheduleServiceImp implements ScheduleService {
         return resultTransferSchedule;
     }
 
-
+    /**
+     * find transfer schedule with stracture like
+     *  { 1 : [], 2 : [] }
+     * @param departure
+     * @param arrival
+     * @param dateDeparture
+     * @return
+     */
     @Override
     public List<?> transfer(Station departure, Station arrival, Date dateDeparture){
 
