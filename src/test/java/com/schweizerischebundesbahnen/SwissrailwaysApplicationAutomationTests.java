@@ -18,6 +18,7 @@ import org.junit.runners.Suite;
 		AutomationCheckValidUserPurchaseTest.class,
 		AutomationFindRidesTestByTwoStationsAndDate.class,
 		AutomationMakePurchaseByTwoStationAndDate.class,
+		AutomationCheckCorrectMoveToMultiPurchase.class,
 		AutomationFindRidesTestByOneStation.class,
 		AutomationNoWaysByOneStation.class,
 		AutomationMakePurchaseByOneStation.class,
@@ -27,6 +28,8 @@ import org.junit.runners.Suite;
 		AutomationFindUserInAdminPage.class,
 		AutomationCheckAdminParInAccountPage.class,
 		AutomationCheckSupportInAdminPage.class,
+		AutomationCheckStatistics.class,
+		AutomationCheckBusySeats.class,
 		AutomationCheckNotifyInAdminPage.class,
 		AutomationCheckAdminParInAccountPage.class,
 		AutomationCheckNotSupportInAccountPageAdmin.class,
@@ -48,13 +51,13 @@ public class SwissrailwaysApplicationAutomationTests {
 
 	// Use for locale tests
 
-	public static final String ADMIN_URL = "http://localhost:8080/admin";
-	public static final String ACCOUNT_URL = "http://localhost:8080/account";
-	public static final String HOME_URL = "http://localhost:8080/home";
+//	public static final String ADMIN_URL = "http://localhost:8080/admin";
+//	public static final String ACCOUNT_URL = "http://localhost:8080/account";
+//	public static final String HOME_URL = "http://localhost:8080/home";
 
 	// Use for main tests
 
-//	public static final String ADMIN_URL = "http://37.139.26.89:8080/admin";
-//	public static final String ACCOUNT_URL = "http://37.139.26.89:8080/account";
-//	public static final String HOME_URL = "http://37.139.26.89:8080/home";
+	public static final String ADMIN_URL = "http://37.139.26.89:8080/admin";
+	public static final String ACCOUNT_URL = "http://37.139.26.89:8080/account";
+	public static final String HOME_URL = "http://37.139.26.89:8080/home";
 }
