@@ -1,5 +1,6 @@
 package com.schweizerischebundesbahnen.automationtest.admin;
 
+import com.schweizerischebundesbahnen.SwissrailwaysApplicationAutomationTests;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -19,7 +20,7 @@ public class AutomationFindScheduleInAdminPage {
     @Before
     public void createDriver() {
         driver = new SafariDriver();
-        driver.get("http://localhost:8080/admin");
+        driver.get(SwissrailwaysApplicationAutomationTests.ADMIN_URL);
     }
 
     @Test

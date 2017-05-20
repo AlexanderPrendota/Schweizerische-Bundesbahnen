@@ -1,5 +1,6 @@
 package com.schweizerischebundesbahnen.automationtest.user;
 
+import com.schweizerischebundesbahnen.SwissrailwaysApplicationAutomationTests;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -20,11 +21,11 @@ public class AutomationNoAdminBarOnUser {
     @Before
     public void createDriver() {
         driver = new SafariDriver();
-        driver.get("http://localhost:8080/account");
+        driver.get(SwissrailwaysApplicationAutomationTests.ACCOUNT_URL);
     }
 
     @Test
-    public void automaticCheckAdminBarInAccoutnPage() {
+    public void automaticCheckAdminBarInAccountPage() {
 
         WebDriverWait webDriverWait = new WebDriverWait(driver,10);
         webDriverWait.until(ExpectedConditions

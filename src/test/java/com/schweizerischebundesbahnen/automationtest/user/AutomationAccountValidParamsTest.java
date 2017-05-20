@@ -1,5 +1,6 @@
 package com.schweizerischebundesbahnen.automationtest.user;
 
+import com.schweizerischebundesbahnen.SwissrailwaysApplicationAutomationTests;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -21,7 +22,7 @@ public class AutomationAccountValidParamsTest {
     @Before
     public void createDriver() {
         driver = new SafariDriver();
-        driver.get("http://localhost:8080/home");
+        driver.get(SwissrailwaysApplicationAutomationTests.HOME_URL);
     }
 
     @Test

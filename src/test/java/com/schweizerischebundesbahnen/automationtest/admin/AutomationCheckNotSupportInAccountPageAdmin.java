@@ -1,5 +1,6 @@
 package com.schweizerischebundesbahnen.automationtest.admin;
 
+import com.schweizerischebundesbahnen.SwissrailwaysApplicationAutomationTests;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -20,7 +21,7 @@ public class AutomationCheckNotSupportInAccountPageAdmin {
     @Before
     public void createDriver() {
         driver = new SafariDriver();
-        driver.get("http://localhost:8080/account");
+        driver.get(SwissrailwaysApplicationAutomationTests.ACCOUNT_URL);
     }
 
     @Test
