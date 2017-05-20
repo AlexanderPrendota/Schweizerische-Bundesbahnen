@@ -15,9 +15,9 @@ INSERT INTO public.users (id, birthday, email, firstname, image_path, lastname, 
 INSERT INTO public.roles (id, role) VALUES (444, 'USER');
 INSERT INTO public.roles (id, role) VALUES (555, 'ADMIN');
 
-INSERT INTO public.user_roles (user_id, role_id, ctid) VALUES (115, 444, '(0,4)');
-INSERT INTO public.user_roles (user_id, role_id, ctid) VALUES (129, 444, '(0,7)');
-INSERT INTO public.user_roles (user_id, role_id, ctid) VALUES (139, 555, '(0,8)');
+INSERT INTO public.user_roles (user_id, role_id) VALUES (115, 444);
+INSERT INTO public.user_roles (user_id, role_id) VALUES (129, 444);
+INSERT INTO public.user_roles (user_id, role_id) VALUES (139, 555);
 
 INSERT INTO public.trains (id) VALUES ('L8');
 INSERT INTO public.trains (id) VALUES ('F01');

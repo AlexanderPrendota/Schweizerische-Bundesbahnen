@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta name="description" content="Project"/>
+        <meta name="author" content="Alexander Prendota"/>
+        <title>Purchase</title>
+        <link rel="stylesheet" href="css/bootstrap.css"/>
+        <link rel="stylesheet" href="css/reg.css"/>
+        <link rel="stylesheet" href="css/jquery-ui.css"/>
+        <link rel="stylesheet" href="css/sweetalert.css"/>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css"/>
+        <link href='https://fonts.googleapis.com/css?family=Passion+One' rel='stylesheet'/>
+        <link href='https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet'/>
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <script src="js/purchase.js"></script>
+    </head>
+<body onload="loadMultipurchaseParams();">
+
+    <div class="container">
+        <div class="navbar navbar-default"  role="navigation">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="home">Just Rainways</a>
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a href="home">Home</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="/account">Account</a></li>
+                        <li><a href="/logout">Logout</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <div class="container">
+            <div class="panel-heading">
+                <div class="panel-title text-center">
+                    <h1 class="title">You made a good choice!</h1>
+                </div>
+            </div>
+        </div>
+
+        <div id="slow"><img style="border-radius: 50%; " src="images/slow.gif"/></div>
+        <div class="col-sm-4 prop rounded">
+            <label>Probably, you are:</label>
+            <div class="input-group way">
+                <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+                <input type="email" name="email" id="email" class="form-control"  readonly="readonly"/>
+            </div>
+            <div class="input-group way">
+                <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                <input type="text" name="firstname" id="firstname" class="form-control "  readonly="readonly"/>
+            </div>
+            <div class="input-group way">
+                <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                <input type="text" name="lastname" id="lastname" class="form-control " readonly="readonly"/>
+            </div>
+            <div class="input-group way">
+                <span class="input-group-addon"><i class="fa fa-calendar" aria-hidden="true"></i></span>
+                <input type="text" name="date" id="birthday" class="form-control"  readonly="readonly"/>
+            </div>
+            <div><h4 class="name1">Train</h4></div>
+            Carriage:
+            <div class="input-group way">
+                <span class="input-group-addon"><i class="fa fa-tag" aria-hidden="true"></i></span>
+                <select id="carriage" class="form-control selector">
+                </select>
+            </div>
+            Seat:
+            <div class="input-group way">
+                <span class="input-group-addon"><i class="fa fa-ticket" aria-hidden="true" style="float: right;"></i></span>
+                <select id="seat" class="form-control selector">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                    <option>6</option>
+                    <option>7</option>
+                    <option>8</option>
+                    <option>9</option>
+                    <option>10</option>
+                    <option>11</option>
+                    <option>12</option>
+                    <option>13</option>
+                    <option>14</option>
+                    <option>15</option>
+                    <option>16</option>
+                    <option>17</option>
+                    <option>18</option>
+                    <option>19</option>
+                    <option>20</option>
+                </select>
+            </div>
+            <div class="input-group way">
+                <input class="btn btn-info" id="showseats" onclick="showFreeSeatsFirstWay();" type="submit" value="Show seats"/>
+            </div>
+            <div><h4 class="name2">Train</h4></div>
+            Carriage:
+            <div class="input-group way">
+                <span class="input-group-addon"><i class="fa fa-tag" aria-hidden="true"></i></span>
+                <select id="carriage1" class="form-control selector">
+                </select>
+            </div>
+
+            Seat:
+            <div class="input-group way">
+                <span class="input-group-addon"><i class="fa fa-ticket" aria-hidden="true" style="float: right;"></i></span>
+                <select id="seat1" class="form-control selector">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                    <option>6</option>
+                    <option>7</option>
+                    <option>8</option>
+                    <option>9</option>
+                    <option>10</option>
+                    <option>11</option>
+                    <option>12</option>
+                    <option>13</option>
+                    <option>14</option>
+                    <option>15</option>
+                    <option>16</option>
+                    <option>17</option>
+                    <option>18</option>
+                    <option>19</option>
+                    <option>20</option>
+                </select>
+            </div>
+            <div class="input-group way">
+                <input class="btn btn-info" id="showseats1" onclick="showFreeSeatsSecondWay();" type="submit" value="Show seats"/>
+            </div>
+
+            <div class="input-group way">
+                <span class="input-group-addon"><i class="fa fa-eur" aria-hidden="true"></i></span>
+                <input type="text" name="price" id="pricelabel" class="form-control " readonly="readonly"/>
+            </div>
+        </div>
+
+        <div class="prop rounded">
+            <table id="risestable" class="table table-hover">
+                <thead>
+                <tr class="tab">
+                    <th class="tab"><h4>Train Number</h4></th>
+                    <th class="tab"><h4>Station Departure</h4></th>
+                    <th class="tab"><h4>Departure</h4></th>
+                    <th class="tab"><h4>Station Arrival</h4></th>
+                    <th class="tab"><h4>Arrival</h4></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr class="tab setid">
+                    <td id="train_number" class="tab"></td>
+                    <td id="station_departure" class="tab"></td>
+                    <td id="time_departure" class="tab"></td>
+                    <td id="station_arrival" class="tab"></td>
+                    <td id="time_arrival" class="tab"></td>
+                </tr>
+                </tbody>
+            </table>
+
+
+            <table id="risestable1" class="table table-hover">
+                <thead>
+                <tr class="tab">
+                    <th class="tab"><h4>Train Number</h4></th>
+                    <th class="tab"><h4>Station Departure</h4></th>
+                    <th class="tab"><h4>Departure</h4></th>
+                    <th class="tab"><h4>Station Arrival</h4></th>
+                    <th class="tab"><h4>Arrival</h4></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr class="tab setid2">
+                    <td id="train_number2" class="tab"></td>
+                    <td id="station_departure2" class="tab"></td>
+                    <td id="time_departure2" class="tab"></td>
+                    <td id="station_arrival2" class="tab"></td>
+                    <td id="time_arrival2" class="tab"></td>
+                </tr>
+                </tbody>
+            </table>
+            <input class="btn btn-info" id="buy" onclick="buyTransferRide()" type="submit" value="Buy ones!"/>
+        </div>
+    </div>
+
+    <div id="dialog"></div>
+    <div id="dialog1"></div>
+    <script>
+
+        var tripValue = localStorage.getItem('trip');
+        var trip = JSON.parse(tripValue);
+        console.log(trip);
+
+        $(".setid").attr("id", trip[0].id);
+        $("#train_number").html( trip[0].train.id);
+        $("#station_departure").html(trip[0].stationDeparture.stationName);
+        $("#time_departure").html(new Date(trip[0].timeDeparture).toLocaleString());
+        $("#station_arrival").html(trip[0].stationArrival.stationName);
+        $("#time_arrival").html(new Date(trip[0].timeArrival).toLocaleString());
+        $(".name1").html("Train: " + trip[0].train.id);
+
+        $(".setid2").attr("id", trip[1].id);
+        $("#train_number2").html( trip[1].train.id);
+        $("#station_departure2").html(trip[1].stationDeparture.stationName);
+        $("#time_departure2").html(new Date(trip[1].timeDeparture).toLocaleString());
+        $("#station_arrival2").html(trip[1].stationArrival.stationName);
+        $("#time_arrival2").html(new Date(trip[1].timeArrival).toLocaleString());
+        $(".name2").html("Train: " + trip[1].train.id);
+    </script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/multipurchase.js"></script>
+    <script src="js/drawImage.js"></script>
+    <script src="js/showFreeSeats.js"></script>
+    <script src="js/jquery.lazylinepainter-1.7.0.min.js"></script>
+    <script src="js/sweetalert.min.js"></script>
+</body>
+</html>

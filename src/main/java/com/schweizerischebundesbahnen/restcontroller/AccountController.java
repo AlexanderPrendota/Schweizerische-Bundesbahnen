@@ -7,6 +7,7 @@ import com.schweizerischebundesbahnen.service.api.RideService;
 import com.schweizerischebundesbahnen.service.api.TicketService;
 import com.schweizerischebundesbahnen.service.api.UserService;
 import lombok.extern.log4j.Log4j;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

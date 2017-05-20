@@ -279,12 +279,12 @@ function goToSend() {
         type: "POST",
         url : "/notify/message" ,
         contentType: "application/json; charset=utf-8",
-        //dataType: "json",
+        dataType: "json",
         data: JSON.stringify(mail),
         success: function (response) {
             swal({
                 title: "Good job!",
-                text: "Messages has been already sent",
+                text: "Message has been already sent",
                 type: "success",
                 confirmButtonColor: "#77dd55",
                 confirmButtonText: "OK!",
@@ -293,8 +293,8 @@ function goToSend() {
             });
 
         },
-        error: function (error) {
-            swal("Oops...", error.responseText, "error");
+        error: function () {
+            swal("Oops...", "Sorry! Problems :( Please try later", "error");
         }
     });
 

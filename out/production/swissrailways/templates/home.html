@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta name="description" content="Project"/>
+    <meta name="author" content="Alexander Prendota"/>
+    <title>Ways</title>
+    <link rel="stylesheet" href="css/bootstrap.css"/>
+    <link rel="stylesheet" href="css/reg.css"/>
+    <link rel="stylesheet" href="css/jquery-ui.css"/>
+    <link rel="stylesheet" href="css/sweetalert.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css"/>
+    <link href='https://fonts.googleapis.com/css?family=Passion+One' rel='stylesheet'/>
+    <link href='https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet'/>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="js/datepickerRun.js"></script>
+    <script src="js/autocomplite.js"></script>
+    <script>goDatePicker();</script>
+    <script>autocompliteStation();</script>
+
+
+</head>
+    <body onload="drawTrain();">
+
+        <div class="container">
+            <div class="navbar navbar-default"  role="navigation">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                            <span class="sr-only">Navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="home">Just Railways</a>
+                    </div>
+                    <div class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav">
+                            <li id="homeact" class="active" ><a href="home">Home</a></li>
+                            <li onclick="showSchedule()" id="sheduleact" ><a href="#">Schedule</a></li>
+                            <li onclick="showSmartSearch()" id="smartsearch"><a href="#">Smart search</a></li>
+                        </ul>
+                        <ul id="navright" class="nav navbar-nav navbar-right">
+                            <li><a id="accountuser" href="account">Account</a></li>
+                            <li><a href="/logout">Logout</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="maincont" class="container">
+
+            <div class="container">
+                <div class="panel-heading">
+                    <div class="panel-title text-center">
+                        <h1 id="notice" class="title">Choose the best way ever!</h1>
+                    </div>
+                </div>
+            </div>
+            <form method="get">
+                <div class="col-sm-4 prop rounded">
+                    <div class="input-group way">
+                        <span class="input-group-addon"><i class="fa fa-arrow-right" aria-hidden="true"></i></span>
+                        <input type="text" name="departure" id="departure" class="form-control autocomplite" placeholder="Departure Station"/>
+                    </div>
+                    <div id="showsmsh"></div>
+                    <div id="divarr" class="input-group way">
+                        <span class="input-group-addon"><i class="fa fa-arrow-left" aria-hidden="true"></i></span>
+                        <input type="text" name="arrival" id="arrival" class="form-control autocomplite" placeholder="Arrival Station"/>
+                    </div>
+                    <div id="divpic" class="input-group way">
+                        <span class="input-group-addon"><i class="fa fa-calendar" aria-hidden="true"></i></span>
+                        <input type="text" name="date" id="datepicker" class="form-control" placeholder="YYYY-MM-DD"/>
+                    </div>
+                    <input onclick="showWays(event);" class="btn btn-info" id="find" type="submit" value="Search"/>
+                </div>
+            </form>
+            <div id="train"></div>
+            <div id="mainttable" class="prop rounded">
+            <!-- Table should be here-->
+            </div>
+        </div>
+        <div id="lose">
+            <!-- lose report should be here -->
+        </div>
+
+        <script src="js/bootstrap.js"></script>
+        <script src="js/drawImage.js"></script>
+        <script src="js/showSchedule.js"></script>
+        <script src="js/sweetalert.min.js"></script>
+        <script src="js/showWays.js"></script>
+        <script src="js/admin.js"></script>
+        <script src="js/redirectToPurchase.js"></script>
+        <script src="js/jquery.lazylinepainter-1.7.0.min.js"></script>
+    </body>
+</html>

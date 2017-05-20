@@ -246,7 +246,7 @@ public class ScheduleController {
         newSchedule.setTimeDeparture(schedule.getTimeDeparture());
         newSchedule.setTrain(trainFromSchedule);
         scheduleService.addSchedule(newSchedule);
-        sendMessageForUpdating();
+       // sendMessageForUpdating();
         log.info("Schedule was added successfully");
         return ResponseEntity.ok(newSchedule);
 
@@ -263,7 +263,7 @@ public class ScheduleController {
         if (!id.equals("")){
             scheduleService.delete(scheduleService.findScheduleById(Long.valueOf(id)));
             log.info("Schedule was deleted successfully");
-            sendMessageForUpdating();
+  //          sendMessageForUpdating();
             return ResponseEntity.ok("Schedule was deleted");
         } else {
             return new ResponseEntity<>("Mistake with deleting schedule", HttpStatus.BAD_REQUEST);
@@ -314,7 +314,7 @@ public class ScheduleController {
         oldSchedule.setTimeArrival(schedule.getTimeArrival());
 
         scheduleService.addSchedule(oldSchedule);
-        sendMessageForUpdating();
+       // sendMessageForUpdating();
         log.info("Schedule id=" + String.valueOf(schedule.getId()) + " was updated");
 
         return ResponseEntity.ok(oldSchedule);

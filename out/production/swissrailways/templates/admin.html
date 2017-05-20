@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta name="description" content="Project"/>
+        <meta name="author" content="Alexander Prendota"/>
+        <title>Admin</title>
+        <!-- GRAPH LIBS -->
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="https://www.amcharts.com/lib/3/amcharts.js"></script>
+        <script src="https://www.amcharts.com/lib/3/xy.js"></script>
+        <script src="https://www.amcharts.com/lib/3/serial.js"></script>
+        <script src="https://www.amcharts.com/lib/3/pie.js"></script>
+        <script src="https://www.amcharts.com/lib/3/plugins/export/export.min.js"></script>
+        <link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" />
+        <script src="https://www.amcharts.com/lib/3/themes/chalk.js"></script>
+        <script src="https://www.amcharts.com/lib/3/themes/light.js"></script>
+
+        <!-- GRAPH LIBS -->
+        <link rel="stylesheet" href="css/bootstrap.css"/>
+        <link rel="stylesheet" href="css/chat.css"/>
+        <link rel="stylesheet" href="css/reg.css"/>
+        <link rel="stylesheet" href="css/jquery-ui.css"/>
+        <link rel="stylesheet" href="css/jquery.timepicker.min.css"/>
+        <link rel="stylesheet" href="css/sweetalert.css"/>
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css"/>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css"/>
+        <link href='https://fonts.googleapis.com/css?family=Passion+One' rel='stylesheet'/>
+        <link href='https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet'/>
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
+        <script src="js/jquery.timepicker.min.js"></script>
+        <script src="js/datepickerRun.js"></script>
+        <script src="js/autocomplite.js"></script>
+    </head>
+    <body>
+
+    <div class="container">
+        <div class="navbar navbar-default"  role="navigation">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="home">Just Rainways</a>
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a href="home">Home</a></li>
+                    </ul>
+                    <ul id="navright" class="nav navbar-nav navbar-right">
+                        <li id="adminbutton" class="active"><a href="admin">Admin</a></li>
+                        <li id="statistics" onclick="showStatistics()"><a>Statistics</a></li>
+                        <li id="supportbutton" onclick="showSupport()"><a> <span id="notify" class="badge pull-right"></span>Support</a></li>
+                        <li><a href="account">Account</a></li>
+                        <li><a href="logout">Logout</a></li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="maincontaner" class="container">
+        <div class="container">
+            <div class="panel-heading">
+                <div class="panel-title text-center">
+                    <h1 class="title">Welcome! Organize the best schedule!</h1>
+                </div>
+            </div>
+        </div>
+        <div class="btn-group btn-group-justified" style="margin-bottom: 20px;">
+
+            <div class="btn-group">
+                <input onclick="showAllTrains();" class="btn btn-default" id="findtrains" type="submit" value="Manage trains"/>
+            </div>
+
+            <div class="btn-group">
+                <input  onclick="showAllStation();" class="btn btn-default" id="addattr" type="submit" data-toggle="dropdown" value="Manage Stations"/>
+            </div>
+
+            <div class="btn-group">
+                <input onclick="showAllSchedule();" class="btn btn-default rounded" id="findschedule" type="submit" value="Manage Schedule"/>
+            </div>
+
+            <div class="btn-group">
+                <input onclick="showUser();" class="btn btn-default rounded" id="namageuser" type="submit" value="Manage users"/>
+            </div>
+
+            <div class="btn-group">
+                <input onclick="showPanelToFindPassenger();" class="btn btn-default rounded" id="finduser" type="submit" value="Find users on trains"/>
+            </div>
+
+            <div class="btn-group">
+                <input onclick="addNotify();" class="btn btn-default rounded" id="notice" type="submit" value="Send notifications"/>
+            </div>
+
+        </div>
+        <div id="logo">
+
+        </div>
+        <div id="dialog"></div>
+
+        <div id="source"></div>
+        <div id="fon"><img src="images/Landscape.png"/></div>
+
+        <!-- Chat window -->
+        <div class="chat_window moveAble">
+            <div class="top_menu">
+                <div class="buttons">
+                    <div class="button close"></div>
+                </div>
+                <div id="titlechat" class="title"></div>
+            </div>
+
+            <ul class="messages"></ul>
+
+            <div class="bottom_wrapper clearfix">
+                <div class="message_input_wrapper">
+                    <input class="message_input" placeholder="Type your message here..." />
+                </div>
+                <div class="send_message">
+                    <div class="icon"></div>
+                    <div class="text">Send</div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="message_template">
+            <li class="message">
+                <div class="avatar"></div>
+                <div class="text_wrapper">
+                    <div class="text"></div>
+                </div>
+            </li>
+        </div>
+        <!-- / Chat window -->
+
+    </div>
+    <div id="lose"></div>
+    <script src="js/addAttributes.js"></script>
+    <script src="js/statistics.js"></script>
+    <script src="js/passangerOnTrain.js"></script>
+    <script src="js/adminSupport.js"></script>
+    <script src="js/adminChat.js"></script>
+    <script src="js/showAttributes.js"></script>
+    <script src="js/jquery.lazylinepainter-1.7.0.min.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/graph.js"></script>
+    <script src="js/sweetalert.min.js"></script>
+
+    </body>
+</html>

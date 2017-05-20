@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta name="description" content="Project"/>
+        <meta name="author" content="Alexander Prendota"/>
+        <title>Login</title>
+        <link rel="stylesheet" href="css/bootstrap.css"/>
+        <link rel="stylesheet" href="css/reg.css"/>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css"/>
+        <link href='https://fonts.googleapis.com/css?family=Passion+One' rel='stylesheet'/>
+        <link href='https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet'/>
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+
+    </head>
+    <body>
+        <div class="container">
+            <div class="navbar navbar-default"  role="navigation">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                            <span class="sr-only">Navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="home">Just Rainways</a>
+                    </div>
+                    <div class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav">
+                            <li><a href="home">Home</a></li>
+                            <li><a href="home">Schedule</a></li>
+                        </ul>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="account">Account</a></li>
+                            <li><a href="registration">Registration</a></li>
+                            <li class="active"><a href="login.html">Login</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row main">
+                <div class="panel-heading">
+                    <div class="panel-title text-center">
+                        <h1 class="title">Welcome to «just Railways!»</h1>
+                        <h2 class="title">Login</h2>
+                        <hr/>
+                    </div>
+                </div>
+                <div class="main-login main-center">
+                    <form name = "login" class="form-horizontal" method="post" th:action="@{/login}">
+                        <div class="form-group">
+                            <label for="email" class="cols-sm-2 control-label">Email</label>
+                            <div class="cols-sm-10">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+                                    <input type="email" class="form-control" name="username" id="email"
+                                           placeholder=" Email"/>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="password" class="cols-sm-2 control-label">Password</label>
+                            <div class="cols-sm-10">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+                                    <input type="password" class="form-control" name="password" id="password"
+                                           placeholder="Enter your Password"/>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div th:if="${param.error}" class="alert alert-danger">Something went wrong :(</div>
+                        <div th:if="${param.logout}" class="alert alert-success">You have been logged out</div>
+                        <input class="btn btn-primary btn-lg btn-block login-button" type="submit" value="Login"/>
+                        <button type="button" class="btn btn-primary btn-lg btn-block login-button">
+                             <a href="/registration" id="registr">Registration</a>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </body>
+</html>

@@ -46,5 +46,15 @@ import org.junit.runners.Suite;
 		})
 public class SwissrailwaysApplicationAutomationTests {
 
+	// Use for locale tests
 
+	public static final String ADMIN_URL = "http://localhost:8080/admin";
+	public static final String ACCOUNT_URL = "http://localhost:8080/account";
+	public static final String HOME_URL = "http://localhost:8080/home";
+
+	// Use for main tests
+
+//	public static final String ADMIN_URL = "http://37.139.26.89:8080/admin";
+//	public static final String ACCOUNT_URL = "http://37.139.26.89:8080/account";
+//	public static final String HOME_URL = "http://37.139.26.89:8080/home";
 }
