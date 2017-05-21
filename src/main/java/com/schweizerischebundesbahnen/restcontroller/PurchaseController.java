@@ -255,7 +255,7 @@ public class PurchaseController {
         Files.copy(source.toPath(), dest.toPath());
     }
 
-    private Boolean checkValidSeat(String carriage, String number, Train train, Date timeDeparture){
+    public Boolean checkValidSeat(String carriage, String number, Train train, Date timeDeparture){
 
         List<Ride> rides = rideService.findByTrainAndTime(train,timeDeparture);
         if (rides.size() == 0) { return true; }

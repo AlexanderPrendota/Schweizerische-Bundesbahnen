@@ -12,6 +12,8 @@ import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import java.util.ArrayList;
+import java.util.concurrent.BrokenBarrierException;
+import java.util.concurrent.CyclicBarrier;
 
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -66,6 +68,5 @@ public class UserServiceMockTest {
         userService.save(user);
         verify(userRepository).save(user);
     }
-
 }
 

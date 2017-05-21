@@ -24,7 +24,7 @@ public class AutomationCheckStatistics {
     }
 
     @Test
-    public void automaticCheckNotifyInAdminPage() {
+    public void automaticCheckNotifyInAdminPage() throws InterruptedException {
 
         WebDriverWait webDriverWait = new WebDriverWait(driver,10);
         webDriverWait.until(ExpectedConditions
@@ -43,6 +43,7 @@ public class AutomationCheckStatistics {
                 .presenceOfElementLocated(By.id("statistics")))
                 .click();
 
+        Thread.sleep(3000);
         webDriverWait.until(ExpectedConditions
                 .presenceOfElementLocated(By.xpath("//h3[text()='Bought tickets by station departure']")));
 

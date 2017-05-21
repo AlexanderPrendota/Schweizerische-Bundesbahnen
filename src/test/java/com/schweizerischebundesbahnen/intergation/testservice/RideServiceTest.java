@@ -17,6 +17,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.BrokenBarrierException;
+import java.util.concurrent.CyclicBarrier;
 
 /**
  * Created by aleksandrprendota on 04.04.17.
