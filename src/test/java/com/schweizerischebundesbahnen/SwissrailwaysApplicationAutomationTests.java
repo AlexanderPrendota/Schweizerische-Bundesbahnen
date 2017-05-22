@@ -30,6 +30,7 @@ import org.junit.runners.Suite;
 		AutomationCheckSupportInAdminPage.class,
 		AutomationCheckStatistics.class,
 		AutomationCheckBusySeats.class,
+		AutomationClickSaveButtonInAccount.class,
 		AutomationCheckNotifyInAdminPage.class,
 		AutomationCheckAdminParInAccountPage.class,
 		AutomationCheckNotSupportInAccountPageAdmin.class,

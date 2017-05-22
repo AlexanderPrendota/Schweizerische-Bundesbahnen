@@ -1,4 +1,4 @@
-package com.schweizerischebundesbahnen.automationtest.admin;
+package com.schweizerischebundesbahnen.automationtest.user;
 
 import com.schweizerischebundesbahnen.SwissrailwaysApplicationAutomationTests;
 import org.junit.After;
@@ -11,20 +11,20 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 /**
- * Created by aleksandrprendota on 20.05.17.
+ * Created by aleksandrprendota on 22.05.17.
  */
-public class AutomationCheckStatistics {
+public class AutomationClickSaveButtonInAccount {
 
     private WebDriver driver = null;
 
     @Before
     public void createDriver() {
         driver = new SafariDriver();
-        driver.get(SwissrailwaysApplicationAutomationTests.ADMIN_URL);
+        driver.get(SwissrailwaysApplicationAutomationTests.ACCOUNT_URL);
     }
 
     @Test
-    public void automaticCheckStatistic() throws InterruptedException {
+    public void automaticClickSaveButton() {
 
         WebDriverWait webDriverWait = new WebDriverWait(driver,10);
         webDriverWait.until(ExpectedConditions
@@ -33,28 +33,21 @@ public class AutomationCheckStatistics {
 
         webDriverWait.until(ExpectedConditions
                 .presenceOfElementLocated(By.id("email")))
-                .sendKeys("Prendota@mail.ru");
+                .sendKeys("S@s");
 
         webDriverWait.until(ExpectedConditions
                 .presenceOfElementLocated(By.xpath("//input[@type = 'submit']")))
                 .click();
 
         webDriverWait.until(ExpectedConditions
-                .presenceOfElementLocated(By.id("statistics")))
+                .presenceOfElementLocated(By.id("saveimg")))
                 .click();
 
-        Thread.sleep(5000);
         webDriverWait.until(ExpectedConditions
-                .presenceOfElementLocated(By.xpath("//h3[text()='Bought tickets by station departure']")));
+                .presenceOfElementLocated(By.id("uploadlabel")));
 
         webDriverWait.until(ExpectedConditions
-                .presenceOfElementLocated(By.xpath("//h3[text()='Bought tickets by station arrival']")));
-
-        webDriverWait.until(ExpectedConditions
-                .presenceOfElementLocated(By.xpath("//h3[text()='Money Statistics']")));
-
-        webDriverWait.until(ExpectedConditions
-                .presenceOfElementLocated(By.xpath("//h3[text()='Attendance statistics']")));
+                .presenceOfElementLocated(By.xpath("//input[@value='Joshe']")));
 
     }
 
