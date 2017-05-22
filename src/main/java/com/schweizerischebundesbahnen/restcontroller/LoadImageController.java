@@ -56,6 +56,9 @@ public class LoadImageController {
     public ModelAndView handleFileUpload(@RequestParam("file") MultipartFile file,
                                          RedirectAttributes redirectAttributes) {
         Long time = Calendar.getInstance().getTimeInMillis();
+        if (file.getOriginalFilename().equals("")){
+            return new ModelAndView("redirect:" + "account");
+        }
         String extension = file.getOriginalFilename().split("\\.")[1];
         String fileName = time.toString() + "." + extension;
         storageService.store(file, fileName);

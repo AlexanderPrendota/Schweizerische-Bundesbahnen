@@ -170,7 +170,7 @@ public class PurchaseController {
 
         // Only 2 ride in ticket!
         Seat seat = seatService.findByTrainAndNumberAndCarriage(schedules.get(0).getTrain(), seatNumber, cabineNumber);
-        Seat seat1 = seatService.findByTrainAndNumberAndCarriage(schedules.get(1).getTrain(), seatNumber, cabineNumber);
+        Seat seat1 = seatService.findByTrainAndNumberAndCarriage(schedules.get(1).getTrain(), seatNumber1, cabineNumber1);
 
         if (usersTickets.size() == 0) {
 

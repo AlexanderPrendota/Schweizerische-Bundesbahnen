@@ -160,6 +160,7 @@
     position: absolute;
     outline-width: 0;
     color: gray;
+    font-size: 12pt;
 }
 .bottom_wrapper .send_message {
     width: 140px;
