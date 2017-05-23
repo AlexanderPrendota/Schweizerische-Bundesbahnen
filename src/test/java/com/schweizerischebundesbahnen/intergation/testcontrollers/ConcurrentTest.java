@@ -1,10 +1,14 @@
 package com.schweizerischebundesbahnen.intergation.testcontrollers;
 
+import com.google.zxing.WriterException;
+import com.schweizerischebundesbahnen.exceptions.SeatAlreadyExistException;
 import com.schweizerischebundesbahnen.model.*;
 import com.schweizerischebundesbahnen.repository.RideRepository;
 import com.schweizerischebundesbahnen.repository.SeatRepository;
+import com.schweizerischebundesbahnen.repository.TicketRepository;
 import com.schweizerischebundesbahnen.restcontroller.PurchaseController;
 import com.schweizerischebundesbahnen.service.api.*;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -12,6 +16,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import javax.mail.MessagingException;
+import java.io.IOException;
 import java.util.concurrent.BrokenBarrierException;
 import java.util.concurrent.CyclicBarrier;
 
@@ -24,10 +30,11 @@ public class CuncurrentTest {
 
     private Schedule schedule;
     private Seat seat;
+    private User customer1;
+    private User customer2;
     private Ride ride;
-    private Ride ride1;
     private Ticket ticket;
-    private Ticket ticket1;
+
     @Autowired
     private PurchaseController purchaseController;
 
@@ -41,19 +48,19 @@ public class CuncurrentTest {
     private SeatRepository seatRepository;
 
     @Autowired
-    private RideRepository rideRepository;
+    private RideService rideService;
 
+    @Autowired
+    private TicketService ticketService;
 
     @Before
     public void setup(){
-        User customer1 = userService.getUserById(212L);
-        User customer2 = userService.getUserById(228L);
+
+        customer1 = userService.getUserById(212L);
+        customer2 = userService.getUserById(228L);
         seat = seatRepository.findOne(953L);
         schedule = scheduleService.findScheduleById(1699L);
-        ticket = new Ticket();
-        ticket.setId(100000L);
-        ticket1 = new Ticket();
-        ticket1.setId(100001L);
+
     }
 
 
@@ -67,21 +74,23 @@ public class CuncurrentTest {
         Thread t1 = new Thread(() -> {
             try {
                 gate.await();
-                System.out.println("Customer 1 try buy...");
-                ride1 = new Ride();
-                ride1.setId(100000001L);
-                ride1.setSeat(seat);
-                ride1.setStationArrival(schedule.getStationArrival());
-                ride1.setStationDeparture(schedule.getStationDeparture());
-                ride1.setTicket(ticket1);
-                ride1.setTimeArrival(schedule.getTimeArrival());
-                ride1.setTimeDeparture(schedule.getTimeDeparture());
-                rideRepository.save(ride1);
-                Boolean isCust1Buy = purchaseController.checkValidSeat(String.valueOf(seat.getCabine()),
-                        String.valueOf(seat.getNumber()),schedule.getTrain(),schedule.getTimeDeparture());
-                System.out.println("Customer 1 done...");
-                System.out.println("Result is " + isCust1Buy.toString());
-                rideRepository.delete(ride1);
+                System.out.println("*********");
+                System.out.println("Customer 1 try to buy...");
+                System.out.println("*********");
+
+                try{
+                    ride = purchaseController.buyTheRide(customer1,schedule,seat);
+                    ticket = ride.getTicket();
+
+                    System.out.println("*********");
+                    System.out.println("Customer 1 DONE...");
+                    System.out.println("*********");
+
+                } catch (SeatAlreadyExistException e){
+                    System.out.println("Customer 1 cannot buy the ride :(");
+                }
+
+
             } catch (InterruptedException | BrokenBarrierException e) {
                 e.printStackTrace();
             }
@@ -89,22 +98,24 @@ public class CuncurrentTest {
         });
         Thread t2 = new Thread(() -> {
             try {
+
                 gate.await();
-                System.out.println("Customer 2 try buy...");
-                ride = new Ride();
-                ride.setId(100000000L);
-                ride.setSeat(seat);
-                ride.setStationArrival(schedule.getStationArrival());
-                ride.setStationDeparture(schedule.getStationDeparture());
-                ride.setTicket(ticket);
-                ride.setTimeArrival(schedule.getTimeArrival());
-                ride.setTimeDeparture(schedule.getTimeDeparture());
-                rideRepository.save(ride);
-                Boolean isCust2Buy = purchaseController.checkValidSeat(String.valueOf(seat.getCabine()),
-                        String.valueOf(seat.getNumber()),schedule.getTrain(),schedule.getTimeDeparture());
-                System.out.println("Customer 2 done...");
-                System.out.println("Result is " + isCust2Buy.toString());
-                rideRepository.delete(ride);
+                System.out.println("*********");
+                System.out.println("Customer 2 try to buy...");
+                System.out.println("*********");
+
+                try{
+                    ride = purchaseController.buyTheRide(customer2,schedule,seat);
+                    ticket = ride.getTicket();
+
+                    System.out.println("*********");
+                    System.out.println("Customer 2 DONE...");
+                    System.out.println("*********");
+
+                } catch (SeatAlreadyExistException e){
+                    System.out.println("Customer 2 cannot buy the ride :(");
+                }
+
             } catch (InterruptedException | BrokenBarrierException e) {
                 e.printStackTrace();
             }
@@ -118,5 +129,17 @@ public class CuncurrentTest {
         // Now if we block on the gate from the main thread, it will open
         // and all threads will start to do stuff!
         gate.await();
+        t1.join();
+        t2.join();
+
+        System.out.println("*********");
+        System.out.println("TEST DONE");
+        System.out.println("*********");
+    }
+
+    @After
+    public void cleanTest(){
+        rideService.delete(ride);
+        ticketService.delete(ticket);
     }
 }

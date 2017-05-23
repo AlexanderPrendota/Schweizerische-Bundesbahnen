@@ -33,6 +33,11 @@ public class RideServiceImp implements RideService {
         rideRepository.save(ride);
     }
 
+    @Override
+    public void delete(Ride ride) {
+        rideRepository.delete(ride);
+    }
+
     /**
      * Finding rides by Ticket entity
      * @param ticket Ticket entity

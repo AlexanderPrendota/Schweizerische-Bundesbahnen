@@ -1,6 +1,7 @@
 package com.schweizerischebundesbahnen.restcontroller;
 
 import com.google.zxing.WriterException;
+import com.schweizerischebundesbahnen.exceptions.SeatAlreadyExistException;
 import com.schweizerischebundesbahnen.model.*;
 import com.schweizerischebundesbahnen.service.api.RideService;
 import com.schweizerischebundesbahnen.service.api.SeatService;
@@ -199,8 +200,14 @@ public class PurchaseController {
         }
     }
 
-    private Ride buyTheRide(User currentUser, Schedule schedule, Seat seat){
+    public synchronized Ride buyTheRide(User currentUser, Schedule schedule, Seat seat){
 
+        if (!checkValidSeat(String.valueOf(seat.getCabine()),
+                String.valueOf(seat.getNumber()),
+                schedule.getTrain(),
+                schedule.getTimeDeparture())){
+            throw new SeatAlreadyExistException("Seat Already Exist");
+        }
         Ticket ticket = new Ticket();
         Ride ride = new Ride();
         ride.setStationArrival(schedule.getStationArrival());
@@ -222,7 +229,7 @@ public class PurchaseController {
         ticketService.addTicket(ticket);
         ride.setTicket(ticket);
         rideService.addRide(ride);
-        log.info(currentUser.getEmail() + " has already bought the ride");
+        log.info(currentUser.getEmail() + " bought the ride");
 
         return ride;
     }
@@ -255,7 +262,7 @@ public class PurchaseController {
         Files.copy(source.toPath(), dest.toPath());
     }
 
-    public Boolean checkValidSeat(String carriage, String number, Train train, Date timeDeparture){
+    private Boolean checkValidSeat(String carriage, String number, Train train, Date timeDeparture){
 
         List<Ride> rides = rideService.findByTrainAndTime(train,timeDeparture);
         if (rides.size() == 0) { return true; }

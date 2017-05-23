@@ -17,6 +17,8 @@ public interface RideService {
 
     void addRide(Ride ride);
 
+    void delete(Ride ride);
+
     Ride findByTicket(Ticket ticket);
 
     List<Ride> findRidesByTrainAndDate(Train train, Date start, Date end);
