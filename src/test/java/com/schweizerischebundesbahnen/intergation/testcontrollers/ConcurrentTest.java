@@ -26,7 +26,7 @@ import java.util.concurrent.CyclicBarrier;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest
-public class CuncurrentTest {
+public class ConcurrentTest {
 
     private Schedule schedule;
     private Seat seat;

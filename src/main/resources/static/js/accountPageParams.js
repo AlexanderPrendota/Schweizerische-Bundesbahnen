@@ -82,7 +82,7 @@ function showUserRides() {
                 $("#lose").append("<div class='container'>" +
                     "<div class='panel-heading'>" +
                     "<div class='panel-title text-center'>" +
-                    "<h1 class='title'>You have not got rides rigth now </h1>" +
+                    "<h1 class='title'>You have not got rides right now </h1>" +
                     "</div></div></div>");
             } else {
 

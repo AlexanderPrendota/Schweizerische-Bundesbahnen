@@ -79,7 +79,7 @@ public class PurchaseController {
         }
 
         if (!checkValidSeat(carriage,number,id.getTrain(),id.getTimeDeparture())){
-            return new ResponseEntity<>("Please choose another seats!"
+            return new ResponseEntity<>("Please choose another seat!"
                     ,HttpStatus.BAD_REQUEST);
         }
 
@@ -88,7 +88,7 @@ public class PurchaseController {
         int cabineNumber = Integer.parseInt(carriage);
 
         if (seatNumber <= 0 || cabineNumber <= 0){
-            return new ResponseEntity<>("Please choose another seats!"
+            return new ResponseEntity<>("Please choose another seat!"
                     ,HttpStatus.BAD_REQUEST);
         }
         Seat seat = seatService.findByTrainAndNumberAndCarriage(id.getTrain(), seatNumber, cabineNumber);
@@ -107,7 +107,7 @@ public class PurchaseController {
                         log.warn("User = " + auth.getName() + " has already got ride = " + id.getId());
                     }
             }
-            // If user has got 2 equal ride — PurchaseAlreadyExistExceprion
+            // If user has got 2 equal ride — PurchaseAlreadyExistException
             if (alreadyExistRide > 0){
                 return new ResponseEntity<>("User has already got this ride!",
                         HttpStatus.BAD_REQUEST);
