@@ -1,12 +1,10 @@
 package com.schweizerischebundesbahnen.restcontroller;
 
 import com.google.zxing.WriterException;
+import com.schweizerischebundesbahnen.exceptions.ScheduleNotFoundException;
 import com.schweizerischebundesbahnen.exceptions.SeatAlreadyExistException;
 import com.schweizerischebundesbahnen.model.*;
-import com.schweizerischebundesbahnen.service.api.RideService;
-import com.schweizerischebundesbahnen.service.api.SeatService;
-import com.schweizerischebundesbahnen.service.api.TicketService;
-import com.schweizerischebundesbahnen.service.api.UserService;
+import com.schweizerischebundesbahnen.service.api.*;
 import com.schweizerischebundesbahnen.service.imp.MailService;
 import com.schweizerischebundesbahnen.service.imp.QRService;
 import lombok.extern.log4j.Log4j;
@@ -46,6 +44,9 @@ public class PurchaseController {
 
     @Autowired
     private SeatService seatService;
+
+    @Autowired
+    private ScheduleService scheduleService;
 
     private static final long UNIX_TIME = System.currentTimeMillis() / 1000L;
 
@@ -208,6 +209,11 @@ public class PurchaseController {
                 schedule.getTimeDeparture())){
             throw new SeatAlreadyExistException("Seat Already Exist");
         }
+
+        if (scheduleService.findScheduleById(schedule.getId()) == null){
+            throw new ScheduleNotFoundException("Schedule not found");
+        }
+
         Ticket ticket = new Ticket();
         Ride ride = new Ride();
         ride.setStationArrival(schedule.getStationArrival());

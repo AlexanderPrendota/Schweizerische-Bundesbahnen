@@ -42,6 +42,11 @@ public class ScheduleServiceImp implements ScheduleService {
         scheduleRepository.save(schedule);
     }
 
+    @Override
+    public Schedule saveSchedule(Schedule schedule) {
+        return scheduleRepository.save(schedule);
+    }
+
     /**
      * Delete schedule entity from database
      * @param schedule existing scedule entity

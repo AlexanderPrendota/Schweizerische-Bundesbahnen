@@ -43,7 +43,7 @@ public class AutomationCheckStatistics {
                 .presenceOfElementLocated(By.id("statistics")))
                 .click();
 
-        Thread.sleep(5000);
+        Thread.sleep(6000);
         webDriverWait.until(ExpectedConditions
                 .presenceOfElementLocated(By.xpath("//h3[text()='Bought tickets by station departure']")));
 

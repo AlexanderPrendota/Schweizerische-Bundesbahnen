@@ -1,11 +1,8 @@
 package com.schweizerischebundesbahnen.intergation.testcontrollers;
 
-import com.google.zxing.WriterException;
 import com.schweizerischebundesbahnen.exceptions.SeatAlreadyExistException;
 import com.schweizerischebundesbahnen.model.*;
-import com.schweizerischebundesbahnen.repository.RideRepository;
 import com.schweizerischebundesbahnen.repository.SeatRepository;
-import com.schweizerischebundesbahnen.repository.TicketRepository;
 import com.schweizerischebundesbahnen.restcontroller.PurchaseController;
 import com.schweizerischebundesbahnen.service.api.*;
 import org.junit.After;
@@ -15,9 +12,6 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-
-import javax.mail.MessagingException;
-import java.io.IOException;
 import java.util.concurrent.BrokenBarrierException;
 import java.util.concurrent.CyclicBarrier;
 
@@ -26,7 +20,7 @@ import java.util.concurrent.CyclicBarrier;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest
-public class ConcurrentTest {
+public class ConcurrentBuyingTicket {
 
     private Schedule schedule;
     private Seat seat;
@@ -65,7 +59,7 @@ public class ConcurrentTest {
 
 
     @Test
-    public void cuncurrentTest() throws BrokenBarrierException, InterruptedException {
+    public void concurrentTestBuyingTicket() throws BrokenBarrierException, InterruptedException {
 
         // We want to start just 2 threads at the same time, but let's control that
         // timing from the main thread. That's why we have 3 "parties" instead of 2.

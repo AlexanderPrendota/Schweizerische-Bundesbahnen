@@ -18,6 +18,8 @@ public interface ScheduleService {
 
     void addSchedule(Schedule schedule);
 
+    Schedule saveSchedule(Schedule schedule);
+
     void delete(Schedule schedule);
 
     Schedule findScheduleById(Long id);

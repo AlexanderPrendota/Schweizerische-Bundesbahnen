@@ -92,10 +92,10 @@ function showUserRides() {
                 $("#risestable")
                     .append("<thead>" +
                         "<tr class='tab'>" +
-                        "<th class='tab'>Train Number</th>" +
-                        "<th class='tab'>Station Departure</th>" +
-                        "<th class='tab'>Time</th>" + "<th class='tab'>Station Arrival</th>" +
-                        "<th class='tab'>Time</th>" + "</tr>" + "</thead>" + "<tbody>");
+                        "<th class='tab'><h4>Train Number</h4></th>" +
+                        "<th class='tab'><h4>Station Departure</h4></th>" +
+                        "<th class='tab'><h4>Time Departure</h4></th>" + "<th class='tab'><h4>Station Arrival</h4></th>" +
+                        "<th class='tab'><h4>Time Arrival</h4></th>" + "</tr>" + "</thead>" + "<tbody>");
                 for (var i = 0; i < response.length; i++) {
                     $("#risestable")
                         .append("<tr onclick='showRideDetail(this.id);' id='" + response[i].id + "' class='tab'>" +
