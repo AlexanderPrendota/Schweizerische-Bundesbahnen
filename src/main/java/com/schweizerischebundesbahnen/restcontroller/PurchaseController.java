@@ -48,7 +48,7 @@ public class PurchaseController {
     @Autowired
     private ScheduleService scheduleService;
 
-    private static final long UNIX_TIME = System.currentTimeMillis() / 1000L;
+
 
     /**
      *  Saving user purchase.
@@ -67,7 +67,7 @@ public class PurchaseController {
                                          @PathVariable String carriage,
                                          @PathVariable String number)
             throws WriterException, IOException, MessagingException{
-
+        long UNIX_TIME = System.currentTimeMillis() / 1000L;
         User currentUser = userService.findUserByEmail(auth.getName());
         // Try to find the same rides from user
         int alreadyExistRide = 0;
@@ -132,6 +132,7 @@ public class PurchaseController {
         User currentUser = userService.findUserByEmail(auth.getName());
         // Try to find the same rides from user
 
+        long UNIX_TIME = System.currentTimeMillis() / 1000L;
         int alreadyExistRide = 0;
 
         for (Schedule schedule : schedules) {
