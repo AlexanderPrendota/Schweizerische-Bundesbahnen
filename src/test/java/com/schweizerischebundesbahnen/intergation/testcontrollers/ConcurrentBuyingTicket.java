@@ -27,7 +27,7 @@ public class ConcurrentBuyingTicket {
     private User customer1;
     private User customer2;
     private Ride ride;
-    private Ticket ticket;
+    private Long ticketID;
 
     @Autowired
     private PurchaseController purchaseController;
@@ -74,7 +74,7 @@ public class ConcurrentBuyingTicket {
 
                 try{
                     ride = purchaseController.buyTheRide(customer1,schedule,seat);
-                    ticket = ride.getTicket();
+                    ticketID = ride.getTicket().getId();
 
                     System.out.println("*********");
                     System.out.println("Customer 1 DONE...");
@@ -100,7 +100,7 @@ public class ConcurrentBuyingTicket {
 
                 try{
                     ride = purchaseController.buyTheRide(customer2,schedule,seat);
-                    ticket = ride.getTicket();
+                    ticketID = ride.getTicket().getId();
 
                     System.out.println("*********");
                     System.out.println("Customer 2 DONE...");
@@ -133,7 +133,10 @@ public class ConcurrentBuyingTicket {
 
     @After
     public void cleanTest(){
-        rideService.delete(ride);
-        ticketService.delete(ticket);
+        if (ride != null) {
+            rideService.delete(ride);
+            Ticket ticket = ticketService.findById(ticketID);
+            ticketService.delete(ticket);
+        }
     }
 }

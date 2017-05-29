@@ -27,7 +27,7 @@ public class ConcurrentBuyingDeletedRide {
     private Schedule schedule;
     private User customer;
     private Seat seat;
-    private Ticket ticket;
+    private Long ticketID;
     private Ride ride;
 
     @Autowired
@@ -96,7 +96,7 @@ public class ConcurrentBuyingDeletedRide {
                     System.out.println("*********");
                     System.out.println("Customer try to buy...");
                     ride = purchaseController.buyTheRide(customer,schedule,seat);
-                    ticket = ride.getTicket();
+                    ticketID = ride.getTicket().getId();
 
                     System.out.println("*********");
                     System.out.println("Customer bought successfully...");
@@ -134,6 +134,7 @@ public class ConcurrentBuyingDeletedRide {
         }
         if (ride != null){
             rideService.delete(ride);
+            Ticket ticket = ticketService.findById(ticketID);
             ticketService.delete(ticket);
         }
 

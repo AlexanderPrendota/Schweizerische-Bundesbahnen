@@ -32,7 +32,7 @@ public class Ticket {
     @JoinColumn(name = "USER_ID")
     public User user;
 
-    @OneToMany(mappedBy = "ticket",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "ticket")
     @Getter
     @Setter
     private Set<Ride> ride;

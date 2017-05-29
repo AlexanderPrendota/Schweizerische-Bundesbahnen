@@ -3,7 +3,6 @@ package com.schweizerischebundesbahnen.restcontroller;
 import com.schweizerischebundesbahnen.model.Ride;
 import com.schweizerischebundesbahnen.model.Seat;
 import com.schweizerischebundesbahnen.model.Train;
-import com.schweizerischebundesbahnen.repository.RideRepository;
 import com.schweizerischebundesbahnen.service.api.RideService;
 import com.schweizerischebundesbahnen.service.api.SeatService;
 import com.schweizerischebundesbahnen.service.api.TrainService;
